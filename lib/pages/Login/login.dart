@@ -17,8 +17,8 @@ class _LoginState extends State<Login> {
           children: [
             Column(
               children: [
-                Text("DAFTAR",style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: Color(0xffC21010)),),
-                Text("isi ini dulu ya!", style: TextStyle( fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xff2D2D2D)),),
+                Text("DAFTAR",style: TextStyle(fontSize: 60, fontWeight: FontWeight.w800, color: Color(0xffC21010)),),
+                Text("isi ini dulu ya!", style: TextStyle( fontSize: 20, fontWeight: FontWeight.w600, color: Color(0xff2D2D2D)),),
               ],
             ),
             Column(
