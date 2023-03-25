@@ -30,9 +30,11 @@ class WelcomePage extends StatelessWidget {
           TextButton(
               onPressed: () => Navigator.pushNamed(context, "/pertama"),
               child: Text("Masuk")),
-          TextButton(
-              onPressed: () => Navigator.pushNamed(context, "/login"),
-              child: Text("Login")),
+          Container(
+            child: TextButton(
+                onPressed: () => Navigator.pushNamed(context, "/login"),
+                child: Text("Login")),
+          )
         ],
       ),
     );
