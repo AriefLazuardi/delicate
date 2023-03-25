@@ -1,4 +1,4 @@
-# delicate
+# Delicate
 
 A new Flutter project.
 
