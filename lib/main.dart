@@ -1,3 +1,4 @@
+import 'package:belajar_flutter/pages/Login/login.dart';
 import 'package:belajar_flutter/pages/pertama/pertama.dart';
 import 'package:flutter/material.dart';
 
@@ -10,9 +11,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          fontFamily: "Poppins",
+          textTheme: TextTheme(
+            bodyMedium: TextStyle(
+              fontFamily: "Poppins"
+            )
+          )
+        ),
         home: WelcomePage(),
         routes: {
-          "/pertama": (context) => Login(),
+          "/login": (context) => Login(),
+          "/pertama": (context) => Pertama(),
         });
   }
 }
