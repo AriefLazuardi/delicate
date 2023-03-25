@@ -31,6 +31,9 @@ class WelcomePage extends StatelessWidget {
               onPressed: () => Navigator.pushNamed(context, "/pertama"),
               child: Text("Masuk")),
           Container(
+            width: 314,
+            height: 42,
+            color: Color(0xffC21010),
             child: TextButton(
                 onPressed: () => Navigator.pushNamed(context, "/login"),
                 child: Text("Login")),
