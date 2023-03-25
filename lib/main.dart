@@ -29,10 +29,10 @@ class WelcomePage extends StatelessWidget {
           Text("Temukan masakan tepat untuk momen acaramu di Delicate"),
           TextButton(
               onPressed: () => Navigator.pushNamed(context, "/pertama"),
-              child: Text("Masuk"))
+              child: Text("Masuk")),
           TextButton(
-            onPressed: () => Navigator.pushNamed(context, "/login"),
-            child: Text("Login"))
+              onPressed: () => Navigator.pushNamed(context, "/login"),
+              child: Text("Login")),
         ],
       ),
     );
