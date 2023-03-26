@@ -31,7 +31,7 @@ class _LoginState extends State<Login> {
             Column(
               children: [
                 Text("data"),
-                Text("data"),
+                Text("Atau masuk menggunakan", style: TextStyle( fontSize: 18, fontWeight: FontWeight.w600, color: Color(0xff2D2D2D)),),
               ],
             ),
           ],
