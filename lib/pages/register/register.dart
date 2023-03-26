@@ -19,19 +19,23 @@ class _RegisterState extends State<Register> {
           children: [
             Column(
               children: [
-                Text(
-                  "DAFTAR",
-                  style: TextStyle(
-                      fontSize: 60,
-                      fontWeight: FontWeight.w800,
-                      color: primaryColor),
+                Container(
+                  child: Text(
+                    "DAFTAR",
+                    style: TextStyle(
+                        fontSize: 60,
+                        fontWeight: FontWeight.w800,
+                        color: primaryColor),
+                  ),
                 ),
-                Text(
-                  "isi ini dulu ya!",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      color: blackColor),
+                Container(
+                  child: Text(
+                    "isi ini dulu ya!",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: blackColor),
+                  ),
                 ),
               ],
             ),
