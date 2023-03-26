@@ -1,6 +1,5 @@
 part of "shared.dart";
 
-Color primaryColor = Colors.red;
+Color primaryColor = Color(0xffC21010);
 Color blackColor = Color(0xff2D2D2D);
-Color whiteDaftarColor = Color(0xffEDEDED);
-Color white = Colors.white;
+Color white = Color(0xffF4F4F4);
