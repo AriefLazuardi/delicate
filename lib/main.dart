@@ -29,12 +29,15 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xffF4F4F4),
-        body: Center(
-          child: Container(
-            width: 150,
-            height: 52,
-            child: Image(image: AssetImage("assets/images/logo_delicate.png")),
-          ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Center(
+              child: Container(
+                child: Image(image: AssetImage("assets/images/delicate.png")),
+              ),
+            ),
+          ],
         ));
   }
 }
