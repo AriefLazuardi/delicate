@@ -30,13 +30,19 @@ class WelcomePage extends StatelessWidget {
     return Scaffold(
         backgroundColor: Color(0xffF4F4F4),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Center(
               child: Container(
                 child: Image(image: AssetImage("assets/images/delicate.png")),
               ),
             ),
+            Center(
+              child: Container(
+                  child: Image(
+                image: AssetImage("assets/images/celebration.png"),
+              )),
+            )
           ],
         ));
   }

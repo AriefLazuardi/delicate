@@ -16,7 +16,7 @@ class _RegisterState extends State<Register> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Column(
-              children: [Text(DAFTAR)],
+              children: [Text("DAFTAR")],
             )
           ],
         ),
