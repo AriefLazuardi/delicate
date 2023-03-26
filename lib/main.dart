@@ -1,5 +1,5 @@
-import 'package:belajar_flutter/pages/Login/login.dart';
-import 'package:belajar_flutter/pages/pertama/pertama.dart';
+import 'package:delicate/pages/login/login.dart';
+import 'package:delicate/pages/welcome/welcome.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,17 +12,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          fontFamily: "Poppins",
-          textTheme: TextTheme(
-            bodyMedium: TextStyle(
-              fontFamily: "Poppins"
-            )
-          )
-        ),
+            fontFamily: "Poppins",
+            textTheme: TextTheme(bodyMedium: TextStyle(fontFamily: "Poppins"))),
         home: WelcomePage(),
         routes: {
           "/login": (context) => Login(),
-          "/pertama": (context) => Pertama(),
+          "/welcome": (context) => Welcome(),
         });
   }
 }
@@ -33,23 +28,13 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF4F4F4),
-      body: ListView(
-        children: [
-          Text("Temukan masakan tepat untuk momen acaramu di Delicate"),
-          TextButton(
-              onPressed: () => Navigator.pushNamed(context, "/pertama"),
-              child: Text("Masuk")),
-          Container(
-            width: 314,
-            height: 42,
-            color: Color(0xffC21010),
-            child: TextButton(
-                onPressed: () => Navigator.pushNamed(context, "/login"),
-                child: Text("Login")),
-          )
-        ],
-      ),
-    );
+        backgroundColor: Color(0xffF4F4F4),
+        body: Center(
+          child: Container(
+            width: 150,
+            height: 52,
+            child: Image(image: AssetImage("assets/images/logo_delicate.png")),
+          ),
+        ));
   }
 }
