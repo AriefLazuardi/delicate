@@ -24,7 +24,7 @@ class _RegisterState extends State<Register> {
                   style: TextStyle(
                       fontSize: 60,
                       fontWeight: FontWeight.w800,
-                      color: Color(0xffC21010)),
+                      color: primaryColor),
                 ),
                 Text(
                   "isi ini dulu ya!",
