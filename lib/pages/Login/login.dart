@@ -18,21 +18,50 @@ class _LoginState extends State<Login> {
           children: [
             Column(
               children: [
-                Text("DAFTAR",style: TextStyle(fontSize: 60, fontWeight: FontWeight.w800, color: Color(0xffC21010)),),
-                Text("isi ini dulu ya!", style: TextStyle( fontSize: 20, fontWeight: FontWeight.w600, color: Color(0xff2D2D2D)),),
+                Text("LOGIN",style: TextStyle(fontSize: 60, fontWeight: FontWeight.w800, color: Color(0xffC21010)),),
+                Text("Ketik yang bener ya!", style: TextStyle( fontSize: 20, fontWeight: FontWeight.w600, color: Color(0xff2D2D2D)),),
               ],
             ),
             Column(
               children: [
-                Text("data"),
-                Text("data"),
-                Text("data"),
+                Container(
+                  padding: EdgeInsets.fromLTRB(20, 20, 20, 5),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black87)
+                      ),
+                      hintText: "Masukkan email/no hp"
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black87)
+                      ),
+                      hintText: "Masukkan password"
+                    ),
+                  ),
+                ),
+                Text("Lupa password ?"),
               ],
             ),
             Column(
               children: [
-                Text("data"),
-                Text("Atau masuk menggunakan", style: TextStyle( fontSize: 18, fontWeight: FontWeight.w600, color: Color(0xff2D2D2D)),),
+                Container(
+                  color: Color(0xffC21010),
+                  width: 317,
+                  height: 42,
+                  child: TextButton(
+                  onPressed: () => Navigator.pushNamed(context, "/login"),
+                  child: Text("MASUK",)),
+                ),
+                Text("Atau masuk menggunakan", style: TextStyle( fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xff2D2D2D)),),
               ],
             ),
           ],
