@@ -37,7 +37,11 @@ class WelcomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                padding: EdgeInsets.only(top: 150),
+                padding: EdgeInsets.fromLTRB(340, 35, 10, 0),
+                child: Image(image: AssetImage("assets/images/infocircle.png")),
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 100),
                 child: Image(image: AssetImage("assets/images/delicate.png")),
               ),
               Container(
@@ -69,14 +73,36 @@ class WelcomePage extends StatelessWidget {
                       style: TextStyle(color: Color(0xffF4f4f4)),
                     )),
               ),
-              Container(
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                child: TextButton(
-                    onPressed: () => Navigator.pushNamed(context, "/register"),
-                    child: Text(
-                      "Daftar",
-                      style: TextStyle(color: primaryColor),
-                    )),
+              Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.fromLTRB(130, 0, 10, 10),
+                    child: TextButton(
+                        onPressed: () =>
+                            Navigator.pushNamed(context, "/register"),
+                        child: Text(
+                          "Daftar",
+                          style: TextStyle(
+                            color: primaryColor,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        )),
+                  ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                    child: TextButton(
+                        onPressed: () => Navigator.pushNamed(context, "/login"),
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                            color: primaryColor,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        )),
+                  ),
+                ],
               ),
             ],
           ),
