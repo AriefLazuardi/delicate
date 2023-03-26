@@ -1,5 +1,5 @@
-import 'package:belajar_flutter/pages/Login/login.dart';
-import 'package:belajar_flutter/pages/pertama/pertama.dart';
+import 'package:delicate/pages/login/login.dart';
+import 'package:delicate/pages/pertama/pertama.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,13 +12,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          fontFamily: "Poppins",
-          textTheme: TextTheme(
-            bodyMedium: TextStyle(
-              fontFamily: "Poppins"
-            )
-          )
-        ),
+            fontFamily: "Poppins",
+            textTheme: TextTheme(bodyMedium: TextStyle(fontFamily: "Poppins"))),
         home: WelcomePage(),
         routes: {
           "/login": (context) => Login(),
