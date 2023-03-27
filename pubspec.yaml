@@ -74,27 +74,27 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Poppins
-  #     fonts:
-  #       - asset: assets/fonts/Poppins-Black.ttf
-  #       - asset: assets/fonts/Poppins-BlackItalic.ttf
-  #       - asset: assets/fonts/Poppins-Bold.ttf
-  #       - asset: assets/fonts/Poppins-BoldItalic.ttf
-  #       - asset: assets/fonts/Poppins-ExtraBold.ttf
-  #       - asset: assets/fonts/Poppins-ExtraBoldItalic.ttf
-  #       - asset: assets/fonts/Poppins-ExtraLight.ttf
-  #       - asset: assets/fonts/Poppins-ExtraLightItalic.ttf
-  #       - asset: assets/fonts/Poppins-Italic.ttf
-  #       - asset: assets/fonts/Poppins-Light.ttf
-  #       - asset: assets/fonts/Poppins-LightItalic.ttf
-  #       - asset: assets/fonts/Poppins-Medium.ttf
-  #       - asset: assets/fonts/Poppins-MediumItalic.ttf
-  #       - asset: assets/fonts/Poppins-Regular.ttf
-  #       - asset: assets/fonts/Poppins-SemiBold.ttf
-  #       - asset: assets/fonts/Poppins-SemiBoldItalic.ttf
-  #       - asset: assets/fonts/Poppins-Thin.ttf
-  #       - asset: assets/fonts/Poppins-ThinItalic.ttf
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins/Poppins-Black.ttf
+        - asset: assets/fonts/Poppins/Poppins-BlackItalic.ttf
+        - asset: assets/fonts/Poppins/Poppins-Bold.ttf
+        - asset: assets/fonts/Poppins/Poppins-BoldItalic.ttf
+        - asset: assets/fonts/Poppins/Poppins-ExtraBold.ttf
+        - asset: assets/fonts/Poppins/Poppins-ExtraBoldItalic.ttf
+        - asset: assets/fonts/Poppins/Poppins-ExtraLight.ttf
+        - asset: assets/fonts/Poppins/Poppins-ExtraLightItalic.ttf
+        - asset: assets/fonts/Poppins/Poppins-Italic.ttf
+        - asset: assets/fonts/Poppins/Poppins-Light.ttf
+        - asset: assets/fonts/Poppins/Poppins-LightItalic.ttf
+        - asset: assets/fonts/Poppins/Poppins-Medium.ttf
+        - asset: assets/fonts/Poppins/Poppins-MediumItalic.ttf
+        - asset: assets/fonts/Poppins/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins/Poppins-SemiBold.ttf
+        - asset: assets/fonts/Poppins/Poppins-SemiBoldItalic.ttf
+        - asset: assets/fonts/Poppins/Poppins-Thin.ttf
+        - asset: assets/fonts/Poppins/Poppins-ThinItalic.ttf
         
   #   - family: Trajan Pro
   #     fonts:
