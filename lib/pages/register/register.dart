@@ -86,12 +86,14 @@ class _RegisterState extends State<Register> {
                         "DAFTAR",
                       )),
                 ),
-                Text(
-                  "Atau masuk menggunakan",
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: blackColor),
+                Container(
+                  child: Text(
+                    "Atau masuk menggunakan",
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: blackColor),
+                  ),
                 ),
               ],
             ),
