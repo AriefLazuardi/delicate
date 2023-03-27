@@ -12,7 +12,6 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    
       backgroundColor: white,
       body: ListView(
         children: [
@@ -22,11 +21,11 @@ class _LoginState extends State<Login> {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 alignment: Alignment.bottomCenter,
-                decoration: const  BoxDecoration(
-                  image: DecorationImage(image: AssetImage("assets/images/pattern.png"), fit: BoxFit.cover)
-                ),
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/images/pattern.png"),
+                        fit: BoxFit.cover)),
               ),
-              
               Container(
                 margin: EdgeInsets.only(top: 60),
                 child: Column(
@@ -50,29 +49,54 @@ class _LoginState extends State<Login> {
                         ),
                       ],
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.1,),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                    ),
                     Column(
                       children: [
                         Container(
-                          padding: EdgeInsets.fromLTRB(20, 20, 20, 5),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(0, 2),
+                                    blurRadius: 5)
+                              ]),
+                          margin: EdgeInsets.fromLTRB(20, 20, 20, 5),
                           child: TextFormField(
-                            decoration: InputDecoration(filled: true,fillColor: white,
-                                border: OutlineInputBorder(borderSide: BorderSide(width: 0.5,color: Colors.grey.shade100)),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey)),
-                                hintText: "Masukkan email/no hp"),
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: white,
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      width: 0.5, color: Colors.grey.shade100)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey)),
+                              hintText: "Masukkan email/no hp",
+                            ),
                           ),
                         ),
                         Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            boxShadow:[
-                            BoxShadow(color: Colors.black.withOpacity(0.3),offset: Offset(0,2),blurRadius: 5)
-                          ] ),
+                              borderRadius: BorderRadius.circular(4),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(0, 2),
+                                    blurRadius: 5)
+                              ]),
                           margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
                           child: TextFormField(
-                            decoration: InputDecoration(filled: true,fillColor: white,
-                                border: OutlineInputBorder(borderSide: BorderSide(width: 0.5,color: Colors.grey.shade100)),
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                                filled: true,
+                                fillColor: white,
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 0.5,
+                                        color: Colors.grey.shade100)),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(color: Colors.grey)),
                                 hintText: "Masukkan password"),
@@ -80,27 +104,34 @@ class _LoginState extends State<Login> {
                         ),
                         Container(
                           child: TextButton(
-                              onPressed: () => Navigator.pushNamed(context, "/login"),
+                              onPressed: () =>
+                                  Navigator.pushNamed(context, "/login"),
                               child: Text(
-                                "Lupa password ?", style: TextStyle(color: primaryColor),
+                                "Lupa password ?",
+                                style: TextStyle(color: primaryColor),
                               )),
-                        )    
+                        )
                       ],
                     ),
-                   
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.1,), Column(
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                    ),
+                    Column(
                       children: [
                         Container(
                           color: primaryColor,
                           width: 317,
                           height: 42,
                           child: TextButton(
-                              onPressed: () => Navigator.pushNamed(context, "/login"),
+                              onPressed: () =>
+                                  Navigator.pushNamed(context, "/login"),
                               child: Text(
-                                "MASUK", style: TextStyle(color: white),
+                                "MASUK",
+                                style: TextStyle(color: white),
                               )),
                         ),
-                        Container(margin: EdgeInsets.symmetric(vertical: 20),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 20),
                           child: Text(
                             "Atau masuk menggunakan",
                             style: TextStyle(
@@ -114,12 +145,26 @@ class _LoginState extends State<Login> {
                   ],
                 ),
               ),
-        GestureDetector(
-            onTap: () =>Navigator.pop(context),
-            child: Container(
-              padding: EdgeInsets.all(30),
-              child: Image(image: AssetImage("assets/images/Vector.png"))),
-          )    ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: Container(
+                        padding: EdgeInsets.all(30),
+                        child: Image(
+                            image: AssetImage("assets/images/Vector.png"))),
+                  ),
+                  GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: Container(
+                        padding: EdgeInsets.all(30),
+                        child: Image(
+                            image: AssetImage("assets/images/infocircle.png"))),
+                  )
+                ],
+              )
+            ],
           ),
         ],
       ),
