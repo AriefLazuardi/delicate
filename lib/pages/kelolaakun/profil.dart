@@ -17,9 +17,29 @@ class _ProfileState extends State<Profile> {
       backgroundColor: whiteColor,
       body: ListView(
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-          )
+          Container(
+            margin: EdgeInsets.only(top: 60),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  children: [
+                    Text(
+                      "Rina Novanti",
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: primaryColor),
+                    ),
+                    Text(
+                      "08213745668902",
+                      style: TextStyle(fontSize: 12, color: whiteColor),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
