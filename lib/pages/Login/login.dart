@@ -154,7 +154,7 @@ class _LoginState extends State<Login> {
                     child: Container(
                         padding: EdgeInsets.all(30),
                         child: Image(
-                            image: AssetImage("assets/images/vector.png"))),
+                            image: AssetImage("assets/images/Vector.png"))),
                   ),
                   // fitur informasi
                   GestureDetector(
