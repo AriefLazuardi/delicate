@@ -57,10 +57,21 @@ class WelcomePage extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(top: 15),
                 child: Text(
-                  "Temukan masakan tepat untuk momen acaramu di Delicate",
+                  "Temukan masakan tepat untuk",
                   style: TextStyle(
                     color: blackColor,
-                    fontSize: 24,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Container(
+                child: Text(
+                  "momen acaramu di Delicate",
+                  style: TextStyle(
+                    color: blackColor,
+                    fontSize: 15,
                     fontWeight: FontWeight.w700,
                   ),
                   textAlign: TextAlign.center,

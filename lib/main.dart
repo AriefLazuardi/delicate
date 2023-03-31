@@ -2,6 +2,9 @@ import 'package:delicate/pages/login/login.dart';
 import 'package:delicate/pages/welcome/welcome.dart';
 import 'package:delicate/pages/register/register.dart';
 import 'package:delicate/pages/kelolaakun/profil.dart';
+import 'package:delicate/shared/shared.dart';
+import 'package:delicate/splashscreen_view.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +19,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             fontFamily: "Poppins",
             textTheme: TextTheme(bodyMedium: TextStyle(fontFamily: "Poppins"))),
-        home: WelcomePage(),
+        home: SplashScreenPage(),
         routes: {
           "/login": (context) => Login(),
           "/welcome": (context) => Welcome(),
