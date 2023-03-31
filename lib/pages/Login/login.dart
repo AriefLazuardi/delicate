@@ -12,7 +12,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: white,
+      backgroundColor: whiteColor,
       body: ListView(
         children: [
           Stack(
@@ -68,7 +68,7 @@ class _LoginState extends State<Login> {
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                               filled: true,
-                              fillColor: white,
+                              fillColor: whiteColor,
                               border: OutlineInputBorder(
                                   borderSide: BorderSide(
                                       width: 0.5, color: Colors.grey.shade100)),
@@ -92,7 +92,7 @@ class _LoginState extends State<Login> {
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                                 filled: true,
-                                fillColor: white,
+                                fillColor: whiteColor,
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 0.5,
@@ -127,7 +127,7 @@ class _LoginState extends State<Login> {
                                   Navigator.pushNamed(context, "/login"),
                               child: Text(
                                 "MASUK",
-                                style: TextStyle(color: white),
+                                style: TextStyle(color: whiteColor),
                               )),
                         ),
                         Container(
@@ -153,7 +153,7 @@ class _LoginState extends State<Login> {
                     child: Container(
                         padding: EdgeInsets.all(30),
                         child: Image(
-                            image: AssetImage("assets/images/Vector.png"))),
+                            image: AssetImage("assets/images/vector.png"))),
                   ),
                   GestureDetector(
                     onTap: () => Navigator.pop(context),

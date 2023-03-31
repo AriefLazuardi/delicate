@@ -37,12 +37,20 @@ class WelcomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                padding: EdgeInsets.fromLTRB(340, 35, 10, 0),
-                child: Image(image: AssetImage("assets/images/infocircle.png")),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 120, 353, 0),
+                  ),
+                  Icon(
+                    Icons.info_outlined,
+                    color: primaryColor,
+                    size: 25.0,
+                  ),
+                ],
               ),
               Container(
-                padding: EdgeInsets.only(top: 100),
+                padding: EdgeInsets.only(top: 10),
                 child: Image(image: AssetImage("assets/images/delicate.png")),
               ),
               Container(
@@ -75,9 +83,9 @@ class WelcomePage extends StatelessWidget {
                     )),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
-                    padding: EdgeInsets.fromLTRB(130, 0, 10, 10),
                     child: TextButton(
                         onPressed: () =>
                             Navigator.pushNamed(context, "/register"),
@@ -91,7 +99,6 @@ class WelcomePage extends StatelessWidget {
                         )),
                   ),
                   Container(
-                    padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
                     child: TextButton(
                         onPressed: () => Navigator.pushNamed(context, "/login"),
                         child: Text(

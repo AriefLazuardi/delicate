@@ -14,7 +14,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: white,
+      backgroundColor: whiteColor,
       body: ListView(
         children: [
           Stack(
@@ -70,7 +70,7 @@ class _RegisterState extends State<Register> {
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                               filled: true,
-                              fillColor: white,
+                              fillColor: whiteColor,
                               border: OutlineInputBorder(
                                   borderSide: BorderSide(
                                       width: 0.5, color: Colors.grey.shade100)),
@@ -94,7 +94,7 @@ class _RegisterState extends State<Register> {
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                                 filled: true,
-                                fillColor: white,
+                                fillColor: whiteColor,
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 0.5,
@@ -118,7 +118,7 @@ class _RegisterState extends State<Register> {
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                                 filled: true,
-                                fillColor: white,
+                                fillColor: whiteColor,
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 0.5,
@@ -146,7 +146,7 @@ class _RegisterState extends State<Register> {
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600,
-                                      color: white))),
+                                      color: whiteColor))),
                         ),
                         Container(
                           margin: EdgeInsets.symmetric(vertical: 10),
@@ -171,7 +171,7 @@ class _RegisterState extends State<Register> {
                     child: Container(
                         padding: EdgeInsets.all(30),
                         child: Image(
-                            image: AssetImage("assets/images/Vector.png"))),
+                            image: AssetImage("assets/images/vector.png"))),
                   ),
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
