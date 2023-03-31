@@ -14,6 +14,7 @@ class _LoginState extends State<Login> {
     return Scaffold(
       backgroundColor: whiteColor,
       body: ListView(
+        padding: EdgeInsets.only(top: 20),
         children: [
           Stack(
             children: [
@@ -37,7 +38,7 @@ class _LoginState extends State<Login> {
                           "LOGIN",
                           style: TextStyle(
                               fontSize: 60,
-                              fontWeight: FontWeight.w800,
+                              fontWeight: FontWeight.w700,
                               color: primaryColor),
                         ),
                         Text(
@@ -59,23 +60,24 @@ class _LoginState extends State<Login> {
                               borderRadius: BorderRadius.circular(4),
                               boxShadow: [
                                 BoxShadow(
-                                    color: Colors.black.withOpacity(0.3),
-                                    offset: Offset(0, 2),
+                                    color: Colors.black.withOpacity(0.2),
+                                    offset: Offset(0, 3),
                                     blurRadius: 5)
                               ]),
                           margin: EdgeInsets.fromLTRB(20, 20, 20, 5),
                           child: TextFormField(
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
-                              filled: true,
-                              fillColor: whiteColor,
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      width: 0.5, color: Colors.grey.shade100)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey)),
-                              hintText: "Masukkan email/no hp",
-                            ),
+                                filled: true,
+                                fillColor: whiteColor,
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 0.5,
+                                        color: Colors.grey.shade100)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.black)),
+                                hintText: "Masukkan email/no hp",
+                                hintStyle: TextStyle(color: blackColor.withOpacity(0.5),fontWeight: FontWeight.w600)),
                           ),
                         ),
                         Container(
@@ -98,8 +100,9 @@ class _LoginState extends State<Login> {
                                         width: 0.5,
                                         color: Colors.grey.shade100)),
                                 focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey)),
-                                hintText: "Masukkan password"),
+                                    borderSide: BorderSide(color: Colors.black)),
+                                hintText: "Masukkan password",
+                                hintStyle: TextStyle(color: blackColor.withOpacity(0.5),fontWeight: FontWeight.w600)),
                           ),
                         ),
                         Container(
@@ -154,7 +157,7 @@ class _LoginState extends State<Login> {
                     child: Container(
                         padding: EdgeInsets.all(30),
                         child: Image(
-                            image: AssetImage("assets/images/vector.png"))),
+                            image: AssetImage("assets/images/Vector.png"))),
                   ),
                   // fitur informasi
                   GestureDetector(
