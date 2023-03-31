@@ -107,7 +107,7 @@ class _LoginState extends State<Login> {
                               onPressed: () =>
                                   Navigator.pushNamed(context, "/login"),
                               child: Text(
-                                "Lupa password ?",
+                                "Lupa password?",
                                 style: TextStyle(color: primaryColor),
                               )),
                         )
@@ -148,6 +148,7 @@ class _LoginState extends State<Login> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  // kembali ke halaman awal
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
                     child: Container(
@@ -155,6 +156,7 @@ class _LoginState extends State<Login> {
                         child: Image(
                             image: AssetImage("assets/images/vector.png"))),
                   ),
+                  // fitur informasi
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
                     child: Container(
