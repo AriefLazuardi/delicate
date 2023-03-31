@@ -171,7 +171,7 @@ class _RegisterState extends State<Register> {
                     child: Container(
                         padding: EdgeInsets.all(30),
                         child: Image(
-                            image: AssetImage("assets/images/Vector.png"))),
+                            image: AssetImage("assets/images/vector.png"))),
                   ),
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
