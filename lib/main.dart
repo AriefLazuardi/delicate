@@ -1,6 +1,7 @@
 import 'package:delicate/pages/login/login.dart';
 import 'package:delicate/pages/welcome/welcome.dart';
 import 'package:delicate/pages/register/register.dart';
+import 'package:delicate/pages/kelolaakun/profil.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
 
