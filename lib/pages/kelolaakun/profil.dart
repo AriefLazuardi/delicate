@@ -18,6 +18,15 @@ class _ProfileState extends State<Profile> {
       body: ListView(
         children: [
           Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            alignment: Alignment.bottomCenter,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/images/pattern.png"),
+                    fit: BoxFit.cover)),
+          ),
+          Container(
             margin: EdgeInsets.only(top: 60),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
