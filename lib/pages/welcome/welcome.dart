@@ -13,7 +13,7 @@ class Welcome extends StatelessWidget {
           Container(
             width: 314,
             height: 42,
-            color: Color(0xffC21010),
+            color: primaryColor,
             child: Text("Mulai"),
           )
         ],
@@ -28,7 +28,7 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xffF4F4F4),
+        backgroundColor: whiteColor,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -79,14 +79,14 @@ class WelcomePage extends StatelessWidget {
               ),
               Container(
                 margin: EdgeInsets.only(top: 80),
-                color: Color(0xffC21010),
+                color: primaryColor,
                 width: 317,
                 height: 42,
                 child: TextButton(
                     onPressed: () => Navigator.pushNamed(context, "/login"),
-                    child: const Text(
+                    child: Text(
                       "MULAI",
-                      style: TextStyle(color: Color(0xffF4f4f4)),
+                      style: TextStyle(color: whiteColor),
                     )),
               ),
               Row(
