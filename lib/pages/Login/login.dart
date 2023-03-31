@@ -75,9 +75,12 @@ class _LoginState extends State<Login> {
                                         width: 0.5,
                                         color: Colors.grey.shade100)),
                                 focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.black)),
+                                    borderSide:
+                                        BorderSide(color: Colors.black)),
                                 hintText: "Masukkan email/no hp",
-                                hintStyle: TextStyle(color: blackColor.withOpacity(0.5),fontWeight: FontWeight.w600)),
+                                hintStyle: TextStyle(
+                                    color: blackColor.withOpacity(0.5),
+                                    fontWeight: FontWeight.w600)),
                           ),
                         ),
                         Container(
@@ -100,9 +103,12 @@ class _LoginState extends State<Login> {
                                         width: 0.5,
                                         color: Colors.grey.shade100)),
                                 focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.black)),
+                                    borderSide:
+                                        BorderSide(color: Colors.black)),
                                 hintText: "Masukkan password",
-                                hintStyle: TextStyle(color: blackColor.withOpacity(0.5),fontWeight: FontWeight.w600)),
+                                hintStyle: TextStyle(
+                                    color: blackColor.withOpacity(0.5),
+                                    fontWeight: FontWeight.w600)),
                           ),
                         ),
                         Container(
@@ -157,7 +163,7 @@ class _LoginState extends State<Login> {
                     child: Container(
                         padding: EdgeInsets.all(30),
                         child: Image(
-                            image: AssetImage("assets/images/Vector.png"))),
+                            image: AssetImage("assets/images/vector.png"))),
                   ),
                   // fitur informasi
                   GestureDetector(
