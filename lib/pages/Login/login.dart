@@ -133,7 +133,7 @@ class _LoginState extends State<Login> {
                           height: 42,
                           child: TextButton(
                               onPressed: () =>
-                                  Navigator.pushNamed(context, "/login"),
+                                  Navigator.pushNamed(context, "/menu"),
                               child: Text(
                                 "MASUK",
                                 style: TextStyle(color: whiteColor),
