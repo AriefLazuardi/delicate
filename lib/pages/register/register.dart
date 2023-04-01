@@ -69,15 +69,18 @@ class _RegisterState extends State<Register> {
                           child: TextFormField(
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
-                              filled: true,
-                              fillColor: whiteColor,
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      width: 0.5, color: Colors.grey.shade100)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey)),
-                              hintText: "Masukkan email/no hp",
-                            ),
+                                filled: true,
+                                fillColor: whiteColor,
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 0.5,
+                                        color: Colors.grey.shade100)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey)),
+                                hintText: "Masukkan email/no hp",
+                                hintStyle: TextStyle(
+                                    color: blackColor.withOpacity(0.5),
+                                    fontWeight: FontWeight.w600)),
                           ),
                         ),
                         Container(
@@ -101,7 +104,10 @@ class _RegisterState extends State<Register> {
                                         color: Colors.grey.shade100)),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(color: Colors.grey)),
-                                hintText: "Masukkan password"),
+                                hintText: "Masukkan password",
+                                hintStyle: TextStyle(
+                                    color: blackColor.withOpacity(0.5),
+                                    fontWeight: FontWeight.w600)),
                           ),
                         ),
                         Container(
@@ -125,7 +131,10 @@ class _RegisterState extends State<Register> {
                                         color: Colors.grey.shade100)),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(color: Colors.grey)),
-                                hintText: "Konfirmasi password"),
+                                hintText: "Konfirmasi password",
+                                hintStyle: TextStyle(
+                                    color: blackColor.withOpacity(0.5),
+                                    fontWeight: FontWeight.w600)),
                           ),
                         ),
                       ],
