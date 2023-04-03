@@ -17,12 +17,11 @@ class _LoginState extends State<Login> {
       _isHidePassword = !_isHidePassword;
     });
   }
-  
+
   // GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final _formState = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  
 
   @override
   Widget build(BuildContext context) {
@@ -85,9 +84,13 @@ class _LoginState extends State<Login> {
                             child: TextFormField(
                               controller: emailController,
                               validator: (value) {
-                                if(value == " "){
-                                  return "Email tidak boleh kosong";
+                                if (value != null) {
+                                  value = value.trim();
+                                  if(value.isEmpty) {
+                                    return "email tidak boleh kosong";
+                                  }
                                 }
+                                return null;
                               },
                               decoration: InputDecoration(
                                   filled: true,
@@ -118,9 +121,13 @@ class _LoginState extends State<Login> {
                             child: TextFormField(
                               controller: passwordController,
                               validator: (value) {
-                                if(value == ""){
-                                  return "password tidak boleh kosong";
+                                if (value != null) {
+                                  value = value.trim();
+                                  if(value.isEmpty) {
+                                    return "password tidak boleh kosong";
+                                  }
                                 }
+                                return null;
                               },
                               obscureText: _isHidePassword,
                               decoration: InputDecoration(
@@ -174,14 +181,14 @@ class _LoginState extends State<Login> {
                           width: 317,
                           height: 42,
                           child: TextButton(
-                              onPressed: (){
-                                if (_formState.currentState!.validate()){
+                              onPressed: () {
+                                if (_formState.currentState!.validate()) {
                                   // do something
                                   print("validation success");
-                                }else{
+                                } else {
                                   print("validation failed");
                                 }
-                              },  
+                              },
                               child: Text(
                                 "MASUK",
                                 style: TextStyle(
