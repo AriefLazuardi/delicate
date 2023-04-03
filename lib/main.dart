@@ -24,11 +24,7 @@ class MyApp extends StatelessWidget {
           "/login": (context) => Login(),
           "/welcome": (context) => Welcome(),
           "/register": (context) => Register(),
-<<<<<<< HEAD
-          "/profil": (context) => Profile(),
-=======
           "/menu": (context) => Menu(),
->>>>>>> f4f0b102c544819e8f4a94f8364103e88eb30afd
         });
   }
 }
