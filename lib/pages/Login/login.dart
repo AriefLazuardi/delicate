@@ -18,8 +18,10 @@ class _LoginState extends State<Login> {
     });
   }
   
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
-
+  // GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  final _formState = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   
 
   @override
@@ -67,7 +69,7 @@ class _LoginState extends State<Login> {
                       height: MediaQuery.of(context).size.height * 0.1,
                     ),
                     Form(
-                      key: formkey,
+                      key: _formState,
                       child: Column(
                         children: [
                           Container(
@@ -81,17 +83,11 @@ class _LoginState extends State<Login> {
                                 ]),
                             margin: EdgeInsets.fromLTRB(20, 20, 20, 10),
                             child: TextFormField(
+                              controller: emailController,
                               validator: (value) {
-                                if (value == null || value.isEmpty){
-                                  return "Harap masukkan password terlebih dahulu";
+                                if(value == " "){
+                                  return "Email tidak boleh kosong";
                                 }
-                                else if( value.length < 8 && value.length >16 ){
-                                  return "password terdiri dari 8-16 karakter";
-                                }
-                                else{
-                                  return null;
-                                };
-                                
                               },
                               decoration: InputDecoration(
                                   filled: true,
@@ -120,6 +116,12 @@ class _LoginState extends State<Login> {
                                 ]),
                             margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
                             child: TextFormField(
+                              controller: passwordController,
+                              validator: (value) {
+                                if(value == ""){
+                                  return "password tidak boleh kosong";
+                                }
+                              },
                               obscureText: _isHidePassword,
                               decoration: InputDecoration(
                                   suffixIcon: GestureDetector(
@@ -172,8 +174,14 @@ class _LoginState extends State<Login> {
                           width: 317,
                           height: 42,
                           child: TextButton(
-                              onPressed: () =>
-                                  Navigator.pushNamed(context, "/menu"),
+                              onPressed: (){
+                                if (_formState.currentState!.validate()){
+                                  // do something
+                                  print("validation success");
+                                }else{
+                                  print("validation failed");
+                                }
+                              },  
                               child: Text(
                                 "MASUK",
                                 style: TextStyle(
@@ -181,16 +189,6 @@ class _LoginState extends State<Login> {
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700),
                               )),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 20),
-                          child: Text(
-                            "Atau masuk menggunakan",
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xff2D2D2D)),
-                          ),
                         ),
                       ],
                     ),
