@@ -1,7 +1,6 @@
 import 'package:delicate/pages/login/login.dart';
 import 'package:delicate/pages/welcome/welcome.dart';
 import 'package:delicate/pages/register/register.dart';
-import 'package:delicate/pages/kelolaakun/profil.dart';
 import 'package:delicate/pages/menu/menu.dart';
 import 'package:delicate/splashscreen_view.dart';
 
@@ -18,13 +17,14 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             fontFamily: "Poppins",
-            textTheme: TextTheme(bodyMedium: TextStyle(fontFamily: "Poppins"))),
+            textTheme:
+                const TextTheme(bodyMedium: TextStyle(fontFamily: "Poppins"))),
         home: SplashScreenPage(),
         routes: {
-          "/login": (context) => Login(),
+          "/login": (context) => const Login(),
           "/welcome": (context) => Welcome(),
-          "/register": (context) => Register(),
-          // "/menu": (context) => Menu(),
+          "/register": (context) => const Register(),
+          "/menu": (context) => Menu(),
         });
   }
 }
