@@ -32,7 +32,7 @@ class WelcomePage extends StatelessWidget {
         body: ListView(
           children: [
             Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Row(
                   children: [

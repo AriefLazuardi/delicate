@@ -9,6 +9,16 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  bool _isHidePassword = true;
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _isHidePassword = !_isHidePassword;
+    });
+  }
+
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,17 +70,28 @@ class _LoginState extends State<Login> {
                               borderRadius: BorderRadius.circular(4),
                               boxShadow: [
                                 BoxShadow(
-                                    color: Colors.black.withOpacity(0.2),
-                                    offset: Offset(0, 3),
+                                    color: Colors.black.withOpacity(0.4),
+                                    offset: Offset(0, 4),
                                     blurRadius: 5)
                               ]),
-                          margin: EdgeInsets.fromLTRB(20, 20, 20, 5),
+                          margin: EdgeInsets.fromLTRB(20, 20, 20, 10),
                           child: TextFormField(
-                            textAlign: TextAlign.center,
+                            validator: (value) {
+                              if (value == null || value.isEmpty){
+                                return "Harap masukkan password terlebih dahulu";
+                              }
+                              else if( value.length < 8 && value.length >16 ){
+                                return "password terdiri dari 8-16 karakter";
+                              }
+                              else{
+                                return null;
+                              };
+                              
+                            },
                             decoration: InputDecoration(
                                 filled: true,
                                 fillColor: whiteColor,
-                                border: OutlineInputBorder(
+                                enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 0.5,
                                         color: Colors.grey.shade100)),
@@ -88,17 +109,30 @@ class _LoginState extends State<Login> {
                               borderRadius: BorderRadius.circular(4),
                               boxShadow: [
                                 BoxShadow(
-                                    color: Colors.black.withOpacity(0.3),
-                                    offset: Offset(0, 2),
+                                    color: Colors.black.withOpacity(0.4),
+                                    offset: Offset(0, 4),
                                     blurRadius: 5)
                               ]),
                           margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
                           child: TextFormField(
-                            textAlign: TextAlign.center,
+                            obscureText: _isHidePassword,
                             decoration: InputDecoration(
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    _togglePasswordVisibility();
+                                  },
+                                  child: Icon(
+                                    _isHidePassword
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                    color: _isHidePassword
+                                        ? Colors.grey
+                                        : Colors.blue,
+                                  ),
+                                ),
                                 filled: true,
                                 fillColor: whiteColor,
-                                border: OutlineInputBorder(
+                                enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 0.5,
                                         color: Colors.grey.shade100)),
@@ -133,10 +167,13 @@ class _LoginState extends State<Login> {
                           height: 42,
                           child: TextButton(
                               onPressed: () =>
-                                  Navigator.pushNamed(context, "/login"),
+                                  Navigator.pushNamed(context, "/menu"),
                               child: Text(
                                 "MASUK",
-                                style: TextStyle(color: whiteColor),
+                                style: TextStyle(
+                                    color: whiteColor,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700),
                               )),
                         ),
                         Container(
