@@ -31,93 +31,108 @@ class WelcomePage extends StatelessWidget {
         backgroundColor: whiteColor,
         body: ListView(
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            Stack(
               children: [
-                Row(
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  alignment: Alignment.bottomCenter,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/pattern.png"),
+                          fit: BoxFit.cover)),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 120, 353, 0),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 120, 353, 0),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 10),
-                  child: Image(image: AssetImage("assets/images/delicate.png")),
-                ),
-                Container(
-                    padding: EdgeInsets.only(top: 75),
-                    child: Image(
-                      image: AssetImage("assets/images/celebration.png"),
-                    )),
-                Container(
-                  padding: EdgeInsets.only(top: 15),
-                  child: Text(
-                    "Temukan masakan tepat untuk",
-                    style: TextStyle(
-                      color: blackColor,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
+                    Container(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Image(
+                          image: AssetImage("assets/images/delicate.png")),
                     ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                Container(
-                  child: Text(
-                    "momen acaramu di Delicate",
-                    style: TextStyle(
-                      color: blackColor,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 80),
-                  color: primaryColor,
-                  width: 317,
-                  height: 42,
-                  child: TextButton(
-                      onPressed: () => Navigator.pushNamed(context, "/login"),
+                    Container(
+                        padding: EdgeInsets.only(top: 75),
+                        child: Image(
+                          image: AssetImage("assets/images/celebration.png"),
+                        )),
+                    Container(
+                      padding: EdgeInsets.only(top: 15),
                       child: Text(
-                        "MULAI",
-                        style: TextStyle(color: whiteColor),
-                      )),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      child: TextButton(
-                          onPressed: () =>
-                              Navigator.pushNamed(context, "/register"),
-                          child: Text(
-                            "Daftar",
-                            style: TextStyle(
-                              color: primaryColor,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          )),
+                        "Temukan masakan tepat untuk",
+                        style: TextStyle(
+                          color: blackColor,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                     Container(
+                      child: Text(
+                        "momen acaramu di Delicate",
+                        style: TextStyle(
+                          color: blackColor,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 80),
+                      color: primaryColor,
+                      width: 317,
+                      height: 42,
                       child: TextButton(
                           onPressed: () =>
-                              Navigator.pushNamed(context, "/login"),
+                              Navigator.pushNamed(context, "/menu"),
                           child: Text(
-                            "Login",
-                            style: TextStyle(
-                              color: primaryColor,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w700,
-                            ),
+                            "MULAI",
+                            style: TextStyle(color: whiteColor),
                           )),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          child: TextButton(
+                              onPressed: () =>
+                                  Navigator.pushNamed(context, "/register"),
+                              child: Text(
+                                "Daftar",
+                                style: TextStyle(
+                                  color: primaryColor,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              )),
+                        ),
+                        Container(
+                          child: TextButton(
+                              onPressed: () =>
+                                  Navigator.pushNamed(context, "/login"),
+                              child: Text(
+                                "Login",
+                                style: TextStyle(
+                                  color: primaryColor,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              )),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ],
-            ),
+            )
           ],
         ));
   }
