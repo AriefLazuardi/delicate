@@ -1,5 +1,6 @@
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -16,6 +17,8 @@ class _LoginState extends State<Login> {
       _isHidePassword = !_isHidePassword;
     });
   }
+  
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   
 
@@ -63,98 +66,101 @@ class _LoginState extends State<Login> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.1,
                     ),
-                    Column(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.4),
-                                    offset: Offset(0, 4),
-                                    blurRadius: 5)
-                              ]),
-                          margin: EdgeInsets.fromLTRB(20, 20, 20, 10),
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value == null || value.isEmpty){
-                                return "Harap masukkan password terlebih dahulu";
-                              }
-                              else if( value.length < 8 && value.length >16 ){
-                                return "password terdiri dari 8-16 karakter";
-                              }
-                              else{
-                                return null;
-                              };
-                              
-                            },
-                            decoration: InputDecoration(
-                                filled: true,
-                                fillColor: whiteColor,
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 0.5,
-                                        color: Colors.grey.shade100)),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.black)),
-                                hintText: "Masukkan email/no hp",
-                                hintStyle: TextStyle(
-                                    color: blackColor.withOpacity(0.5),
-                                    fontWeight: FontWeight.w600)),
+                    Form(
+                      key: formkey,
+                      child: Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.4),
+                                      offset: Offset(0, 4),
+                                      blurRadius: 5)
+                                ]),
+                            margin: EdgeInsets.fromLTRB(20, 20, 20, 10),
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty){
+                                  return "Harap masukkan password terlebih dahulu";
+                                }
+                                else if( value.length < 8 && value.length >16 ){
+                                  return "password terdiri dari 8-16 karakter";
+                                }
+                                else{
+                                  return null;
+                                };
+                                
+                              },
+                              decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: whiteColor,
+                                  enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 0.5,
+                                          color: Colors.grey.shade100)),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black)),
+                                  hintText: "Masukkan email/no hp",
+                                  hintStyle: TextStyle(
+                                      color: blackColor.withOpacity(0.5),
+                                      fontWeight: FontWeight.w600)),
+                            ),
                           ),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.4),
-                                    offset: Offset(0, 4),
-                                    blurRadius: 5)
-                              ]),
-                          margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
-                          child: TextFormField(
-                            obscureText: _isHidePassword,
-                            decoration: InputDecoration(
-                                suffixIcon: GestureDetector(
-                                  onTap: () {
-                                    _togglePasswordVisibility();
-                                  },
-                                  child: Icon(
-                                    _isHidePassword
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
-                                    color: _isHidePassword
-                                        ? Colors.grey
-                                        : Colors.blue,
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.4),
+                                      offset: Offset(0, 4),
+                                      blurRadius: 5)
+                                ]),
+                            margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                            child: TextFormField(
+                              obscureText: _isHidePassword,
+                              decoration: InputDecoration(
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      _togglePasswordVisibility();
+                                    },
+                                    child: Icon(
+                                      _isHidePassword
+                                          ? Icons.visibility_off
+                                          : Icons.visibility,
+                                      color: _isHidePassword
+                                          ? Colors.grey
+                                          : Colors.blue,
+                                    ),
                                   ),
-                                ),
-                                filled: true,
-                                fillColor: whiteColor,
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 0.5,
-                                        color: Colors.grey.shade100)),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.black)),
-                                hintText: "Masukkan password",
-                                hintStyle: TextStyle(
-                                    color: blackColor.withOpacity(0.5),
-                                    fontWeight: FontWeight.w600)),
+                                  filled: true,
+                                  fillColor: whiteColor,
+                                  enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 0.5,
+                                          color: Colors.grey.shade100)),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black)),
+                                  hintText: "Masukkan password",
+                                  hintStyle: TextStyle(
+                                      color: blackColor.withOpacity(0.5),
+                                      fontWeight: FontWeight.w600)),
+                            ),
                           ),
-                        ),
-                        Container(
-                          child: TextButton(
-                              onPressed: () =>
-                                  Navigator.pushNamed(context, "/login"),
-                              child: Text(
-                                "Lupa password?",
-                                style: TextStyle(color: primaryColor),
-                              )),
-                        )
-                      ],
+                          Container(
+                            child: TextButton(
+                                onPressed: () =>
+                                    Navigator.pushNamed(context, "/login"),
+                                child: Text(
+                                  "Lupa password?",
+                                  style: TextStyle(color: primaryColor),
+                                )),
+                          )
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.1,
