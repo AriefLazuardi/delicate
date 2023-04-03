@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           "/login": (context) => Login(),
           "/welcome": (context) => Welcome(),
           "/register": (context) => Register(),
-          "/menu": (context) => Menu(),
+          // "/menu": (context) => Menu(),
         });
   }
 }
