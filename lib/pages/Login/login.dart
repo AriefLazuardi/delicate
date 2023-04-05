@@ -98,6 +98,10 @@ class _LoginState extends State<Login> {
                                   enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                           width: 0.5,
+                                          color: Colors.red.shade100)),
+                                  errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 0.5,
                                           color: Colors.grey.shade100)),
                                   focusedBorder: OutlineInputBorder(
                                       borderSide:
@@ -146,10 +150,15 @@ class _LoginState extends State<Login> {
                                   ),
                                   filled: true,
                                   fillColor: whiteColor,
+                                  
                                   enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                           width: 0.5,
-                                          color: Colors.grey.shade100)),
+                                          color: Colors.red.shade100)),
+                                  errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 0.5,
+                                          color: Colors.red.shade100)),
                                   focusedBorder: OutlineInputBorder(
                                       borderSide:
                                           BorderSide(color: Colors.black)),
