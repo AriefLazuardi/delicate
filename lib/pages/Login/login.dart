@@ -85,16 +85,11 @@ class _LoginState extends State<Login> {
                             child: TextFormField(
                               controller: emailController,
                               validator: (value) {
-<<<<<<< HEAD
-                                if (value == " ") {
-                                  return "Email tidak boleh kosong";
-=======
                                 if (value != null) {
                                   value = value.trim();
-                                  if(value.isEmpty) {
+                                  if (value.isEmpty) {
                                     return "email tidak boleh kosong";
                                   }
->>>>>>> bafcd419640ce4a4762fc9ed270df54f9828fbe4
                                 }
                                 return null;
                               },
@@ -131,16 +126,11 @@ class _LoginState extends State<Login> {
                             child: TextFormField(
                               controller: passwordController,
                               validator: (value) {
-<<<<<<< HEAD
-                                if (value == "") {
-                                  return "password tidak boleh kosong";
-=======
                                 if (value != null) {
                                   value = value.trim();
-                                  if(value.isEmpty) {
+                                  if (value.isEmpty) {
                                     return "password tidak boleh kosong";
                                   }
->>>>>>> bafcd419640ce4a4762fc9ed270df54f9828fbe4
                                 }
                                 return null;
                               },
@@ -161,7 +151,6 @@ class _LoginState extends State<Login> {
                                   ),
                                   filled: true,
                                   fillColor: whiteColor,
-                                  
                                   enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                           width: 0.5,
@@ -205,10 +194,7 @@ class _LoginState extends State<Login> {
                                 if (_formState.currentState!.validate()) {
                                   // do something
                                   print("validation success");
-<<<<<<< HEAD
                                   Navigator.pushNamed(context, "/bottomnavbar");
-=======
->>>>>>> bafcd419640ce4a4762fc9ed270df54f9828fbe4
                                 } else {
                                   print("validation failed");
                                 }
