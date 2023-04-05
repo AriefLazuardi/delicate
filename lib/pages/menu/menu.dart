@@ -29,9 +29,9 @@ class _MenuState extends State<Menu> {
         Column(
           children: [
             // AnimSearchBar(
-            // width: 400,
-            // textController: textController,
-            // onSuffixTap: , onSubmitted: (String ) {  },
+            //   width: 400,
+            //   textController: textController,
+            //   onSuffixTap: ,
             // )
           ],
         )

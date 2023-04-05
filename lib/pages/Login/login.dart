@@ -85,14 +85,27 @@ class _LoginState extends State<Login> {
                             child: TextFormField(
                               controller: emailController,
                               validator: (value) {
+<<<<<<< HEAD
                                 if (value == " ") {
                                   return "Email tidak boleh kosong";
+=======
+                                if (value != null) {
+                                  value = value.trim();
+                                  if(value.isEmpty) {
+                                    return "email tidak boleh kosong";
+                                  }
+>>>>>>> bafcd419640ce4a4762fc9ed270df54f9828fbe4
                                 }
+                                return null;
                               },
                               decoration: InputDecoration(
                                   filled: true,
                                   fillColor: whiteColor,
                                   enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 0.5,
+                                          color: Colors.red.shade100)),
+                                  errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                           width: 0.5,
                                           color: Colors.grey.shade100)),
@@ -118,9 +131,18 @@ class _LoginState extends State<Login> {
                             child: TextFormField(
                               controller: passwordController,
                               validator: (value) {
+<<<<<<< HEAD
                                 if (value == "") {
                                   return "password tidak boleh kosong";
+=======
+                                if (value != null) {
+                                  value = value.trim();
+                                  if(value.isEmpty) {
+                                    return "password tidak boleh kosong";
+                                  }
+>>>>>>> bafcd419640ce4a4762fc9ed270df54f9828fbe4
                                 }
+                                return null;
                               },
                               obscureText: _isHidePassword,
                               decoration: InputDecoration(
@@ -139,10 +161,15 @@ class _LoginState extends State<Login> {
                                   ),
                                   filled: true,
                                   fillColor: whiteColor,
+                                  
                                   enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                           width: 0.5,
-                                          color: Colors.grey.shade100)),
+                                          color: Colors.red.shade100)),
+                                  errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 0.5,
+                                          color: Colors.red.shade100)),
                                   focusedBorder: OutlineInputBorder(
                                       borderSide:
                                           BorderSide(color: Colors.black)),
@@ -178,7 +205,10 @@ class _LoginState extends State<Login> {
                                 if (_formState.currentState!.validate()) {
                                   // do something
                                   print("validation success");
+<<<<<<< HEAD
                                   Navigator.pushNamed(context, "/bottomnavbar");
+=======
+>>>>>>> bafcd419640ce4a4762fc9ed270df54f9828fbe4
                                 } else {
                                   print("validation failed");
                                 }
