@@ -87,7 +87,7 @@ class _LoginState extends State<Login> {
                               validator: (value) {
                                 if (value != null) {
                                   value = value.trim();
-                                  if(value.isEmpty) {
+                                  if (value.isEmpty) {
                                     return "email tidak boleh kosong";
                                   }
                                 }
@@ -128,7 +128,7 @@ class _LoginState extends State<Login> {
                               validator: (value) {
                                 if (value != null) {
                                   value = value.trim();
-                                  if(value.isEmpty) {
+                                  if (value.isEmpty) {
                                     return "password tidak boleh kosong";
                                   }
                                 }
@@ -151,7 +151,6 @@ class _LoginState extends State<Login> {
                                   ),
                                   filled: true,
                                   fillColor: whiteColor,
-                                  
                                   enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                           width: 0.5,
@@ -195,6 +194,7 @@ class _LoginState extends State<Login> {
                                 if (_formState.currentState!.validate()) {
                                   // do something
                                   print("validation success");
+                                  Navigator.pushNamed(context, "/bottomnavbar");
                                 } else {
                                   print("validation failed");
                                 }
