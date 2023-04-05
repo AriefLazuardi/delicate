@@ -18,12 +18,7 @@ class _ProfileState extends State<Profile> {
           Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
- 
-                )
-             
-              ],
+              children: [Text("data")],
             ),
           )
         ],

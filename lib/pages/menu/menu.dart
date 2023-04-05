@@ -28,11 +28,11 @@ class _MenuState extends State<Menu> {
       body: ListView(children: [
         Column(
           children: [
-            AnimSearchBar(
-              width: 400,
-              textController: textController,
-              onSuffixTap: ,
-            )
+            // AnimSearchBar(
+            // width: 400,
+            // textController: textController,
+            // onSuffixTap: , onSubmitted: (String ) {  },
+            // )
           ],
         )
       ]),

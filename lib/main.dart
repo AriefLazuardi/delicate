@@ -3,6 +3,7 @@ import 'package:delicate/pages/welcome/welcome.dart';
 import 'package:delicate/pages/register/register.dart';
 import 'package:delicate/pages/menu/menu.dart';
 import 'package:delicate/splashscreen_view.dart';
+import 'package:delicate/pages/bottomnavbar/bottomnavbar.dart';
 
 import 'package:flutter/material.dart';
 
@@ -20,11 +21,14 @@ class MyApp extends StatelessWidget {
             textTheme:
                 const TextTheme(bodyMedium: TextStyle(fontFamily: "Poppins"))),
         home: SplashScreenPage(),
+        initialRoute: "/SpalashScreenPage",
         routes: {
+          "/SpalashScreenPage": (context) => SplashScreenPage(),
           "/login": (context) => const Login(),
           "/welcome": (context) => Welcome(),
           "/register": (context) => const Register(),
           "/menu": (context) => Menu(),
+          "/bottomnavbar": (context) => BottomNavbar(),
         });
   }
 }

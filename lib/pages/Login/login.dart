@@ -1,3 +1,4 @@
+import 'package:delicate/pages/menu/menu.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -17,12 +18,11 @@ class _LoginState extends State<Login> {
       _isHidePassword = !_isHidePassword;
     });
   }
-  
+
   // GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final _formState = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +85,7 @@ class _LoginState extends State<Login> {
                             child: TextFormField(
                               controller: emailController,
                               validator: (value) {
-                                if(value == " "){
+                                if (value == " ") {
                                   return "Email tidak boleh kosong";
                                 }
                               },
@@ -118,7 +118,7 @@ class _LoginState extends State<Login> {
                             child: TextFormField(
                               controller: passwordController,
                               validator: (value) {
-                                if(value == ""){
+                                if (value == "") {
                                   return "password tidak boleh kosong";
                                 }
                               },
@@ -174,14 +174,15 @@ class _LoginState extends State<Login> {
                           width: 317,
                           height: 42,
                           child: TextButton(
-                              onPressed: (){
-                                if (_formState.currentState!.validate()){
+                              onPressed: () {
+                                if (_formState.currentState!.validate()) {
                                   // do something
                                   print("validation success");
-                                }else{
+                                  Navigator.pushNamed(context, "/bottomnavbar");
+                                } else {
                                   print("validation failed");
                                 }
-                              },  
+                              },
                               child: Text(
                                 "MASUK",
                                 style: TextStyle(
