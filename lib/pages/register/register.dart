@@ -1,7 +1,11 @@
+import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:http/http.dart' as http;
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -21,10 +25,28 @@ class _RegisterState extends State<Register> {
   }
 
   final _formState = GlobalKey<FormState>();
-  final namaController = TextEditingController();
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final passwordconfirmController = TextEditingController();
+  // final passwordConfirmController = TextEditingController();
+
+  Future _doRegis() async{
+    final response = await http.post(Uri.parse("http://localhost:8000/api/register"),body:
+    {
+      "name" : nameController.text,
+      "email" : emailController.text,
+      "password" : passwordController.text,
+    },
+    // headers: {"Accept" : 'application/json'} 
+    );
+    if (response.statusCode == 200){
+      Alert(context: context, title: "Daftar Berhasil", type: AlertType.success).show();
+      Navigator.pushNamed(context, "/login");
+    }else{
+      Alert(context: context, title: "Pendaftaran Gagal", type: AlertType.error).show();
+      
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +106,7 @@ class _RegisterState extends State<Register> {
                                 ]),
                             margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
                             child: TextFormField(
-                              controller: namaController,
+                              controller: nameController,
                               validator: (value) {
                                 if (value != null) {
                                   value = value.trim();
@@ -210,61 +232,64 @@ class _RegisterState extends State<Register> {
                                       fontWeight: FontWeight.w600)),
                             ),
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Colors.black.withOpacity(0.4),
-                                      offset: Offset(0, 4),
-                                      blurRadius: 5)
-                                ]),
-                            margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
-                            child: TextFormField(
-                              controller: passwordconfirmController,
-                              validator: (value) {
-                                if (value != null) {
-                                  value = value.trim();
-                                  if (value.isEmpty) {
-                                    return "password tidak boleh kosong";
-                                  }
-                                }
-                                return null;
-                              },
-                              obscureText: _isHidePassword,
-                              decoration: InputDecoration(
-                                  suffixIcon: GestureDetector(
-                                    onTap: () {
-                                      _togglePasswordVisibility();
-                                    },
-                                    child: Icon(
-                                      _isHidePassword
-                                          ? Icons.visibility_off
-                                          : Icons.visibility,
-                                      color: _isHidePassword
-                                          ? Colors.grey
-                                          : Colors.blue,
-                                    ),
-                                  ),
-                                  filled: true,
-                                  fillColor: whiteColor,
-                                  enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          width: 0.5,
-                                          color: Colors.red.shade100)),
-                                  errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          width: 0.5,
-                                          color: Colors.red.shade100)),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.black)),
-                                  hintText: "Konfirmasi password",
-                                  hintStyle: TextStyle(
-                                      color: blackColor.withOpacity(0.5),
-                                      fontWeight: FontWeight.w600)),
-                            ),
-                          ),
+                          // Container(
+                          //   decoration: BoxDecoration(
+                          //       borderRadius: BorderRadius.circular(4),
+                          //       boxShadow: [
+                          //         BoxShadow(
+                          //             color: Colors.black.withOpacity(0.4),
+                          //             offset: Offset(0, 4),
+                          //             blurRadius: 5)
+                          //       ]),
+                          //   margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                          //   child: TextFormField(
+                          //     controller: passwordConfirmController,
+                          //     validator: (value) {
+                          //       if (value != null) {
+                          //         value = value.trim();
+                          //         if (value.isEmpty) {
+                          //           return "password tidak boleh kosong";
+                          //         }
+                          //       }
+                          //       if(passwordController.text != passwordConfirmController.text){
+                          //         return "password tidak sama";
+                          //       }
+                          //       return null;
+                          //     },
+                          //     obscureText: _isHidePassword,
+                          //     decoration: InputDecoration(
+                          //         suffixIcon: GestureDetector(
+                          //           onTap: () {
+                          //             _togglePasswordVisibility();
+                          //           },
+                          //           child: Icon(
+                          //             _isHidePassword
+                          //                 ? Icons.visibility_off
+                          //                 : Icons.visibility,
+                          //             color: _isHidePassword
+                          //                 ? Colors.grey
+                          //                 : Colors.blue,
+                          //           ),
+                          //         ),
+                          //         filled: true,
+                          //         fillColor: whiteColor,
+                          //         enabledBorder: OutlineInputBorder(
+                          //             borderSide: BorderSide(
+                          //                 width: 0.5,
+                          //                 color: Colors.red.shade100)),
+                          //         errorBorder: OutlineInputBorder(
+                          //             borderSide: BorderSide(
+                          //                 width: 0.5,
+                          //                 color: Colors.red.shade100)),
+                          //         focusedBorder: OutlineInputBorder(
+                          //             borderSide:
+                          //                 BorderSide(color: Colors.black)),
+                          //         hintText: "Konfirmasi password",
+                          //         hintStyle: TextStyle(
+                          //             color: blackColor.withOpacity(0.5),
+                          //             fontWeight: FontWeight.w600)),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
@@ -278,8 +303,9 @@ class _RegisterState extends State<Register> {
                           width: 317,
                           height: 42,
                           child: TextButton(
-                              onPressed: () =>
-                                  Navigator.pushNamed(context, "/login"),
+                              onPressed: (){
+                                _doRegis();
+                              },
                               child: Text("DAFTAR",
                                   style: TextStyle(
                                       fontSize: 16,

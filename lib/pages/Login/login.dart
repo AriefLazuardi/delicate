@@ -40,14 +40,9 @@ class _LoginState extends State<Login> {
     );
     if (response.statusCode == 200){
       Alert(context: context, title: "Login Berhasil", type: AlertType.success);
+      Navigator.pushNamed(context, "/bottomnavbar");
     }else{
       Alert(context: context, title: "Login Gagal", type: AlertType.error).show();
-      DialogButton(
-        child: Text("KEMBALI"), 
-        onPressed: (){
-          Navigator.pop(context);
-        }
-      );
       
     }
   }
@@ -220,13 +215,13 @@ class _LoginState extends State<Login> {
                           child: TextButton(
                               onPressed: () {
                                 _doLogin();
-                                // if (_formState.currentState!.validate()) {
-                                //   // do something
-                                //   print("validation success");
-                                  Navigator.pushNamed(context, "/bottomnavbar");
-                                // } else {
-                                //   print("validation failed");
-                                // }
+                                if (_formState.currentState!.validate()) {
+                                  // do something
+                                  print("validation success");
+                                  
+                                } else {
+                                  print("validation failed");
+                                }
                               },
                               child: Text(
                                 "MASUK",
