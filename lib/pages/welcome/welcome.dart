@@ -92,7 +92,7 @@ class WelcomePage extends StatelessWidget {
                       height: 42,
                       child: TextButton(
                           onPressed: () =>
-                              Navigator.pushNamed(context, "/menu"),
+                              Navigator.pushNamed(context, "/bottomnavbar"),
                           child: Text(
                             "MULAI",
                             style: TextStyle(color: whiteColor),
@@ -119,7 +119,7 @@ class WelcomePage extends StatelessWidget {
                               onPressed: () =>
                                   Navigator.pushNamed(context, "/login"),
                               child: Text(
-                                "Login",
+                                "Masuk",
                                 style: TextStyle(
                                   color: primaryColor,
                                   fontSize: 15,

@@ -1,4 +1,6 @@
 import 'package:delicate/pages/kelolaakun/profil.dart';
+import 'package:delicate/pages/menu/keranjang/keranjang.dart';
+import 'package:delicate/pages/menu/menu.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
 
@@ -22,15 +24,16 @@ class _BottomNavbarState extends State<BottomNavbar> {
             selectedIndex = value;
           });
         },
-        type: BottomNavigationBarType.fixed,
+        backgroundColor: whiteColor,
+        type: BottomNavigationBarType.shifting,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_basket),
-            label: 'Profil',
+            icon: Icon(Icons.shopping_bag),
+            label: 'Keranjang',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
@@ -41,6 +44,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
             label: 'profil',
           ),
         ],
+        fixedColor: primaryColor,
       ),
     );
   }
@@ -50,13 +54,13 @@ class _BottomNavbarState extends State<BottomNavbar> {
 // ];
   Widget getBody() {
     if (this.selectedIndex == 0) {
-      return Profile();
+      return Menu();
     } else if (this.selectedIndex == 1) {
-      return Container();
+      return Keranjang();
     } else if (this.selectedIndex == 2) {
       return Container();
     } else if (this.selectedIndex == 3) {
-      return Container();
+      return Profile();
     } else {
       return Container();
     }
