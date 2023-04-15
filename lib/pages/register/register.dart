@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+// import 'package:flutter/src/widgets/framework.dart';
+// import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -40,8 +40,16 @@ class _RegisterState extends State<Register> {
     // headers: {"Accept" : 'application/json'} 
     );
     if (response.statusCode == 200){
-      Alert(context: context, title: "Daftar Berhasil", type: AlertType.success).show();
-      Navigator.pushNamed(context, "/login");
+      Alert(context: context,
+      title: "Pendaftaran Berhasil",
+      type: AlertType.success,
+      buttons: [
+        DialogButton(child: Text("Lanjut Login"),
+        onPressed: (){
+          Navigator.pop(context,"/login");
+        },)
+      ]
+      );
     }else{
       Alert(context: context, title: "Pendaftaran Gagal", type: AlertType.error).show();
       
