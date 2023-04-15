@@ -11,6 +11,21 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+
+   bool _isHidePassword = true;
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _isHidePassword = !_isHidePassword;
+    });
+  }
+
+  final _formState = GlobalKey<FormState>();
+  final namaController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final passwordconfirmController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,90 +69,204 @@ class _RegisterState extends State<Register> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.1,
                     ),
-                    Column(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.3),
-                                    offset: Offset(0, 2),
-                                    blurRadius: 5)
-                              ]),
-                          margin: EdgeInsets.fromLTRB(20, 20, 20, 5),
-                          child: TextFormField(
-                            textAlign: TextAlign.center,
-                            decoration: InputDecoration(
-                                filled: true,
-                                fillColor: whiteColor,
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 0.5,
-                                        color: Colors.grey.shade100)),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey)),
-                                hintText: "Masukkan email/no hp",
-                                hintStyle: TextStyle(
-                                    color: blackColor.withOpacity(0.5),
-                                    fontWeight: FontWeight.w600)),
+                    Form(
+                      key: _formState,
+                      child: Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.4),
+                                      offset: Offset(0, 4),
+                                      blurRadius: 5)
+                                ]),
+                            margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                            child: TextFormField(
+                              controller: namaController,
+                              validator: (value) {
+                                if (value != null) {
+                                  value = value.trim();
+                                  if (value.isEmpty) {
+                                    return "nama tidak boleh kosong";
+                                  }
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: whiteColor,
+                                  enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 0.5,
+                                          color: Colors.red.shade100)),
+                                  errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 0.5,
+                                          color: Colors.grey.shade100)),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black)),
+                                  hintText: "Masukkan nama lengkap",
+                                  hintStyle: TextStyle(
+                                      color: blackColor.withOpacity(0.5),
+                                      fontWeight: FontWeight.w600)),
+                            ),
                           ),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.3),
-                                    offset: Offset(0, 2),
-                                    blurRadius: 5)
-                              ]),
-                          margin: EdgeInsets.fromLTRB(20, 0, 20, 5),
-                          child: TextFormField(
-                            textAlign: TextAlign.center,
-                            decoration: InputDecoration(
-                                filled: true,
-                                fillColor: whiteColor,
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 0.5,
-                                        color: Colors.grey.shade100)),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey)),
-                                hintText: "Masukkan password",
-                                hintStyle: TextStyle(
-                                    color: blackColor.withOpacity(0.5),
-                                    fontWeight: FontWeight.w600)),
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.4),
+                                      offset: Offset(0, 4),
+                                      blurRadius: 5)
+                                ]),
+                            margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                            child: TextFormField(
+                              controller: emailController,
+                              validator: (value) {
+                                if (value != null) {
+                                  value = value.trim();
+                                  if (value.isEmpty) {
+                                    return "email tidak boleh kosong";
+                                  }
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: whiteColor,
+                                  enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 0.5,
+                                          color: Colors.red.shade100)),
+                                  errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 0.5,
+                                          color: Colors.grey.shade100)),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black)),
+                                  hintText: "Masukkan email/no hp",
+                                  hintStyle: TextStyle(
+                                      color: blackColor.withOpacity(0.5),
+                                      fontWeight: FontWeight.w600)),
+                            ),
                           ),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.3),
-                                    offset: Offset(0, 2),
-                                    blurRadius: 5)
-                              ]),
-                          margin: EdgeInsets.fromLTRB(20, 0, 20, 35),
-                          child: TextFormField(
-                            textAlign: TextAlign.center,
-                            decoration: InputDecoration(
-                                filled: true,
-                                fillColor: whiteColor,
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 0.5,
-                                        color: Colors.grey.shade100)),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey)),
-                                hintText: "Konfirmasi password",
-                                hintStyle: TextStyle(
-                                    color: blackColor.withOpacity(0.5),
-                                    fontWeight: FontWeight.w600)),
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.4),
+                                      offset: Offset(0, 4),
+                                      blurRadius: 5)
+                                ]),
+                            margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                            child: TextFormField(
+                              controller: passwordController,
+                              validator: (value) {
+                                if (value != null) {
+                                  value = value.trim();
+                                  if (value.isEmpty) {
+                                    return "password tidak boleh kosong";
+                                  }
+                                }
+                                return null;
+                              },
+                              obscureText: _isHidePassword,
+                              decoration: InputDecoration(
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      _togglePasswordVisibility();
+                                    },
+                                    child: Icon(
+                                      _isHidePassword
+                                          ? Icons.visibility_off
+                                          : Icons.visibility,
+                                      color: _isHidePassword
+                                          ? Colors.grey
+                                          : Colors.blue,
+                                    ),
+                                  ),
+                                  filled: true,
+                                  fillColor: whiteColor,
+                                  enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 0.5,
+                                          color: Colors.red.shade100)),
+                                  errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 0.5,
+                                          color: Colors.red.shade100)),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black)),
+                                  hintText: "Masukkan password",
+                                  hintStyle: TextStyle(
+                                      color: blackColor.withOpacity(0.5),
+                                      fontWeight: FontWeight.w600)),
+                            ),
                           ),
-                        ),
-                      ],
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.4),
+                                      offset: Offset(0, 4),
+                                      blurRadius: 5)
+                                ]),
+                            margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                            child: TextFormField(
+                              controller: passwordconfirmController,
+                              validator: (value) {
+                                if (value != null) {
+                                  value = value.trim();
+                                  if (value.isEmpty) {
+                                    return "password tidak boleh kosong";
+                                  }
+                                }
+                                return null;
+                              },
+                              obscureText: _isHidePassword,
+                              decoration: InputDecoration(
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      _togglePasswordVisibility();
+                                    },
+                                    child: Icon(
+                                      _isHidePassword
+                                          ? Icons.visibility_off
+                                          : Icons.visibility,
+                                      color: _isHidePassword
+                                          ? Colors.grey
+                                          : Colors.blue,
+                                    ),
+                                  ),
+                                  filled: true,
+                                  fillColor: whiteColor,
+                                  enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 0.5,
+                                          color: Colors.red.shade100)),
+                                  errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 0.5,
+                                          color: Colors.red.shade100)),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black)),
+                                  hintText: "Konfirmasi password",
+                                  hintStyle: TextStyle(
+                                      color: blackColor.withOpacity(0.5),
+                                      fontWeight: FontWeight.w600)),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.1,
@@ -156,16 +285,6 @@ class _RegisterState extends State<Register> {
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600,
                                       color: whiteColor))),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 10),
-                          child: Text(
-                            "Atau masuk menggunakan",
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xff2D2D2D)),
-                          ),
                         ),
                       ],
                     ),

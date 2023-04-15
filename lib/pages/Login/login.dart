@@ -1,7 +1,12 @@
-import 'package:delicate/pages/menu/menu.dart';
+import 'dart:async';
+import 'dart:convert';
+
+// import 'package:delicate/pages/menu/menu.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
-import 'package:form_field_validator/form_field_validator.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:http/http.dart' as http;
+// import 'package:form_field_validator/form_field_validator.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -19,10 +24,33 @@ class _LoginState extends State<Login> {
     });
   }
 
-  // GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
   final _formState = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+
+  Future _doLogin() async{
+    final response = await http.post(Uri.parse("http://localhost:8000/api/login"),body:
+    {
+      "email" : emailController.text,
+      "password" : passwordController.text
+    },
+    // headers: {"Accept" : 'application/json'} 
+    );
+    if (response.statusCode == 200){
+      Alert(context: context, title: "Login Berhasil", type: AlertType.success);
+    }else{
+      Alert(context: context, title: "Login Gagal", type: AlertType.error).show();
+      DialogButton(
+        child: Text("KEMBALI"), 
+        onPressed: (){
+          Navigator.pop(context);
+        }
+      );
+      
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -191,13 +219,14 @@ class _LoginState extends State<Login> {
                           height: 42,
                           child: TextButton(
                               onPressed: () {
-                                if (_formState.currentState!.validate()) {
-                                  // do something
-                                  print("validation success");
+                                _doLogin();
+                                // if (_formState.currentState!.validate()) {
+                                //   // do something
+                                //   print("validation success");
                                   Navigator.pushNamed(context, "/bottomnavbar");
-                                } else {
-                                  print("validation failed");
-                                }
+                                // } else {
+                                //   print("validation failed");
+                                // }
                               },
                               child: Text(
                                 "MASUK",
