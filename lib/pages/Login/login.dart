@@ -52,7 +52,7 @@ class _LoginState extends State<Login> {
     return Scaffold(
       backgroundColor: whiteColor,
       body: ListView(
-        padding: EdgeInsets.only(top: 20),
+        padding: const EdgeInsets.only(top: 20),
         children: [
           Stack(
             children: [
@@ -66,7 +66,7 @@ class _LoginState extends State<Login> {
                         fit: BoxFit.cover)),
               ),
               Container(
-                margin: EdgeInsets.only(top: 60),
+                margin: const EdgeInsets.only(top: 60),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -101,10 +101,10 @@ class _LoginState extends State<Login> {
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.black.withOpacity(0.4),
-                                      offset: Offset(0, 4),
+                                      offset: const Offset(0, 4),
                                       blurRadius: 5)
                                 ]),
-                            margin: EdgeInsets.fromLTRB(20, 20, 20, 10),
+                            margin: const EdgeInsets.fromLTRB(20, 20, 20, 10),
                             child: TextFormField(
                               controller: emailController,
                               validator: (value) {
@@ -127,7 +127,7 @@ class _LoginState extends State<Login> {
                                       borderSide: BorderSide(
                                           width: 0.5,
                                           color: Colors.grey.shade100)),
-                                  focusedBorder: OutlineInputBorder(
+                                  focusedBorder: const OutlineInputBorder(
                                       borderSide:
                                           BorderSide(color: Colors.black)),
                                   hintText: "Masukkan email/no hp",
@@ -142,10 +142,10 @@ class _LoginState extends State<Login> {
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.black.withOpacity(0.4),
-                                      offset: Offset(0, 4),
+                                      offset: const Offset(0, 4),
                                       blurRadius: 5)
                                 ]),
-                            margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                            margin: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                             child: TextFormField(
                               controller: passwordController,
                               validator: (value) {
@@ -182,7 +182,7 @@ class _LoginState extends State<Login> {
                                       borderSide: BorderSide(
                                           width: 0.5,
                                           color: Colors.red.shade100)),
-                                  focusedBorder: OutlineInputBorder(
+                                  focusedBorder: const OutlineInputBorder(
                                       borderSide:
                                           BorderSide(color: Colors.black)),
                                   hintText: "Masukkan password",
@@ -243,16 +243,16 @@ class _LoginState extends State<Login> {
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
                     child: Container(
-                        padding: EdgeInsets.all(30),
-                        child: Image(
+                        padding: const EdgeInsets.all(30),
+                        child: const Image(
                             image: AssetImage("assets/images/vector.png"))),
                   ),
                   // fitur informasi
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
                     child: Container(
-                        padding: EdgeInsets.all(30),
-                        child: Image(
+                        padding: const EdgeInsets.all(30),
+                        child: const Image(
                             image: AssetImage("assets/images/infocircle.png"))),
                   )
                 ],
