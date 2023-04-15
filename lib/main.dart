@@ -1,10 +1,12 @@
 import 'package:delicate/pages/login/login.dart';
+import 'package:delicate/pages/toko/toko.dart';
 import 'package:delicate/pages/welcome/welcome.dart';
 import 'package:delicate/pages/register/register.dart';
 import 'package:delicate/pages/menu/menu.dart';
 import 'package:delicate/splashscreen_view.dart';
 import 'package:delicate/pages/bottomnavbar/bottomnavbar.dart';
-
+import 'package:delicate/pages/menu/category/healthy.dart';
+import 'package:delicate/pages/menu/category/reguler.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,6 +31,9 @@ class MyApp extends StatelessWidget {
           "/register": (context) => const Register(),
           "/menu": (context) => Menu(),
           "/bottomnavbar": (context) => BottomNavbar(),
+          "/regulermenu": (context) => RegulerMenu(),
+          "/healthymenu": (context) => HealthyMenu(),
+          "/lihat": (context) => TokoPage(),
         });
   }
 }
