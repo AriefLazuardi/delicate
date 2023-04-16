@@ -99,9 +99,10 @@ class WelcomePage extends StatelessWidget {
                           )),
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
+                          margin: EdgeInsets.only(right: 20),
                           child: TextButton(
                               onPressed: () =>
                                   Navigator.pushNamed(context, "/register"),

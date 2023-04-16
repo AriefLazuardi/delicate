@@ -43,7 +43,7 @@ class _LoginState extends State<Login> {
       Navigator.pushNamed(context, "/bottomnavbar");
     }else{
       Alert(context: context, title: "Login Gagal", type: AlertType.error).show();
-      
+      passwordController.text="";
     }
   }
 

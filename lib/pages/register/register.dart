@@ -40,18 +40,20 @@ class _RegisterState extends State<Register> {
     // headers: {"Accept" : 'application/json'} 
     );
     if (response.statusCode == 200){
-      Alert(context: context,
-      title: "Pendaftaran Berhasil",
-      type: AlertType.success,
+      Alert(context: context, title: "Pendaftaran Sukses", type: AlertType.success,
       buttons: [
-        DialogButton(child: Text("Lanjut Login"),
-        onPressed: (){
-          Navigator.pop(context,"/login");
-        },)
-      ]
-      );
+        DialogButton(child: Text("OK"), onPressed: () {
+          Navigator.pop(context);
+          Navigator.pushNamed(context,"/login");
+        })
+      ]).show();
+      nameController.text="";
+      emailController.text="";
+      passwordController.text="";
     }else{
       Alert(context: context, title: "Pendaftaran Gagal", type: AlertType.error).show();
+      emailController.text="";
+      passwordController.text="";
       
     }
   }
