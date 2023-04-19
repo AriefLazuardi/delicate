@@ -15,8 +15,10 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  bool _isHidePassword = true;
 
-   bool _isHidePassword = true;
+  
+
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -30,31 +32,37 @@ class _RegisterState extends State<Register> {
   final passwordController = TextEditingController();
   // final passwordConfirmController = TextEditingController();
 
-  Future _doRegis() async{
-    final response = await http.post(Uri.parse("http://localhost:8000/api/register"),body:
-    {
-      "name" : nameController.text,
-      "email" : emailController.text,
-      "password" : passwordController.text,
-    },
-    // headers: {"Accept" : 'application/json'} 
+  Future _doRegis() async {
+    final response = await http.post(
+      Uri.parse("http://10.0.2.2:8000/api/register"),
+      body: {
+        "name": nameController.text,
+        "email": emailController.text,
+        "password": passwordController.text,
+      },
+      // headers: {"Accept" : 'application/json'}
     );
-    if (response.statusCode == 200){
-      Alert(context: context, title: "Pendaftaran Sukses", type: AlertType.success,
-      buttons: [
-        DialogButton(child: Text("OK"), onPressed: () {
-          Navigator.pop(context);
-          Navigator.pushNamed(context,"/login");
-        })
-      ]).show();
-      nameController.text="";
-      emailController.text="";
-      passwordController.text="";
-    }else{
-      Alert(context: context, title: "Pendaftaran Gagal", type: AlertType.error).show();
-      emailController.text="";
-      passwordController.text="";
-      
+    if (response.statusCode == 200) {
+      Alert(
+          context: context,
+          title: "Pendaftaran Sukses",
+          type: AlertType.success,
+          buttons: [
+            DialogButton(
+                child: Text("OK"),
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, "/login");
+                })
+          ]).show();
+      nameController.text = "";
+      emailController.text = "";
+      passwordController.text = "";
+    } else {
+      Alert(context: context, title: "Pendaftaran Gagal", type: AlertType.error)
+          .show();
+      emailController.text = "";
+      passwordController.text = "";
     }
   }
 
@@ -236,7 +244,7 @@ class _RegisterState extends State<Register> {
                                   focusedBorder: OutlineInputBorder(
                                       borderSide:
                                           BorderSide(color: Colors.black)),
-                                  hintText: "Masukkan password",
+                                  hintText: "Masukkan kata sandi",
                                   hintStyle: TextStyle(
                                       color: blackColor.withOpacity(0.5),
                                       fontWeight: FontWeight.w600)),
@@ -313,7 +321,7 @@ class _RegisterState extends State<Register> {
                           width: 317,
                           height: 42,
                           child: TextButton(
-                              onPressed: (){
+                              onPressed: () {
                                 _doRegis();
                               },
                               child: Text("DAFTAR",
