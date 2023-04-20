@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-// import 'package:delicate/pages/menu/menu.dart';
+import 'package:delicate/pages/information/information.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -299,7 +299,7 @@ class _LoginState extends State<Login> {
                   ),
                   // fitur informasi
                   GestureDetector(
-                    onTap: () => Navigator.pop(context),
+                    onTap: () => Navigator.push(context,MaterialPageRoute(builder: (context)=>const Information())),
                     child: Container(
                         padding: const EdgeInsets.all(30),
                         child: const Image(

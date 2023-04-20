@@ -1,4 +1,5 @@
 import 'package:delicate/pages/forgot/forgot_password.dart';
+import 'package:delicate/pages/information/information.dart';
 import 'package:delicate/pages/login/login.dart';
 import 'package:delicate/pages/toko/toko.dart';
 import 'package:delicate/pages/welcome/welcome.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
           "/welcome": (context) => Welcome(),
           "/register": (context) => const Register(),
           "/forgot": (context) => ForgotPassword(),
+          "/information": (context) => Information(),
           "/menu": (context) => Menu(),
           "/bottomnavbar": (context) => BottomNavbar(),
           "/regulermenu": (context) => RegulerMenu(),

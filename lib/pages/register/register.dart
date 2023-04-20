@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 // import 'package:flutter/src/widgets/framework.dart';
 // import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:delicate/pages/information/information.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -16,9 +17,6 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   bool _isHidePassword = true;
-
-  
-
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -69,6 +67,25 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: whiteColor,
+        elevation: 0,
+        leading: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Container(
+              child: Image(image: AssetImage("assets/images/vector.png"))),
+        ),
+        actions: [
+          GestureDetector(
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Information())),
+              child: Container(
+                  child: const Image(
+                      image: AssetImage("assets/images/infocircle.png"))),
+            ),
+        ],
+      ),
       backgroundColor: whiteColor,
       body: ListView(
         children: [
@@ -84,7 +101,7 @@ class _RegisterState extends State<Register> {
                         fit: BoxFit.cover)),
               ),
               Container(
-                margin: EdgeInsets.only(top: 60),
+                margin: EdgeInsets.only(top: 30),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -335,25 +352,6 @@ class _RegisterState extends State<Register> {
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () => Navigator.pop(context),
-                    child: Container(
-                        padding: EdgeInsets.all(30),
-                        child: Image(
-                            image: AssetImage("assets/images/vector.png"))),
-                  ),
-                  GestureDetector(
-                    onTap: () => Navigator.pop(context),
-                    child: Container(
-                        padding: EdgeInsets.all(30),
-                        child: Image(
-                            image: AssetImage("assets/images/infocircle.png"))),
-                  )
-                ],
-              )
             ],
           ),
         ],
