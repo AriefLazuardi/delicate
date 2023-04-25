@@ -18,7 +18,6 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   bool _isHidePassword = true;
 
-
   void _togglePasswordVisibility() {
     setState(() {
       _isHidePassword = !_isHidePassword;
@@ -62,12 +61,25 @@ class _LoginState extends State<Login> {
       Navigator.pushNamed(context, "/bottomnavbar");
       // EasyLoading.dismiss();
     } else {
-      Alert(context: context, title: "Login Gagal", type: AlertType.error)
+      Alert(
+              context: context,
+              title: "Login Gagal",
+              desc: "Email/no hp anda tidak valid",
+              style: AlertStyle(descStyle: TextStyle(fontSize: 12)),
+              buttons: [
+                DialogButton(
+                  child: Text(
+                    "Kembali",
+                    style: TextStyle(color: whiteColor, fontSize: 14),
+                  ),
+                  onPressed: () => Navigator.pop(context),
+                )
+              ],
+              type: AlertType.error)
           .show();
       passwordController.text = "";
     }
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -298,7 +310,10 @@ class _LoginState extends State<Login> {
                   ),
                   // fitur informasi
                   GestureDetector(
-                    onTap: () => Navigator.push(context,MaterialPageRoute(builder: (context)=>const Information())),
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Information())),
                     child: Container(
                         padding: const EdgeInsets.all(30),
                         child: const Image(

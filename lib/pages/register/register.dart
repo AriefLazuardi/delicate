@@ -66,7 +66,19 @@ class _RegisterState extends State<Register> {
       passwordController.text = "";
       passwordConfirmController.text = "";
     } else {
-      Alert(context: context, title: "Pendaftaran Gagal", type: AlertType.error)
+      Alert(
+              context: context,
+              title: "Pendaftaran Gagal",
+              buttons: [
+                DialogButton(
+                  child: Text(
+                    "Kembali",
+                    style: TextStyle(color: whiteColor, fontSize: 14),
+                  ),
+                  onPressed: () => Navigator.pop(context),
+                )
+              ],
+              type: AlertType.error)
           .show();
       emailController.text = "";
       passwordController.text = "";
