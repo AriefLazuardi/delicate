@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:delicate/pages/information/information.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
