@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:delicate/pages/information/information.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:http/http.dart' as http;
 // import 'package:form_field_validator/form_field_validator.dart';
@@ -42,7 +42,7 @@ class _LoginState extends State<Login> {
   //     ..maskColor = Colors.blue.withOpacity(0.5)
   //     ..userInteractions = true
   //     ..dismissOnTap = false;
-  //   ..customAnimation = CustomAnimation();
+  //   // ..customAnimation = CustomAnimation();
   // }
 
   Future _doLogin() async {
@@ -59,12 +59,12 @@ class _LoginState extends State<Login> {
     if (response.statusCode == 200) {
       Alert(context: context, title: "Login Berhasil", type: AlertType.success);
       Navigator.pushNamed(context, "/bottomnavbar");
-      // EasyLoading.dismiss();
     } else {
+      // EasyLoading.dismiss();
       Alert(
               context: context,
               title: "Login Gagal",
-              desc: "Email/no hp anda tidak valid",
+              desc: "Email/no hp atau password anda salah",
               style: AlertStyle(descStyle: TextStyle(fontSize: 12)),
               buttons: [
                 DialogButton(

@@ -48,7 +48,7 @@ class _RegisterState extends State<Register> {
       },
       // headers: {"Accept" : 'application/json'}
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       Alert(
           context: context,
           title: "Pendaftaran Sukses",
