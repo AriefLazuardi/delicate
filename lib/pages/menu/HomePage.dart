@@ -1,4 +1,5 @@
 import 'package:delicate/pages/login/login.dart';
+import 'package:delicate/pages/menu/category/reguler.dart';
 import 'package:delicate/pages/toko/toko.dart';
 import 'package:flutter/cupertino.dart';
 //import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
@@ -6,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/rendering.dart';
 
-class Menu extends StatefulWidget {
-  const Menu({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<Menu> createState() => _MenuState();
+  State<HomePage> createState() => _MenuState();
 }
 
-class _MenuState extends State<Menu> {
+class _MenuState extends State<HomePage> {
   get textController => TextEditingController();
   List data = [
     {
@@ -65,22 +66,41 @@ class _MenuState extends State<Menu> {
           ),
         ),
       ),
-      body: ListView(children: [
+      body: ListView(padding: EdgeInsets.only(bottom: 100), children: [
         Stack(
           children: [
-            Column(
-              children: [
-                Container(
-                  margin: EdgeInsets.fromLTRB(25, 0, 25, 0),
-                  child: CupertinoSearchTextField(
-                    borderRadius: BorderRadius.circular(200),
-                    controller: textController,
-                    placeholder: 'Mau makanan yang gimana nih?',
-                    backgroundColor: whiteColor,
-                    onChanged: (value) {},
+            Container(
+              margin: EdgeInsets.fromLTRB(25, 0, 25, 0),
+              decoration: BoxDecoration(
+                  color: baseColor,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 1,
+                        blurRadius: 2,
+                        offset: Offset(0, 1))
+                  ]),
+              child: TextField(
+                onTap: () => Navigator.pushNamed(context, "/pencarian"),
+                readOnly: true,
+                style: TextStyle(fontSize: 15),
+                decoration: InputDecoration(
+                  hintText: 'Mau makanan yang gimana nih?',
+                  prefixIcon: Icon(Icons.search, color: baseColor),
+                  contentPadding: EdgeInsets.only(left: 35, right: 35),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: new BorderSide(color: whiteColor),
+                  ),
+                  fillColor: whiteColor,
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide(color: Colors.transparent),
                   ),
                 ),
-              ],
+              ),
             ),
             Container(
                 margin: EdgeInsets.fromLTRB(32, 65, 0, 0),
@@ -169,86 +189,80 @@ class _MenuState extends State<Menu> {
                         color: blackColor))),
             Container(
               margin: EdgeInsets.fromLTRB(32, 412, 10, 0),
-              width: 1080,
-              height: 166.5,
+              // width: 1080,
+              height: 180,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: data == null ? 0 : data.length,
+                  itemCount: data.length,
                   itemBuilder: (context, index) {
                     return Container(
-                      height: 166.5,
+                      clipBehavior: Clip.hardEdge,
                       width: 120,
+                      height: 160,
+                      margin: EdgeInsets.symmetric(horizontal: 5),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(8),
                           border: Border.all(
                             width: 1,
                             color: baseColor,
                           )),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Image.asset("${data[index]?['gambar']}"),
-                            Container(
-                              height: 14,
-                              alignment: Alignment.topLeft,
-                              child: Expanded(
+                      child: GestureDetector(
+                        onTap: () => Navigator.pushNamed(context, "/lihat"),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Image.asset("${data[index]?['gambar']}"),
+                              Container(
+                                  padding: EdgeInsets.only(top: 4, left: 4),
                                   child: Text(
-                                "${data[index]?['rumah_makan']}",
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.w700),
-                              )),
-                            ),
-                            Container(
-                              alignment: Alignment.topLeft,
-                              height: 14,
-                              child: Expanded(
-                                child: Text(
-                                  "${data[index]?['nama']}",
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(fontSize: 10),
+                                    "${data[index]?['rumah_makan']}",
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700),
+                                  )),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 4),
+                                  child: Text(
+                                    "${data[index]?['nama']}",
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(fontSize: 10),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Container(
-                              width: 120,
-                              margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                              //alignment: Alignment.bottomRight,
-                              child: Row(
-                                children: [
-                                  Container(
-                                    margin: EdgeInsets.fromLTRB(39, 0, 0, 0),
-                                    child: TextButton(
-                                        onPressed: () => Navigator.pushNamed(
-                                            context, "/lihat"),
-                                        child: Text(
-                                          "Lihat",
-                                          style: TextStyle(
-                                              fontSize: 8, color: primaryColor),
-                                        )),
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pushNamed(context, "/lihat"),
+                                child: Container(
+                                  width: 100,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                          child: Text(
+                                        "Lihat",
+                                        style: TextStyle(
+                                            fontSize: 8, color: primaryColor),
+                                      )),
+                                      Container(
+                                        margin:
+                                            EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                        // padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                        child: Container(
+                                            //padding: EdgeInsets.all(5),
+                                            child: Image(
+                                                image: AssetImage(
+                                                    "assets/images/vector_back.png"))),
+                                      ),
+                                    ],
                                   ),
-                                  Container(
-                                    margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                                    // padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Route route = MaterialPageRoute(
-                                            builder: (context) => TokoPage());
-                                        Navigator.push(context, route);
-                                      },
-                                      child: Container(
-                                          //padding: EdgeInsets.all(5),
-                                          child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/vector_back.png"))),
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
-                            ),
-                          ]),
+                            ]),
+                      ),
                     );
                   }),
             )
