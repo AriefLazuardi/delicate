@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           "/homepage": (context) => HomePage(),
           "/forgot": (context) => ForgotPassword(),
           "/information": (context) => Information(),
-          "/menu": (context) => Menu(),
+          // "/menu": (context) => Menu(),
           "/bottomnavbar": (context) => BottomNavbar(),
           "/regulermenu": (context) => RegulerMenu(),
           "/healthymenu": (context) => HealthyMenu(),
