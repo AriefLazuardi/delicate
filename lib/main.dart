@@ -1,8 +1,10 @@
 import 'package:delicate/pages/login/login.dart';
+import 'package:delicate/pages/menu/HomePage.dart';
+import 'package:delicate/pages/menu/pencarian/pencarian.dart';
 import 'package:delicate/pages/toko/toko.dart';
 import 'package:delicate/pages/welcome/welcome.dart';
 import 'package:delicate/pages/register/register.dart';
-import 'package:delicate/pages/menu/menu.dart';
+import 'package:delicate/pages/menu/HomePage.dart';
 import 'package:delicate/splashscreen_view.dart';
 import 'package:delicate/pages/bottomnavbar/bottomnavbar.dart';
 import 'package:delicate/pages/menu/category/healthy.dart';
@@ -29,11 +31,12 @@ class MyApp extends StatelessWidget {
           "/login": (context) => const Login(),
           "/welcome": (context) => Welcome(),
           "/register": (context) => const Register(),
-          "/menu": (context) => Menu(),
+          "/homepage": (context) => HomePage(),
           "/bottomnavbar": (context) => BottomNavbar(),
           "/regulermenu": (context) => RegulerMenu(),
           "/healthymenu": (context) => HealthyMenu(),
           "/lihat": (context) => TokoPage(),
+          "/pencarian": (context) => Pencarian(),
         });
   }
 }

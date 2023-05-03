@@ -40,6 +40,9 @@ dependencies:
   anim_search_bar: ^2.0.2
   http: ^0.13.5 
   rflutter_alert: ^2.0.4
+  get: ^4.1.4
+  filter_list: any
+  getwidget: ^2.0.4
   # fluttertoast:
 
 dev_dependencies:
