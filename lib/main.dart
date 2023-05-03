@@ -1,3 +1,5 @@
+import 'package:delicate/pages/forgot/forgot_password.dart';
+import 'package:delicate/pages/information/information.dart';
 import 'package:delicate/pages/login/login.dart';
 import 'package:delicate/pages/menu/HomePage.dart';
 import 'package:delicate/pages/menu/pencarian/pencarian.dart';
@@ -32,6 +34,9 @@ class MyApp extends StatelessWidget {
           "/welcome": (context) => Welcome(),
           "/register": (context) => const Register(),
           "/homepage": (context) => HomePage(),
+          "/forgot": (context) => ForgotPassword(),
+          "/information": (context) => Information(),
+          "/menu": (context) => Menu(),
           "/bottomnavbar": (context) => BottomNavbar(),
           "/regulermenu": (context) => RegulerMenu(),
           "/healthymenu": (context) => HealthyMenu(),

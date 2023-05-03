@@ -43,6 +43,8 @@ dependencies:
   get: ^4.1.4
   filter_list: any
   getwidget: ^2.0.4
+  future_progress_dialog: ^0.2.1
+  flutter_easyloading: ^3.0.5
   # fluttertoast:
 
 dev_dependencies:
