@@ -69,7 +69,9 @@ class _FilterDialogState extends State<FilterDialog> {
           },
           child: Text('Terapkan'),
         ),
+        
       ],
+      
     );
   }
 }
