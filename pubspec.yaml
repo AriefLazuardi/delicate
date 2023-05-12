@@ -45,6 +45,16 @@ dependencies:
   getwidget: ^2.0.4
   future_progress_dialog: ^0.2.1
   flutter_easyloading: ^3.0.5
+  rxdart: ^0.27.7
+  simple_animations: ^5.0.0+3
+  shared_preferences: ^2.1.0
+  fluttertoast: ^8.2.1
+  email_validator: ^2.1.17
+  bmnav: ^0.3.4
+  intl: ^0.18.1
+  badges: ^3.1.1
+
+
   # fluttertoast:
 
 dev_dependencies:
