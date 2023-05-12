@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:delicate/pages/information/information.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+// import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:http/http.dart' as http;
-// import 'package:form_field_validator/form_field_validator.dart';
+
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -230,7 +230,7 @@ class _LoginState extends State<Login> {
                                 onPressed: () =>
                                     Navigator.pushNamed(context, "/forgot"),
                                 child: Text(
-                                  "Lupa password?",
+                                  "Lupa kata sandi?",
                                   style: TextStyle(color: primaryColor),
                                 )),
                           )

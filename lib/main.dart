@@ -1,8 +1,12 @@
+import 'package:delicate/pages/Editprofil/edit_profil.dart';
+import 'package:delicate/pages/changepassword/change_password.dart';
 import 'package:delicate/pages/forgot/forgot_password.dart';
+import 'package:delicate/pages/helpdesk/helpdesk.dart';
 import 'package:delicate/pages/information/information.dart';
 import 'package:delicate/pages/login/login.dart';
 import 'package:delicate/pages/menu/HomePage.dart';
 import 'package:delicate/pages/menu/pencarian/pencarian.dart';
+import 'package:delicate/pages/notlogin/notlogin.dart';
 import 'package:delicate/pages/toko/toko.dart';
 import 'package:delicate/pages/welcome/welcome.dart';
 import 'package:delicate/pages/register/register.dart';
@@ -42,6 +46,10 @@ class MyApp extends StatelessWidget {
           "/healthymenu": (context) => HealthyMenu(),
           "/lihat": (context) => TokoPage(),
           "/pencarian": (context) => Pencarian(),
+          "/notlogin": (context) => NotLogin(),
+          "/editprofil": (context) => EditProfil(),
+          "/helpdesk": (context) => HelpDesk(),
+          "/editprofil": (context) => ChangePassword(),
         });
   }
 }
