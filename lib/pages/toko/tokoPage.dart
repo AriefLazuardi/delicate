@@ -141,22 +141,23 @@ class _TokoPageState extends State<TokoPage> {
           ],
         ),
         body: ListView(
+          physics: BouncingScrollPhysics(),
           children: [
             Column(
               children: [
                 SizedBox(
-                  height: 90,
+                  height: 140,
                   child: Container(
                     padding: const EdgeInsets.all(15),
-                    margin: const EdgeInsets.only(top: 5),
+                    margin: const EdgeInsets.only(top: 5, left: 8),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Stack(
                           children: [
                             Container(
-                              width: 50,
-                              height: 50,
+                              width: 100,
+                              height: 100,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
                                 image: DecorationImage(
@@ -175,7 +176,7 @@ class _TokoPageState extends State<TokoPage> {
                               Text(
                                 "${stores['name']} - ${stores['address']}",
                                 style: const TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 18,
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
@@ -183,8 +184,8 @@ class _TokoPageState extends State<TokoPage> {
                               Text(
                                 stores['category'],
                                 style: const TextStyle(
-                                  fontSize: 8,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
                                 ),
                               ),
                               const SizedBox(
@@ -203,7 +204,7 @@ class _TokoPageState extends State<TokoPage> {
                                   Text(
                                     stores['bintang'],
                                     style: const TextStyle(
-                                        fontSize: 8,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.w700),
                                   ),
                                   const SizedBox(
@@ -212,7 +213,7 @@ class _TokoPageState extends State<TokoPage> {
                                   Text(
                                     stores['rating'],
                                     style: const TextStyle(
-                                        fontSize: 8,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.w500),
                                   ),
                                 ],
@@ -229,7 +230,7 @@ class _TokoPageState extends State<TokoPage> {
                   margin: EdgeInsets.only(left: 15),
                   child: Text(
                     'Makanan',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                   ),
                 ),
                 Column(
@@ -239,7 +240,7 @@ class _TokoPageState extends State<TokoPage> {
                           MaterialPageRoute(builder: (context) => TokoPage())),
                       child: Container(
                         padding: EdgeInsets.all(15),
-                        margin: EdgeInsets.only(top: 5),
+                        margin: EdgeInsets.only(top: 5, left: 8),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -274,15 +275,15 @@ class _TokoPageState extends State<TokoPage> {
                                           Text(
                                             e['nama_makanan'],
                                             style: const TextStyle(
-                                              fontSize: 12,
+                                              fontSize: 16,
                                               fontWeight: FontWeight.w700,
                                             ),
                                           ),
                                           Text(
                                             e['harga'],
                                             style: const TextStyle(
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w600,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                           ),
                                           SizedBox(
@@ -320,7 +321,7 @@ class _TokoPageState extends State<TokoPage> {
                                         onPressed: () {},
                                         icon: Icon(
                                             Icons.favorite_border_outlined),
-                                        iconSize: 18,
+                                        iconSize: 24,
                                       )
                                     ],
                                   ),
@@ -328,15 +329,17 @@ class _TokoPageState extends State<TokoPage> {
                                   Container(
                                     alignment: Alignment.center,
                                     margin: EdgeInsets.only(left: 180, top: 26),
-                                    width: 50,
-                                    height: 18,
+                                    width: 150,
+                                    height: 25,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(30),
                                         color: primaryColor),
                                     child: Text(
                                       'Tambah',
                                       style: TextStyle(
-                                          fontSize: 8, color: whiteColor),
+                                          fontSize: 12,
+                                          color: whiteColor,
+                                          fontWeight: FontWeight.w500),
                                     ),
                                   ),
                                 ],
@@ -353,7 +356,7 @@ class _TokoPageState extends State<TokoPage> {
                   margin: EdgeInsets.only(left: 15),
                   child: Text(
                     'Minuman',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                   ),
                 ),
                 Column(
@@ -363,7 +366,7 @@ class _TokoPageState extends State<TokoPage> {
                           MaterialPageRoute(builder: (context) => TokoPage())),
                       child: Container(
                         padding: EdgeInsets.all(15),
-                        margin: EdgeInsets.only(top: 5),
+                        margin: EdgeInsets.only(top: 5, left: 8),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -398,14 +401,14 @@ class _TokoPageState extends State<TokoPage> {
                                           Text(
                                             e['nama_minuman'],
                                             style: const TextStyle(
-                                              fontSize: 12,
+                                              fontSize: 16,
                                               fontWeight: FontWeight.w700,
                                             ),
                                           ),
                                           Text(
                                             e['harga'],
                                             style: const TextStyle(
-                                              fontSize: 10,
+                                              fontSize: 12,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
@@ -444,7 +447,7 @@ class _TokoPageState extends State<TokoPage> {
                                         onPressed: () {},
                                         icon: Icon(
                                             Icons.favorite_border_outlined),
-                                        iconSize: 18,
+                                        iconSize: 24,
                                       )
                                     ],
                                   ),
@@ -452,15 +455,17 @@ class _TokoPageState extends State<TokoPage> {
                                   Container(
                                     alignment: Alignment.center,
                                     margin: EdgeInsets.only(left: 180, top: 26),
-                                    width: 50,
-                                    height: 18,
+                                    width: 170,
+                                    height: 25,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(30),
                                         color: primaryColor),
                                     child: Text(
                                       'Tambah',
                                       style: TextStyle(
-                                          fontSize: 8, color: whiteColor),
+                                          fontSize: 12,
+                                          color: whiteColor,
+                                          fontWeight: FontWeight.w500),
                                     ),
                                   ),
                                 ],

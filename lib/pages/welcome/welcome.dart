@@ -36,10 +36,12 @@ class WelcomePage extends StatelessWidget {
               content: const Text('Ingin keluar dari App?'),
               actions: [
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: primaryColor),
                   onPressed: () => Navigator.of(context).pop(false),
                   child: const Text('Tidak'),
                 ),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: primaryColor),
                   onPressed: () => SystemNavigator.pop(),
                   child: const Text('Ya'),
                 ),

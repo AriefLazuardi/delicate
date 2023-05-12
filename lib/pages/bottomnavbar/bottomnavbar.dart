@@ -78,7 +78,8 @@ class _BottomNavbarState extends State<BottomNavbar> {
                       .entries
                       .map(
                         (e) => BottomNavigationBarItem(
-                          icon: Container(
+                          icon: AnimatedContainer(
+                            duration: const Duration(milliseconds: 300),
                             padding: const EdgeInsets.all(3),
                             decoration: BoxDecoration(
                                 color: _pageIndex != e.key
