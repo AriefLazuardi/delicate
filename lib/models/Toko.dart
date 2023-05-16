@@ -4,25 +4,29 @@
 class Toko {
 /*
 {
+  "id": 1,
   "nama": "Kantin Bu Sri",
   "alamat": "Jalan Alianyang No.25",
-  "deskripsi": "Ayam & Sop Bening",
+  "deskripsi": "Aneka Lauk dan Ayam",
   "gambar": "assets/images/toko_avatar.png"
 } 
 */
 
+  int? id;
   String? nama;
   String? alamat;
   String? deskripsi;
   String? gambar;
 
   Toko({
+    this.id,
     this.nama,
     this.alamat,
     this.deskripsi,
     this.gambar,
   });
   Toko.fromJson(Map<String, dynamic> json) {
+    id = json['id']?.toInt();
     nama = json['nama']?.toString();
     alamat = json['alamat']?.toString();
     deskripsi = json['deskripsi']?.toString();
@@ -30,6 +34,7 @@ class Toko {
   }
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
+    data['id'] = id;
     data['nama'] = nama;
     data['alamat'] = alamat;
     data['deskripsi'] = deskripsi;
