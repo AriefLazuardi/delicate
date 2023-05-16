@@ -6,6 +6,9 @@ import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavbar extends StatefulWidget {
+  // final Widget child;
+  // final String nav;
+  // const BottomNavbar({super.key, required this.child, required this.nav});
   const BottomNavbar({super.key});
 
   @override
@@ -20,6 +23,21 @@ class _BottomNavbarState extends State<BottomNavbar> {
     const Notifikasi(),
     const Profile()
   ];
+
+  // @override
+  // void initState() {
+  //   super.initState();
+
+  //   if (widget.nav == "1") {
+  //     _pageIndex = 1;
+  //   }
+  // }
+
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   _pageIndex = 0;
+  // }
 
   @override
   Widget build(BuildContext context) {
