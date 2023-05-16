@@ -2,6 +2,7 @@ import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:getwidget/getwidget.dart';
 
 class Keranjang extends StatelessWidget {
   const Keranjang({super.key});
@@ -9,11 +10,20 @@ class Keranjang extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+        appBar: GFAppBar(
+          titleSpacing: 0,
           automaticallyImplyLeading: false,
+           title: (Text("Keranjang",style: TextStyle(fontSize: 14,color: blackColor,fontWeight: FontWeight.w600),)),
           backgroundColor: whiteColor,
           elevation: 4,
-          toolbarHeight: 71,
+          leading: GFIconButton(
+            icon: const Icon(Icons.arrow_back),
+            color: primaryColor,
+            onPressed: () {
+              Navigator.pushNamed(context, "/homepage");
+            },
+            type: GFButtonType.transparent,
+          ),
         ),
         body: ListView(
           children: [
