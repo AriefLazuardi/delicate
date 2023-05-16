@@ -53,22 +53,6 @@ class WelcomePage extends StatelessWidget {
 
     return WillPopScope(
       onWillPop: showExitPopup,
-      // final difference = DateTime.now().difference(lastTimeBackbuttonWasClicked);
-      // final isExitWarning = difference >= Duration(seconds: 2);
-
-      // lastTimeBackbuttonWasClicked = DateTime.now();
-      // if (isExitWarning){
-      //   ScaffoldMessenger.of(context).showSnackBar(
-      //     const SnackBar(
-      //       content: Text("Press the back button again to go back"),
-      //       duration: Duration(seconds: 2),
-      //     ));
-      //     SystemNavigator.pop();
-      //   return false;
-      // }else{
-      //   return true;
-      // }
-
       child: Scaffold(
           backgroundColor: whiteColor,
           body: ListView(

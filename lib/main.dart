@@ -7,7 +7,6 @@ import 'package:delicate/pages/login/login.dart';
 import 'package:delicate/pages/menu/HomePage.dart';
 import 'package:delicate/pages/menu/pencarian/pencarian.dart';
 import 'package:delicate/pages/notlogin/notlogin.dart';
-import 'package:delicate/pages/toko/toko.dart';
 import 'package:delicate/pages/toko/tokoPage.dart';
 import 'package:delicate/pages/welcome/welcome.dart';
 import 'package:delicate/pages/register/register.dart';
