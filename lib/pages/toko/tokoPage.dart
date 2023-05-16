@@ -1,111 +1,49 @@
+import 'dart:convert';
+
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+
+import '../../models/Produk.dart';
+import '../../shared/constant.dart';
 
 class TokoPage extends StatefulWidget {
-  const TokoPage({super.key});
+  final int? id;
+  const TokoPage({super.key, this.id});
 
   @override
   State<TokoPage> createState() => _TokoPageState();
 }
 
 class _TokoPageState extends State<TokoPage> {
-  Map stores = {
-    "name": 'Warung Teteh',
-    "address": 'A Yani Sengkubang',
-    "category": 'Ayam & Sapi, Nasi Goreng',
-    "imageUrl": 'assets/images/toko_avatar.png',
-    "bintang": '4.7',
-    "rating": '100+',
-    "makanan": [
-      {
-        "id": 1,
-        "nama_makanan": "Ayam Kalasan",
-        "gambar": "assets/images/ayam_kalasan.png",
-        "harga": "Rp.17.000/Porsi",
-        "kategori": "Reguler"
-      },
-      {
-        "id": 2,
-        "nama_makanan": "Sate Ayam",
-        "gambar": "assets/images/sate_ayam.png",
-        "harga": "Rp.2.500/Tusuk",
-        "kategori": "Healthy"
-      },
-      {
-        "id": 3,
-        "nama_makanan": "Ayam Kalasan",
-        "harga": "Rp.17.000/Porsi",
-        "gambar": "assets/images/ayam_kalasan.png",
-        "kategori": "Reguler"
-      },
-      {
-        "id": 4,
-        "nama_makanan": "Ayam Kalasan",
-        "harga": "Rp.17.000/Porsi",
-        "gambar": "assets/images/ayam_kalasan.png",
-        "kategori": "Reguler"
-      },
-      {
-        "id": 5,
-        "nama_makanan": "Ayam Kalasan",
-        "harga": "Rp.17.000/Porsi",
-        "gambar": "assets/images/ayam_kalasan.png",
-        "kategori": "Reguler"
-      },
-      {
-        "id": 6,
-        "nama_makanan": "Ayam Kalasan",
-        "harga": "Rp.17.000/Porsi",
-        "gambar": "assets/images/ayam_kalasan.png",
-        "kategori": "Reguler"
-      },
-    ],
-    "minuman": [
-      {
-        "id": 1,
-        "nama_minuman": "Jeruk Peras",
-        "gambar": "assets/images/jeruk_peras.png",
-        "harga": "Rp.8.000/Gelas",
-        "kategori": "Reguler"
-      },
-      {
-        "id": 2,
-        "nama_minuman": "Air Serbat",
-        "gambar": "assets/images/air_serbat.png",
-        "harga": "Rp.10.000/Gelas",
-        "kategori": "Healthy"
-      },
-      {
-        "id": 3,
-        "nama_minuman": "Air Serbat",
-        "harga": "Rp.10.000/Gelas",
-        "gambar": "assets/images/air_serbat.png",
-        "kategori": "Healthy"
-      },
-      {
-        "id": 4,
-        "nama_minuman": "Jeruk Peras",
-        "harga": "Rp.8.000/Gelas",
-        "gambar": "assets/images/jeruk_peras.png",
-        "kategori": "Reguler"
-      },
-      {
-        "id": 5,
-        "nama_minuman": "Jeruk Peras",
-        "harga": "Rp.8.000/Gelas",
-        "gambar": "assets/images/jeruk_peras.png",
-        "kategori": "Reguler"
-      },
-      {
-        "id": 6,
-        "nama_minuman": "Jeruk Peras",
-        "harga": "Rp.10.00/Gelas",
-        "gambar": "assets/images/jeruk_peras.png",
-        "kategori": "Healthy"
-      },
-    ],
-  };
+  ModelToko data = ModelToko();
+  bool loading = true;
+  getData() async {
+    if (widget.id != null) {
+      await http
+          .get(Uri.parse(Palatte.sUrl + "/showAllToko/${widget.id}"))
+          .then((v) {
+        var rawData = jsonDecode(v.body);
+        debugPrint("$rawData");
+        data = ModelToko.fromJson(rawData);
+        debugPrint("ITEMM ${data.toko?.first}");
+        loading = false;
+        setState(() {});
+      }).catchError((e) {
+        loading = false;
+        setState(() {});
+        debugPrint("$e");
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -140,346 +78,723 @@ class _TokoPageState extends State<TokoPage> {
             ),
           ],
         ),
-        body: ListView(
-          physics: BouncingScrollPhysics(),
-          children: [
-            Column(
-              children: [
-                SizedBox(
-                  height: 140,
-                  child: Container(
-                    padding: const EdgeInsets.all(15),
-                    margin: const EdgeInsets.only(top: 5, left: 8),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Stack(
-                          children: [
-                            Container(
-                              width: 100,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                image: DecorationImage(
-                                  image: AssetImage(stores['imageUrl']),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "${stores['name']} - ${stores['address']}",
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              const SizedBox(height: 0),
-                              Text(
-                                stores['category'],
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Row(
+        body: loading
+            ? Center(
+                child: CircularProgressIndicator(
+                  color: primaryColor,
+                ),
+              )
+            : (data.toko ?? []).isEmpty
+                ? Center(child: Text("Data Kosong!"))
+                : ListView(
+                    physics: BouncingScrollPhysics(),
+                    children: [
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: 140,
+                            child: Container(
+                              padding: const EdgeInsets.all(15),
+                              margin: const EdgeInsets.only(top: 5, left: 8),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                    size: 15,
+                                  Stack(
+                                    children: [
+                                      Container(
+                                        width: 100,
+                                        height: 100,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                "${data.toko?[0]?.gambar}"),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  const SizedBox(
-                                    width: 3,
-                                  ),
-                                  Text(
-                                    stores['bintang'],
-                                    style: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    stores['rating'],
-                                    style: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "${data.toko?[0]?.nama} - ${data.toko?[0]?.alamat}",
+                                          style: const TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 0),
+                                        Text(
+                                          data.toko?[0]?.deskripsi ?? "",
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.star,
+                                              color: Colors.amber,
+                                              size: 15,
+                                            ),
+                                            const SizedBox(
+                                              width: 3,
+                                            ),
+                                            Text(
+                                              "${data.toko?[0]?.bintang ?? 0}",
+                                              style: const TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700),
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              "${data.toko?[0]?.jumlahUlasan ?? 0}+",
+                                              style: const TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.topLeft,
-                  margin: EdgeInsets.only(left: 15),
-                  child: Text(
-                    'Makanan',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-                  ),
-                ),
-                Column(
-                  children: stores["makanan"].map<Widget>((e) {
-                    return GestureDetector(
-                      onTap: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => TokoPage())),
-                      child: Container(
-                        padding: EdgeInsets.all(15),
-                        margin: EdgeInsets.only(top: 5, left: 8),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Stack(
-                              children: [
-                                Container(
-                                  width: 100,
-                                  height: 100,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    image: DecorationImage(
-                                      image: AssetImage(e['gambar']),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                          Container(
+                            alignment: Alignment.topLeft,
+                            margin: EdgeInsets.only(left: 15),
+                            child: Text(
+                              'Makanan',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w700),
                             ),
-                            SizedBox(width: 16),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            e['nama_makanan'],
-                                            style: const TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          ),
-                                          Text(
-                                            e['harga'],
-                                            style: const TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 3,
-                                          ),
-                                          Container(
-                                            alignment: Alignment.center,
-                                            width: 50,
-                                            height: 20,
-                                            decoration: BoxDecoration(
+                          ),
+                          if ((data.makanan ?? []).isEmpty)
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: 10),
+                              child: Text("Belum ada makanan"),
+                              alignment: Alignment.center,
+                            )
+                          else
+                            Column(
+                              children: (data.makanan ?? []).map<Widget>((e) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    showModalBottomSheet(
+                                        context: context,
+                                        builder: (context) {
+                                          return Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Container(
+                                                width: 300,
+                                                height: 210,
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 30),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                  image: DecorationImage(
+                                                    image: AssetImage(
+                                                        e?.gambar ?? ""),
+                                                    fit: BoxFit.fill,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 2,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  Container(
+                                                    margin: EdgeInsets.only(
+                                                        right: 5),
+                                                    alignment:
+                                                        Alignment.centerLeft,
+                                                    child: Text(
+                                                      e?.namaProduk ?? "",
+                                                      style: const TextStyle(
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    margin: EdgeInsets.only(
+                                                        left: 45),
+                                                    child: IconButton(
+                                                      onPressed: () {},
+                                                      icon: Icon(Icons
+                                                          .favorite_border_outlined),
+                                                      iconSize: 20,
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 1,
+                                              ),
+                                              Container(
+                                                margin:
+                                                    EdgeInsets.only(left: 45),
+                                                alignment: Alignment.centerLeft,
+                                                child: Text(
+                                                  e?.deskripsi ?? "",
+                                                  style: const TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Container(
+                                                margin:
+                                                    EdgeInsets.only(left: 45),
+                                                alignment: Alignment.centerLeft,
+                                                child: Text(
+                                                  "${e?.harga ?? ""} /${e?.satuan ?? ""}",
+                                                  style: const TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  Container(
+                                                    margin: EdgeInsets.only(
+                                                        right: 70),
+                                                    alignment: Alignment.center,
+                                                    width: 70,
+                                                    height: 25,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(30),
+                                                        border: Border.all(
+                                                            color: (e?.kategori ??
+                                                                        "") ==
+                                                                    'Reguler'
+                                                                ? primaryColor
+                                                                : healthyColor,
+                                                            width: 1)),
+                                                    child: Text(
+                                                      (e?.kategori ?? "") !=
+                                                                  null &&
+                                                              (e?.kategori ??
+                                                                      "") !=
+                                                                  ''
+                                                          ? (e?.kategori ?? "")
+                                                          : '-',
+                                                      style: TextStyle(
+                                                          fontSize: 10,
+                                                          color: (e?.kategori ??
+                                                                      "") ==
+                                                                  'Reguler'
+                                                              ? primaryColor
+                                                              : healthyColor),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    alignment: Alignment.center,
+                                                    width: 70,
+                                                    height: 25,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(30),
+                                                        color: primaryColor),
+                                                    child: Text(
+                                                      'Tambah',
+                                                      style: TextStyle(
+                                                          fontSize: 10,
+                                                          color: whiteColor,
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          );
+                                        });
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.all(15),
+                                    margin: EdgeInsets.only(top: 5, left: 8),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Stack(
+                                          children: [
+                                            Container(
+                                              width: 100,
+                                              height: 100,
+                                              decoration: BoxDecoration(
                                                 borderRadius:
-                                                    BorderRadius.circular(30),
-                                                border: Border.all(
-                                                    color: e['kategori'] ==
-                                                            'Reguler'
-                                                        ? primaryColor
-                                                        : healthyColor,
-                                                    width: 1)),
-                                            child: Text(
-                                              e['kategori'] != null &&
-                                                      e['kategori'] != ''
-                                                  ? e['kategori']
-                                                  : '-',
-                                              style: TextStyle(
-                                                  fontSize: 10,
-                                                  color:
-                                                      e['kategori'] == 'Reguler'
-                                                          ? primaryColor
-                                                          : healthyColor),
+                                                    BorderRadius.circular(8),
+                                                image: DecorationImage(
+                                                  image: AssetImage(
+                                                      (e?.gambar ?? "")),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
                                             ),
+                                          ],
+                                        ),
+                                        SizedBox(width: 16),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        (e?.namaProduk ?? ""),
+                                                        style: const TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        "${(e?.harga ?? "")} /${(e?.satuan ?? "")}",
+                                                        style: const TextStyle(
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 3,
+                                                      ),
+                                                      Container(
+                                                        alignment:
+                                                            Alignment.center,
+                                                        width: 50,
+                                                        height: 20,
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        30),
+                                                            border: Border.all(
+                                                                color: (e?.kategori ??
+                                                                            "") ==
+                                                                        'Reguler'
+                                                                    ? primaryColor
+                                                                    : healthyColor,
+                                                                width: 1)),
+                                                        child: Text(
+                                                          (e?.kategori ?? "") !=
+                                                                      null &&
+                                                                  (e?.kategori ??
+                                                                          "") !=
+                                                                      ''
+                                                              ? (e?.kategori ??
+                                                                  "")
+                                                              : '-',
+                                                          style: TextStyle(
+                                                              fontSize: 10,
+                                                              color: (e?.kategori ??
+                                                                          "") ==
+                                                                      'Reguler'
+                                                                  ? primaryColor
+                                                                  : healthyColor),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  IconButton(
+                                                    onPressed: () {},
+                                                    icon: Icon(Icons
+                                                        .favorite_border_outlined),
+                                                    iconSize: 24,
+                                                  )
+                                                ],
+                                              ),
+                                              SizedBox(height: 1),
+                                              InkWell(
+                                                onTap: () {},
+                                                child: Container(
+                                                  alignment: Alignment.center,
+                                                  margin: EdgeInsets.only(
+                                                      left: 180, top: 26),
+                                                  width: 150,
+                                                  height: 25,
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              30),
+                                                      color: primaryColor),
+                                                  child: Text(
+                                                    'Tambah',
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: whiteColor,
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
-                                      IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                            Icons.favorite_border_outlined),
-                                        iconSize: 24,
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(height: 1),
-                                  Container(
-                                    alignment: Alignment.center,
-                                    margin: EdgeInsets.only(left: 180, top: 26),
-                                    width: 150,
-                                    height: 25,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30),
-                                        color: primaryColor),
-                                    child: Text(
-                                      'Tambah',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          color: whiteColor,
-                                          fontWeight: FontWeight.w500),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ],
-                              ),
+                                );
+                              }).toList(),
                             ),
-                          ],
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                ),
-                Container(
-                  alignment: Alignment.topLeft,
-                  margin: EdgeInsets.only(left: 15),
-                  child: Text(
-                    'Minuman',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-                  ),
-                ),
-                Column(
-                  children: stores["minuman"].map<Widget>((e) {
-                    return GestureDetector(
-                      onTap: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => TokoPage())),
-                      child: Container(
-                        padding: EdgeInsets.all(15),
-                        margin: EdgeInsets.only(top: 5, left: 8),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Stack(
-                              children: [
-                                Container(
-                                  width: 100,
-                                  height: 100,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    image: DecorationImage(
-                                      image: AssetImage(e['gambar']),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                          Container(
+                            alignment: Alignment.topLeft,
+                            margin: EdgeInsets.only(left: 15),
+                            child: Text(
+                              'Minuman',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w700),
                             ),
-                            SizedBox(width: 16),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            e['nama_minuman'],
-                                            style: const TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          ),
-                                          Text(
-                                            e['harga'],
-                                            style: const TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 3,
-                                          ),
-                                          Container(
-                                            alignment: Alignment.center,
-                                            width: 50,
-                                            height: 20,
-                                            decoration: BoxDecoration(
+                          ),
+                          if ((data.minuman ?? []).isEmpty)
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: 10),
+                              child: Text("Belum ada minuman"),
+                              alignment: Alignment.center,
+                            )
+                          else
+                            Column(
+                              children: (data.minuman ?? []).map<Widget>((e) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    showModalBottomSheet(
+                                        context: context,
+                                        builder: (context) {
+                                          return Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Container(
+                                                width: 300,
+                                                height: 210,
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 30),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                  image: DecorationImage(
+                                                    image: AssetImage(
+                                                        (e?.gambar ?? "")),
+                                                    fit: BoxFit.fill,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 2,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  Container(
+                                                    margin: EdgeInsets.only(
+                                                        right: 5),
+                                                    alignment:
+                                                        Alignment.centerLeft,
+                                                    child: Text(
+                                                      (e?.namaProduk ?? ""),
+                                                      style: const TextStyle(
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    margin: EdgeInsets.only(
+                                                        left: 45),
+                                                    child: IconButton(
+                                                      onPressed: () {},
+                                                      icon: Icon(Icons
+                                                          .favorite_border_outlined),
+                                                      iconSize: 20,
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 1,
+                                              ),
+                                              Container(
+                                                margin:
+                                                    EdgeInsets.only(left: 45),
+                                                alignment: Alignment.centerLeft,
+                                                child: Text(
+                                                  (e?.deskripsi ?? ""),
+                                                  style: const TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Container(
+                                                margin:
+                                                    EdgeInsets.only(left: 45),
+                                                alignment: Alignment.centerLeft,
+                                                child: Text(
+                                                  "${(e?.harga ?? "")} /${(e?.satuan ?? "")}",
+                                                  style: const TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  Container(
+                                                    margin: EdgeInsets.only(
+                                                        right: 70),
+                                                    alignment: Alignment.center,
+                                                    width: 70,
+                                                    height: 25,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(30),
+                                                        border: Border.all(
+                                                            color: (e?.kategori ??
+                                                                        "") ==
+                                                                    'Reguler'
+                                                                ? primaryColor
+                                                                : healthyColor,
+                                                            width: 1)),
+                                                    child: Text(
+                                                      (e?.kategori ?? "") !=
+                                                                  null &&
+                                                              (e?.kategori ??
+                                                                      "") !=
+                                                                  ''
+                                                          ? (e?.kategori ?? "")
+                                                          : '-',
+                                                      style: TextStyle(
+                                                          fontSize: 10,
+                                                          color: (e?.kategori ??
+                                                                      "") ==
+                                                                  'Reguler'
+                                                              ? primaryColor
+                                                              : healthyColor),
+                                                    ),
+                                                  ),
+                                                  InkWell(
+                                                    onTap: () {},
+                                                    child: Container(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      width: 70,
+                                                      height: 25,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(30),
+                                                          color: primaryColor),
+                                                      child: Text(
+                                                        'Tambah',
+                                                        style: TextStyle(
+                                                            fontSize: 10,
+                                                            color: whiteColor,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          );
+                                        });
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.all(15),
+                                    margin: EdgeInsets.only(top: 5, left: 8),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Stack(
+                                          children: [
+                                            Container(
+                                              width: 100,
+                                              height: 100,
+                                              decoration: BoxDecoration(
                                                 borderRadius:
-                                                    BorderRadius.circular(30),
-                                                border: Border.all(
-                                                    color: e['kategori'] ==
-                                                            'Reguler'
-                                                        ? primaryColor
-                                                        : healthyColor,
-                                                    width: 1)),
-                                            child: Text(
-                                              e['kategori'] != null &&
-                                                      e['kategori'] != ''
-                                                  ? e['kategori']
-                                                  : '-',
-                                              style: TextStyle(
-                                                  fontSize: 10,
-                                                  color:
-                                                      e['kategori'] == 'Reguler'
-                                                          ? primaryColor
-                                                          : healthyColor),
+                                                    BorderRadius.circular(8),
+                                                image: DecorationImage(
+                                                  image: AssetImage(
+                                                      (e?.gambar ?? "")),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
                                             ),
+                                          ],
+                                        ),
+                                        SizedBox(width: 16),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        (e?.namaProduk ?? ""),
+                                                        style: const TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        (e?.harga ?? ""),
+                                                        style: const TextStyle(
+                                                          fontSize: 12,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 3,
+                                                      ),
+                                                      Container(
+                                                        alignment:
+                                                            Alignment.center,
+                                                        width: 50,
+                                                        height: 20,
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        30),
+                                                            border: Border.all(
+                                                                color: (e?.kategori ??
+                                                                            "") ==
+                                                                        'Reguler'
+                                                                    ? primaryColor
+                                                                    : healthyColor,
+                                                                width: 1)),
+                                                        child: Text(
+                                                          (e?.kategori ?? "") !=
+                                                                      null &&
+                                                                  (e?.kategori ??
+                                                                          "") !=
+                                                                      ''
+                                                              ? (e?.kategori ??
+                                                                  "")
+                                                              : '-',
+                                                          style: TextStyle(
+                                                              fontSize: 10,
+                                                              color: (e?.kategori ??
+                                                                          "") ==
+                                                                      'Reguler'
+                                                                  ? primaryColor
+                                                                  : healthyColor),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  IconButton(
+                                                    onPressed: () {},
+                                                    icon: Icon(Icons
+                                                        .favorite_border_outlined),
+                                                    iconSize: 24,
+                                                  )
+                                                ],
+                                              ),
+                                              SizedBox(height: 1),
+                                              Container(
+                                                alignment: Alignment.center,
+                                                margin: EdgeInsets.only(
+                                                    left: 180, top: 26),
+                                                width: 170,
+                                                height: 25,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30),
+                                                    color: primaryColor),
+                                                child: Text(
+                                                  'Tambah',
+                                                  style: TextStyle(
+                                                      fontSize: 12,
+                                                      color: whiteColor,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
-                                      IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                            Icons.favorite_border_outlined),
-                                        iconSize: 24,
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(height: 1),
-                                  Container(
-                                    alignment: Alignment.center,
-                                    margin: EdgeInsets.only(left: 180, top: 26),
-                                    width: 170,
-                                    height: 25,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30),
-                                        color: primaryColor),
-                                    child: Text(
-                                      'Tambah',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          color: whiteColor,
-                                          fontWeight: FontWeight.w500),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ],
-                              ),
+                                );
+                              }).toList(),
                             ),
-                          ],
-                        ),
+                        ],
                       ),
-                    );
-                  }).toList(),
-                ),
-              ],
-            ),
-          ],
-        ));
+                    ],
+                  ));
   }
 }
