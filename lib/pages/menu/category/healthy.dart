@@ -295,6 +295,7 @@ class _HealthyMenuState extends State<HealthyMenu> {
               return FlexibleSpaceBar(
                   centerTitle: true,
                   title: Container(
+                    // margin: EdgeInsetsDirectional.only(bottom: 15),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
