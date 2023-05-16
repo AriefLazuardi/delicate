@@ -43,7 +43,6 @@ class MyApp extends StatelessWidget {
           "/bottomnavbar": (context) => BottomNavbar(),
           "/regulermenu": (context) => RegulerMenu(),
           "/healthymenu": (context) => HealthyMenu(),
-          "/lihat": (context) => TokoPage(),
           "/pencarian": (context) => Pencarian(),
           "/notlogin": (context) => NotLogin(),
           "/editprofil": (context) => EditProfil(),
