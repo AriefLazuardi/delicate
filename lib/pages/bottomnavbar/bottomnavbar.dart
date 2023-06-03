@@ -1,5 +1,5 @@
 import 'package:delicate/pages/kelolaakun/profil.dart';
-import 'package:delicate/pages/menu/keranjang/keranjang.dart';
+import 'package:delicate/pages/menu/keranjang/keranjangPage.dart';
 import 'package:delicate/pages/menu/HomePage.dart';
 import 'package:delicate/pages/notifikasi/notifikasi.dart';
 import 'package:delicate/shared/shared.dart';
@@ -19,7 +19,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
   int _pageIndex = 0;
   final List<Widget> _tablist = [
     const HomePage(),
-    const Keranjang(),
+    KeranjangPage(),
     const Notifikasi(),
     const Profile()
   ];

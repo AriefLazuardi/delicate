@@ -1,12 +1,24 @@
 import 'dart:ffi';
 
+import 'package:delicate/helper/dbhelper.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:delicate/models/keranjang.dart';
+import 'package:delicate/pages/toko/tokoPage.dart';
 
-class Keranjang extends StatefulWidget {
-  const Keranjang({super.key});
+class KeranjangPage extends StatefulWidget {
+  const KeranjangPage({super.key});
+
+  @override
+  State<KeranjangPage> createState() => _KeranjangPageState();
+}
+
+class _KeranjangPageState extends State<KeranjangPage> {
+  DbHelper dbHelper = DbHelper();
+  List<Keranjang> keranjangList = [];
 
   @override
   State<Keranjang> createState() => _KeranjangState();
@@ -129,30 +141,43 @@ class _KeranjangState extends State<Keranjang> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: whiteColor,
-          elevation: 4,
-          toolbarHeight: 71,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            color: primaryColor,
-            onPressed: () {
-              // fungsi ketika tombol back ditekan
-              Navigator.pop(context);
-            },
-          ),
-          title: Text(
-            "Keranjang",
-            style: TextStyle(
-                color: blackColor, fontWeight: FontWeight.w600, fontSize: 18),
-          ),
-        ),
-        body: ListView(
-          children: [
-            tampilanKeranjang(),
-          ],
-        ));
+        appBar: GFAppBar(
+            titleSpacing: 0,
+            automaticallyImplyLeading: false,
+            title: (Text(
+              "Keranjang",
+              style: TextStyle(
+                  fontSize: 14, color: blackColor, fontWeight: FontWeight.w600),
+            )),
+            backgroundColor: whiteColor,
+            elevation: 4,
+            toolbarHeight: 71,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              color: primaryColor,
+              onPressed: () {
+                // fungsi ketika tombol back ditekan
+                Navigator.pop(context);
+              },
+            ),
+            title: Text(
+              "Keranjang",
+              style: TextStyle(
+                  color: blackColor, fontWeight: FontWeight.w600, fontSize: 18),
+              leading: GFIconButton(
+                icon: const Icon(Icons.arrow_back),
+                color: primaryColor,
+                onPressed: () {
+                  Navigator.pushNamed(context, "/homepage");
+                },
+                type: GFButtonType.transparent,
+              ),
+            ),
+            body: ListView(
+              children: [
+                tampilanKeranjang(),
+              ],
+            )));
   }
 }
 
