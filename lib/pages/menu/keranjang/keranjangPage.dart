@@ -1,11 +1,23 @@
+import 'package:delicate/helper/dbhelper.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:delicate/models/keranjang.dart';
+import 'package:delicate/pages/toko/tokoPage.dart';
 
-class Keranjang extends StatelessWidget {
-  const Keranjang({super.key});
+class KeranjangPage extends StatefulWidget {
+  const KeranjangPage({super.key});
+
+  @override
+  State<KeranjangPage> createState() => _KeranjangPageState();
+}
+
+class _KeranjangPageState extends State<KeranjangPage> {
+  
+  DbHelper dbHelper = DbHelper();
+  List<Keranjang> keranjangList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -42,3 +54,4 @@ class Keranjang extends StatelessWidget {
         ));
   }
 }
+

@@ -31,7 +31,8 @@ class MyApp extends StatelessWidget {
             textTheme:
                 const TextTheme(bodyMedium: TextStyle(fontFamily: "Poppins"))),
         home: SplashScreenPage(),
-        initialRoute: "/SpalashScreenPage",
+        initialRoute: "/SpalashScreenPage", 
+        // .getBool('isLogin')! ? '/homepage' : "/SpalashScreenPage",
         routes: {
           "/SpalashScreenPage": (context) => SplashScreenPage(),
           "/login": (context) => const Login(),
