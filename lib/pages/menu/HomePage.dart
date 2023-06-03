@@ -1,11 +1,15 @@
+import 'dart:convert';
 import 'package:delicate/pages/login/login.dart';
 import 'package:delicate/pages/menu/category/reguler.dart';
 import 'package:delicate/pages/toko/tokoPage.dart';
 import 'package:flutter/cupertino.dart';
-//import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/rendering.dart';
+
+import '../../models/Toko.dart';
+import '../../shared/constant.dart';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,33 +20,45 @@ class HomePage extends StatefulWidget {
 
 class _MenuState extends State<HomePage> {
   get textController => TextEditingController();
-  List data = [
-    {
-      "toko": "RM Zulkarnai'in",
-      "nama_menu": "Sayur Nangka",
-      "gambar": 'assets/images/sayur_nangka.png',
-    },
-    {
-      "toko": "Kedai Masakan Ayam",
-      "nama_menu": "Ayam Santan",
-      "gambar": "assets/images/ayam_santan.png",
-    },
-    {
-      "toko": "RM Cahaya Busri",
-      "nama_menu": "Sayur Daun Ubi",
-      "gambar": "assets/images/ayam_santan.png",
-    },
-    {
-      "toko": "Rumah Makan Kebumen",
-      "nama_menu": "Telor Dadar",
-      "gambar": "assets/images/ayam_santan.png",
-    },
-    {
-      "toko": "Rumah Makan RBK",
-      "nama_menu": "RiceBowl Blackpepper",
-      "gambar": "assets/images/ayam_santan.png",
-    },
-  ];
+  List<Toko>? kategorilist = [];
+
+  List<Toko> tokoList = [];
+  fetchKategori({String? kategori}) async {
+    var params = "/tokobyreguler/terlaris";
+    debugPrint("$kategori");
+    try {
+      var url = Palatte.sUrl + params;
+      debugPrint("$url");
+      var jsonResponse = await http.get(Uri.parse(url));
+      if (jsonResponse.statusCode == 200) {
+        final jsonItems =
+            json.decode(jsonResponse.body).cast<Map<String, dynamic>>();
+        debugPrint("JSON BODY ${jsonResponse.body}");
+        tokoList = jsonItems.map<Toko>((json) {
+          return Toko.fromJson(json);
+        }).toList();
+
+        // setState(() {
+        //   kategorilist == usersList;
+        // });
+        setState(() {});
+      }
+    } catch (e) {
+      // usersList = kategorilist;
+      debugPrint("ERROR HERE $e");
+    }
+  }
+
+  Future<Null> _refresh() {
+    return fetchKategori().then((_kategori) {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchKategori();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -186,17 +202,23 @@ class _MenuState extends State<HomePage> {
                             color: blackColor))),
                 Container(
                   margin: EdgeInsets.fromLTRB(32, 412, 10, 0),
-                  // width: 1080,
                   height: 180,
                   child: ListView.builder(
                       physics: BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
-                      itemCount: data.length,
+                      itemCount: tokoList.length,
                       itemBuilder: (context, index) {
+                        if (tokoList.length == 0) {
+                          Container(
+                              // padding: EdgeInsets.only(top: 250),
+                              alignment: Alignment.center,
+                              height: MediaQuery.of(context).size.height * 0.2,
+                              child: CircularProgressIndicator());
+                        }
                         return Container(
                           clipBehavior: Clip.hardEdge,
                           width: 120,
-                          height: 160,
+                          height: 140,
                           margin: EdgeInsets.symmetric(horizontal: 5),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
@@ -205,15 +227,30 @@ class _MenuState extends State<HomePage> {
                                 color: baseColor,
                               )),
                           child: GestureDetector(
-                            onTap: () => Navigator.pushNamed(context, "/lihat"),
+                            onTap: () {
+                              if (tokoList[index].id != null) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => TokoPage(
+                                              id: tokoList[index].id,
+                                            )));
+                              }
+                            },
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  Image.asset("${data[index]?['gambar']}"),
+                                  Container(
+                                      width: 120,
+                                      height: 90,
+                                      child: Image.asset(
+                                        tokoList[index].gambar ?? "",
+                                        fit: BoxFit.cover,
+                                      )),
                                   Container(
                                       padding: EdgeInsets.only(top: 4, left: 4),
                                       child: Text(
-                                        "${data[index]?['toko']}",
+                                        "${tokoList[index].nama}",
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
@@ -224,7 +261,7 @@ class _MenuState extends State<HomePage> {
                                     child: Padding(
                                       padding: const EdgeInsets.only(left: 4),
                                       child: Text(
-                                        "${data[index]?['nama_menu']}",
+                                        "${tokoList[index].deskripsi}",
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(fontSize: 10),

@@ -1,0 +1,435 @@
+@startuml
+set namespaceSeparator ::
+
+class "delicate::main.dart::MyApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "delicate::main.dart::MyApp"
+
+class "delicate::models::Produk.dart::ModelTokoMinuman" {
+  +int? id
+  +String? namaProduk
+  +String? harga
+  +String? deskripsi
+  +String? satuan
+  +String? gambar
+  +String? status
+  +String? kategori
+  +int? toko_id
+  +int? subKategori
+  +Map<String, dynamic> toJson()
+}
+
+class "delicate::models::Produk.dart::ModelTokoMakanan" {
+  +int? id
+  +String? namaProduk
+  +String? harga
+  +String? deskripsi
+  +String? satuan
+  +String? gambar
+  +String? status
+  +String? kategori
+  +int? toko_id
+  +int? subKategori
+  +Map<String, dynamic> toJson()
+}
+
+class "delicate::models::Produk.dart::ModelTokoToko" {
+  +int? id
+  +String? nama
+  +String? alamat
+  +String? gambar
+  +String? kategori
+  +String? deskripsi
+  +int? ratingid
+  +String? bintang
+  +int? ulasanid
+  +String? jumlahUlasan
+  +Map<String, dynamic> toJson()
+}
+
+class "delicate::models::Produk.dart::ModelToko" {
+  +List<ModelTokoToko?>? toko
+  +List<ModelTokoMakanan?>? makanan
+  +List<ModelTokoMinuman?>? minuman
+  +Map<String, dynamic> toJson()
+}
+
+class "delicate::models::Toko.dart::Toko" {
+  +int? id
+  +String? nama
+  +String? alamat
+  +String? deskripsi
+  +String? gambar
+  +Map<String, dynamic> toJson()
+}
+
+class "delicate::pages::bottomnavbar::bottomnavbar.dart::BottomNavbar" {
+  +State<BottomNavbar> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::bottomnavbar::bottomnavbar.dart::BottomNavbar"
+
+class "delicate::pages::bottomnavbar::bottomnavbar.dart::_BottomNavbarState" {
+  -int _pageIndex
+  -List<Widget> _tablist
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::bottomnavbar::bottomnavbar.dart::_BottomNavbarState"
+
+class "delicate::pages::changepassword::change_password.dart::ChangePassword" {
+  +State<ChangePassword> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::changepassword::change_password.dart::ChangePassword"
+
+class "delicate::pages::changepassword::change_password.dart::_ChangePasswordState" {
+  -GlobalKey<FormState> _formState
+  +TextEditingController currentpwController
+  +TextEditingController newpwController
+  +TextEditingController confirmpwController
+  +Widget build()
+}
+
+"delicate::pages::changepassword::change_password.dart::_ChangePasswordState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"delicate::pages::changepassword::change_password.dart::_ChangePasswordState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::changepassword::change_password.dart::_ChangePasswordState"
+
+class "delicate::pages::Editprofil::edit_profil.dart::EditProfil" {
+  +State<EditProfil> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::Editprofil::edit_profil.dart::EditProfil"
+
+class "delicate::pages::Editprofil::edit_profil.dart::_EditProfilState" {
+  -GlobalKey<FormState> _formState
+  +TextEditingController namaController
+  +TextEditingController nohpController
+  +TextEditingController emailController
+  +TextEditingController alamatController
+  +Widget build()
+}
+
+"delicate::pages::Editprofil::edit_profil.dart::_EditProfilState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"delicate::pages::Editprofil::edit_profil.dart::_EditProfilState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::Editprofil::edit_profil.dart::_EditProfilState"
+
+class "delicate::pages::filter::filterdialog.dart::FilterDialog" {
+  +List<String> filters
+  +List<String> selectedfilter
+  +_FilterDialogState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::filter::filterdialog.dart::FilterDialog"
+
+class "delicate::pages::filter::filterdialog.dart::_FilterDialogState" {
+  +List<String> filters
+  -List<String> _selectedFilter
+  +void initState()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::filter::filterdialog.dart::_FilterDialogState"
+
+class "delicate::pages::forgot::forgot_password.dart::ForgotPassword" {
+  +State<ForgotPassword> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::forgot::forgot_password.dart::ForgotPassword"
+
+class "delicate::pages::forgot::forgot_password.dart::_ForgotPasswordState" {
+  -GlobalKey<FormState> _formState
+  +TextEditingController emailController
+  +Widget build()
+}
+
+"delicate::pages::forgot::forgot_password.dart::_ForgotPasswordState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"delicate::pages::forgot::forgot_password.dart::_ForgotPasswordState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::forgot::forgot_password.dart::_ForgotPasswordState"
+
+class "delicate::pages::helpdesk::helpdesk.dart::HelpDesk" {
+  +State<HelpDesk> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::helpdesk::helpdesk.dart::HelpDesk"
+
+class "delicate::pages::helpdesk::helpdesk.dart::_HelpDeskState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::helpdesk::helpdesk.dart::_HelpDeskState"
+
+class "delicate::pages::information::information.dart::Information" {
+  +State<Information> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::information::information.dart::Information"
+
+class "delicate::pages::information::information.dart::_InformationState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::information::information.dart::_InformationState"
+
+class "delicate::pages::kelolaakun::profil.dart::Profile" {
+  +State<Profile> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::kelolaakun::profil.dart::Profile"
+
+class "delicate::pages::kelolaakun::profil.dart::_ProfileState" {
+  +dynamic name
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::kelolaakun::profil.dart::_ProfileState"
+
+class "delicate::pages::login::login.dart::Login" {
+  +State<Login> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::login::login.dart::Login"
+
+class "delicate::pages::login::login.dart::_LoginState" {
+  -bool _isHidePassword
+  -GlobalKey<FormState> _formState
+  +TextEditingController emailController
+  +TextEditingController passwordController
+  -void _togglePasswordVisibility()
+  -Future<dynamic> _doLogin()
+  +Widget build()
+}
+
+"delicate::pages::login::login.dart::_LoginState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"delicate::pages::login::login.dart::_LoginState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::login::login.dart::_LoginState"
+
+class "delicate::pages::menu::category::healthy.dart::HealthyMenu" {
+  +State<HealthyMenu> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::menu::category::healthy.dart::HealthyMenu"
+
+class "delicate::pages::menu::category::healthy.dart::_HealthyMenuState" {
+  +List<Toko>? kategorilist
+  +List<Toko> tokoList
+  +List<String> kategori
+  +List<IconData> isikategori
+  +int current
+  +dynamic top
+  +Filter? selectedFilter
+  +bool isPressed
+  +List<int> groupValues
+  +dynamic fetchKategori()
+  -Future<Null> _refresh()
+  +List<Widget> createRadioListFilter()
+  +void initState()
+  +void dispose()
+  -Widget _buildItem()
+  +Widget createListToko()
+  +Widget build()
+}
+
+"delicate::pages::menu::category::healthy.dart::_HealthyMenuState" o-- "delicate::pages::menu::category::selected_list_controller.dart::Filter"
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::menu::category::healthy.dart::_HealthyMenuState"
+
+class "delicate::pages::menu::category::reguler.dart::RegulerMenu" {
+  +State<RegulerMenu> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::menu::category::reguler.dart::RegulerMenu"
+
+class "delicate::pages::menu::category::reguler.dart::_RegulerMenuState" {
+  +List<Toko>? kategorilist
+  +List<Toko> tokoList
+  +List<String> kategori
+  +List<IconData> isikategori
+  +int current
+  +dynamic top
+  +Filter? selectedFilter
+  +bool isPressed
+  +List<int> groupValues
+  +dynamic fetchKategori()
+  -Future<Null> _refresh()
+  +List<Widget> createRadioListFilter()
+  +void initState()
+  +void dispose()
+  -Widget _buildItem()
+  +Widget createListToko()
+  +Widget build()
+}
+
+"delicate::pages::menu::category::reguler.dart::_RegulerMenuState" o-- "delicate::pages::menu::category::selected_list_controller.dart::Filter"
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::menu::category::reguler.dart::_RegulerMenuState"
+
+class "delicate::pages::menu::category::selected_list_controller.dart::Filter" {
+  +int filterId
+  +String category
+  {static} +List<Filter> getFilters()
+}
+
+class "delicate::pages::menu::HomePage.dart::HomePage" {
+  +State<HomePage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::menu::HomePage.dart::HomePage"
+
+class "delicate::pages::menu::HomePage.dart::_MenuState" {
+  +List<Toko>? kategorilist
+  +List<Toko> tokoList
+  +dynamic textController
+  +dynamic fetchKategori()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::menu::HomePage.dart::_MenuState"
+
+class "delicate::pages::menu::keranjang::keranjang.dart::Keranjang" {
+  +State<Keranjang> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::menu::keranjang::keranjang.dart::Keranjang"
+
+class "delicate::pages::menu::keranjang::keranjang.dart::_KeranjangState" {
+  +bool keranjang
+  +List<dynamic> data
+  +Widget tampilanKeranjang()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::menu::keranjang::keranjang.dart::_KeranjangState"
+
+class "delicate::pages::menu::keranjang::keranjang.dart::CheckboxExample" {
+  +State<CheckboxExample> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::menu::keranjang::keranjang.dart::CheckboxExample"
+
+class "delicate::pages::menu::keranjang::keranjang.dart::_CheckboxExampleState" {
+  +bool isChecked
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::menu::keranjang::keranjang.dart::_CheckboxExampleState"
+
+class "delicate::pages::menu::pencarian::pencarian.dart::Pencarian" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "delicate::pages::menu::pencarian::pencarian.dart::Pencarian"
+
+class "delicate::pages::menu::produk::produkdetailpage.dart::ProdukDetailPage" {
+  +Widget child
+  +int id
+  +String nama_produk
+  +String deskripsi
+  +String harga
+  +String harga_int
+  +String satuan
+  +String gambar
+  +bool valstok
+  +State<ProdukDetailPage> createState()
+}
+
+"delicate::pages::menu::produk::produkdetailpage.dart::ProdukDetailPage" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::menu::produk::produkdetailpage.dart::ProdukDetailPage"
+
+class "delicate::pages::menu::produk::produkdetailpage.dart::_ProdukDetailPageState" {
+  +bool instok
+  +void initState()
+  +void dispose()
+  -Widget _body()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::menu::produk::produkdetailpage.dart::_ProdukDetailPageState"
+
+class "delicate::pages::notifikasi::notifikasi.dart::Notifikasi" {
+  +State<Notifikasi> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::notifikasi::notifikasi.dart::Notifikasi"
+
+class "delicate::pages::notifikasi::notifikasi.dart::_NotifikasiState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::notifikasi::notifikasi.dart::_NotifikasiState"
+
+class "delicate::pages::notlogin::notlogin.dart::NotLogin" {
+  +State<NotLogin> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::notlogin::notlogin.dart::NotLogin"
+
+class "delicate::pages::notlogin::notlogin.dart::_NotLoginState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::notlogin::notlogin.dart::_NotLoginState"
+
+class "delicate::pages::register::register.dart::Register" {
+  +State<Register> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::register::register.dart::Register"
+
+class "delicate::pages::register::register.dart::_RegisterState" {
+  -bool _isHidePassword
+  -bool _isHidePasswordConfirm
+  -GlobalKey<FormState> _formKey
+  +TextEditingController nameController
+  +TextEditingController emailController
+  +TextEditingController passwordController
+  +TextEditingController passwordConfirmController
+  -void _togglePasswordVisibility()
+  -void _togglePasswordConfirmVisibility()
+  -Future<dynamic> _doRegis()
+  +Widget build()
+}
+
+"delicate::pages::register::register.dart::_RegisterState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"delicate::pages::register::register.dart::_RegisterState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::register::register.dart::_RegisterState"
+
+class "delicate::pages::toko::tokoPage.dart::TokoPage" {
+  +int? id
+  +State<TokoPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "delicate::pages::toko::tokoPage.dart::TokoPage"
+
+class "delicate::pages::toko::tokoPage.dart::_TokoPageState" {
+  +ModelToko data
+  +bool loading
+  +dynamic getData()
+  +void initState()
+  +Widget build()
+}
+
+"delicate::pages::toko::tokoPage.dart::_TokoPageState" o-- "delicate::models::Produk.dart::ModelToko"
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::pages::toko::tokoPage.dart::_TokoPageState"
+
+class "delicate::pages::welcome::welcome.dart::Welcome" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "delicate::pages::welcome::welcome.dart::Welcome"
+
+class "delicate::pages::welcome::welcome.dart::WelcomePage" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "delicate::pages::welcome::welcome.dart::WelcomePage"
+
+class "delicate::shared::constant.dart::Palatte" {
+  {static} +String sUrl
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "delicate::splashscreen_view.dart::_SplashScreenPageState"
+
+
+@enduml

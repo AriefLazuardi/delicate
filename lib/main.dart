@@ -16,6 +16,7 @@ import 'package:delicate/pages/bottomnavbar/bottomnavbar.dart';
 import 'package:delicate/pages/menu/category/healthy.dart';
 import 'package:delicate/pages/menu/category/reguler.dart';
 import 'package:flutter/material.dart';
+import 'package:dcdg/dcdg.dart';
 
 void main() {
   runApp(MyApp());

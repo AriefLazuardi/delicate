@@ -10,8 +10,9 @@ class ModelTokoMinuman {
   "deskripsi": "null",
   "satuan": "Gelas",
   "gambar": "assets/images/jeruk_peras.png",
+  "status": "1",
   "kategori": "Reguler",
-  "tokoid": 7,
+  "toko_id": 7,
   "sub_kategori": 13
 } 
 */
@@ -22,8 +23,9 @@ class ModelTokoMinuman {
   String? deskripsi;
   String? satuan;
   String? gambar;
+  String? status;
   String? kategori;
-  int? tokoid;
+  int? toko_id;
   int? subKategori;
 
   ModelTokoMinuman({
@@ -33,8 +35,9 @@ class ModelTokoMinuman {
     this.deskripsi,
     this.satuan,
     this.gambar,
+    this.status,
     this.kategori,
-    this.tokoid,
+    this.toko_id,
     this.subKategori,
   });
   ModelTokoMinuman.fromJson(Map<String, dynamic> json) {
@@ -44,8 +47,9 @@ class ModelTokoMinuman {
     deskripsi = json['deskripsi']?.toString();
     satuan = json['satuan']?.toString();
     gambar = json['gambar']?.toString();
+    status = json['status']?.toString();
     kategori = json['kategori']?.toString();
-    tokoid = json['tokoid']?.toInt();
+    toko_id = json['toko_id']?.toInt();
     subKategori = json['sub_kategori']?.toInt();
   }
   Map<String, dynamic> toJson() {
@@ -56,8 +60,9 @@ class ModelTokoMinuman {
     data['deskripsi'] = deskripsi;
     data['satuan'] = satuan;
     data['gambar'] = gambar;
+    data['status'] = status;
     data['kategori'] = kategori;
-    data['tokoid'] = tokoid;
+    data['toko_id'] = toko_id;
     data['sub_kategori'] = subKategori;
     return data;
   }
@@ -72,8 +77,9 @@ class ModelTokoMakanan {
   "deskripsi": "Perpaduan ayam bakar dengan bumbu plus kecap manis yang sangat unik",
   "satuan": "Porsi",
   "gambar": "assets/images/ayam_kalasan.png",
+  "status": "1",
   "kategori": "Reguler",
-  "tokoid": 7,
+  "toko_id": 7,
   "sub_kategori": 7
 } 
 */
@@ -84,8 +90,9 @@ class ModelTokoMakanan {
   String? deskripsi;
   String? satuan;
   String? gambar;
+  String? status;
   String? kategori;
-  int? tokoid;
+  int? toko_id;
   int? subKategori;
 
   ModelTokoMakanan({
@@ -95,8 +102,9 @@ class ModelTokoMakanan {
     this.deskripsi,
     this.satuan,
     this.gambar,
+    this.status,
     this.kategori,
-    this.tokoid,
+    this.toko_id,
     this.subKategori,
   });
   ModelTokoMakanan.fromJson(Map<String, dynamic> json) {
@@ -106,8 +114,9 @@ class ModelTokoMakanan {
     deskripsi = json['deskripsi']?.toString();
     satuan = json['satuan']?.toString();
     gambar = json['gambar']?.toString();
+    status = json['status']?.toString();
     kategori = json['kategori']?.toString();
-    tokoid = json['tokoid']?.toInt();
+    toko_id = json['toko_id']?.toInt();
     subKategori = json['sub_kategori']?.toInt();
   }
   Map<String, dynamic> toJson() {
@@ -118,8 +127,9 @@ class ModelTokoMakanan {
     data['deskripsi'] = deskripsi;
     data['satuan'] = satuan;
     data['gambar'] = gambar;
+    data['status'] = status;
     data['kategori'] = kategori;
-    data['tokoid'] = tokoid;
+    data['toko_id'] = toko_id;
     data['sub_kategori'] = subKategori;
     return data;
   }
@@ -217,8 +227,9 @@ class ModelToko {
       "deskripsi": "Perpaduan ayam bakar dengan bumbu plus kecap manis yang sangat unik",
       "satuan": "Porsi",
       "gambar": "assets/images/ayam_kalasan.png",
+      "status": "1",
       "kategori": "Reguler",
-      "tokoid": 7,
+      "toko_id": 7,
       "sub_kategori": 7
     }
   ],
@@ -230,8 +241,9 @@ class ModelToko {
       "deskripsi": "null",
       "satuan": "Gelas",
       "gambar": "assets/images/jeruk_peras.png",
+      "status": "1",
       "kategori": "Reguler",
-      "tokoid": 7,
+      "toko_id": 7,
       "sub_kategori": 13
     }
   ]

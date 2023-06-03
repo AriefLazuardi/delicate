@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
 
 class Palatte {
-  static String sUrl = "https://2cec-203-24-50-233.ngrok-free.app/api";
+  static String sUrl = "https://1273-118-99-118-170.ngrok-free.app/api";
 }
