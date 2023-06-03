@@ -245,7 +245,7 @@ class _TokoPageState extends State<TokoPage> {
                           if ((data.makanan ?? []).isEmpty)
                             Container(
                               padding: EdgeInsets.symmetric(vertical: 10),
-                              child: Text("Belum ada makanan"),
+                              child: Text("Belum ada data makanan"),
                               alignment: Alignment.center,
                             )
                           else

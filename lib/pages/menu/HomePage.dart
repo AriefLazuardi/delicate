@@ -1,17 +1,19 @@
+import 'dart:convert';
 import 'package:delicate/pages/login/login.dart';
 import 'package:delicate/pages/menu/category/reguler.dart';
 import 'package:delicate/pages/toko/tokoPage.dart';
 import 'package:flutter/cupertino.dart';
-//import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
+import '../../models/Toko.dart';
+import '../../shared/constant.dart';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-  
 
   @override
   State<HomePage> createState() => _MenuState();
@@ -19,33 +21,45 @@ class HomePage extends StatefulWidget {
 
 class _MenuState extends State<HomePage> {
   get textController => TextEditingController();
-  List data = [
-    {
-      "toko": "RM Zulkarnai'in",
-      "nama_menu": "Sayur Nangka",
-      "gambar": 'assets/images/sayur_nangka.png',
-    },
-    {
-      "toko": "Kedai Masakan Ayam",
-      "nama_menu": "Ayam Santan",
-      "gambar": "assets/images/ayam_santan.png",
-    },
-    {
-      "toko": "RM Cahaya Busri",
-      "nama_menu": "Sayur Daun Ubi",
-      "gambar": "assets/images/ayam_santan.png",
-    },
-    {
-      "toko": "Rumah Makan Kebumen",
-      "nama_menu": "Telor Dadar",
-      "gambar": "assets/images/ayam_santan.png",
-    },
-    {
-      "toko": "Rumah Makan RBK",
-      "nama_menu": "RiceBowl Blackpepper",
-      "gambar": "assets/images/ayam_santan.png",
-    },
-  ];
+  List<Toko>? kategorilist = [];
+
+  List<Toko> tokoList = [];
+  fetchKategori({String? kategori}) async {
+    var params = "/tokobyreguler/terlaris";
+    debugPrint("$kategori");
+    try {
+      var url = Palatte.sUrl + params;
+      debugPrint("$url");
+      var jsonResponse = await http.get(Uri.parse(url));
+      if (jsonResponse.statusCode == 200) {
+        final jsonItems =
+            json.decode(jsonResponse.body).cast<Map<String, dynamic>>();
+        debugPrint("JSON BODY ${jsonResponse.body}");
+        tokoList = jsonItems.map<Toko>((json) {
+          return Toko.fromJson(json);
+        }).toList();
+
+        // setState(() {
+        //   kategorilist == usersList;
+        // });
+        setState(() {});
+      }
+    } catch (e) {
+      // usersList = kategorilist;
+      debugPrint("ERROR HERE $e");
+    }
+  }
+
+  Future<Null> _refresh() {
+    return fetchKategori().then((_kategori) {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchKategori();
+  }
+
   @override
   Widget build(BuildContext context) {
     Future<bool> showExitPopup() async {
@@ -70,6 +84,7 @@ class _MenuState extends State<HomePage> {
           ) ??
           false; //if showDialouge had returned null, then return false
     }
+
     return WillPopScope(
       onWillPop: showExitPopup,
       child: Scaffold(
@@ -188,8 +203,8 @@ class _MenuState extends State<HomePage> {
                               Navigator.pushNamed(context, "/regulermenu"),
                           child: Container(
                             child: Image(
-                                image:
-                                    AssetImage("assets/images/pil_regular.png")),
+                                image: AssetImage(
+                                    "assets/images/pil_regular.png")),
                           ),
                         ),
                         GestureDetector(
@@ -197,8 +212,8 @@ class _MenuState extends State<HomePage> {
                               Navigator.pushNamed(context, "/healthymenu"),
                           child: Container(
                             child: Image(
-                                image:
-                                    AssetImage("assets/images/pil_healthy.png")),
+                                image: AssetImage(
+                                    "assets/images/pil_healthy.png")),
                           ),
                         )
                       ],
@@ -232,13 +247,16 @@ class _MenuState extends State<HomePage> {
                                   color: baseColor,
                                 )),
                             child: GestureDetector(
-                              onTap: () => Navigator.pushNamed(context, "/lihat"),
+                              onTap: () =>
+                                  Navigator.pushNamed(context, "/lihat"),
                               child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
                                   children: [
                                     Image.asset("${data[index]?['gambar']}"),
                                     Container(
-                                        padding: EdgeInsets.only(top: 4, left: 4),
+                                        padding:
+                                            EdgeInsets.only(top: 4, left: 4),
                                         child: Text(
                                           "${data[index]?['toko']}",
                                           maxLines: 1,
@@ -259,8 +277,8 @@ class _MenuState extends State<HomePage> {
                                       ),
                                     ),
                                     TextButton(
-                                      onPressed: () =>
-                                          Navigator.pushNamed(context, "/lihat"),
+                                      onPressed: () => Navigator.pushNamed(
+                                          context, "/lihat"),
                                       child: Container(
                                         width: 100,
                                         child: Row(

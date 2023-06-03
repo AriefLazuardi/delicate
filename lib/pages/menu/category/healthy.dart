@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
-
 import 'package:delicate/models/Toko.dart';
-import 'package:delicate/pages/filter/filterdialog.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:delicate/shared/constant.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +24,22 @@ class _HealthyMenuState extends State<HealthyMenu> {
     debugPrint("$kategori");
     if (kategori == "Bintang 4.5+") {
       params = params + "/rating";
+    } else if (groupValues == "1") {
+      params = params + "/" + "$groupValues";
+    } else if (groupValues == "2") {
+      params = params + "/" + "$groupValues";
+    } else if (groupValues == "3") {
+      params = params + "/" + "$groupValues";
+    } else if (groupValues == "4") {
+      params = params + "/" + "$groupValues";
+    } else if (groupValues == "5") {
+      params = params + "/" + "$groupValues";
+    } else if (groupValues == "6") {
+      params = params + "/" + "$groupValues";
+    } else if (groupValues == "7") {
+      params = params + "/" + "$groupValues";
+    } else if (groupValues == "8") {
+      params = params + "/" + "$groupValues";
     } else if (kategori != null) {
       params = params + "/" + "$kategori".toLowerCase();
     }
@@ -79,7 +93,7 @@ class _HealthyMenuState extends State<HealthyMenu> {
   dynamic top = 0;
   Filter? selectedFilter;
 
-  bool _isPressed = false;
+  bool isPressed = false;
 
   List<Widget> createRadioListFilter() {
     List<Filter> filters = Filter.getFilters();
@@ -98,16 +112,14 @@ class _HealthyMenuState extends State<HealthyMenu> {
         .toList();
   }
 
-  Set<int> _groupValues = {};
-
-  List<FocusNode>? _focusNodes;
+  List<int> groupValues = [];
 
   @override
   void initState() {
     super.initState();
     fetchKategori();
-    // _groupValues.add(1);
-    // _focusNodes = List.generate(8, (_) => FocusNode());
+    // groupValues.add(1);
+    // focusNodes = List.generate(8, (_) => FocusNode());
   }
 
   @override
@@ -116,7 +128,7 @@ class _HealthyMenuState extends State<HealthyMenu> {
     kategorilist = null;
   }
 
-  Widget _buildItem(String text, int value, FocusNode focusNode) {
+  Widget _buildItem(String text, int value, setState) {
     return Container(
       height: 40,
       child: ListTile(
@@ -125,57 +137,40 @@ class _HealthyMenuState extends State<HealthyMenu> {
           text,
           style: TextStyle(
               fontSize: 10,
-              color:
-                  _groupValues.contains(value) ? Colors.black : Colors.black),
+              color: groupValues.where((element) => element == value).isNotEmpty
+                  ? Colors.black
+                  : Colors.black),
         ),
+        onTap: () {
+          if (groupValues.where((element) => element == value).isNotEmpty) {
+            debugPrint("${groupValues.where((element) => element == value)}");
+            groupValues.remove(value);
+          } else {
+            debugPrint("${groupValues.where((element) => element == value)}");
+            groupValues.add(value);
+          }
+          setState(() {});
+        },
         //controlAffinity: ListTileControlAffinity.trailing,
-        trailing: GestureDetector(
-          onTap: () {
-            setState(() {
-              if (_groupValues.contains(value)) {
-                _groupValues.remove(value);
-              } else {
-                _groupValues.add(value);
-              }
-            });
-          },
-          child: SizedBox(
-            width: 80.0,
-            child: Stack(children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: Radio<int>(
-                      groupValue: _groupValues.contains(value) ? value : null,
-                      value: value,
-                      onChanged: (int? newValue) {
-                        setState(() {
-                          if (newValue != null) {
-                            if (_groupValues.contains(newValue)) {
-                              _groupValues.remove(newValue);
-                            } else {
-                              _groupValues.add(newValue);
-                            }
-                          }
-                        });
-                      },
-                      activeColor: healthyColor,
-                      splashRadius: 25,
-                      toggleable: true,
-                      visualDensity:
-                          const VisualDensity(horizontal: -1, vertical: -1),
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      focusNode: focusNode,
-                    ),
-                  ),
-                ],
-              ),
-            ]),
+        trailing: Container(
+          width: 18,
+          height: 18,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: groupValues.where((element) => element == value).isNotEmpty
+                  ? healthyColor
+                  : Colors.grey),
+          alignment: Alignment.center,
+          child: Container(
+            width: 15,
+            height: 15,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(width: 1.5, color: Colors.white)),
           ),
         ),
         contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
-        selected: _groupValues.contains(value),
+        selected: groupValues.where((element) => element == value).isNotEmpty,
       ),
     );
   }
@@ -192,7 +187,16 @@ class _HealthyMenuState extends State<HealthyMenu> {
         delegate: SliverChildBuilderDelegate(
       (context, index) {
         return GestureDetector(
-            onTap: () => Navigator.pushNamed(context, "/lihattoko"),
+            onTap: () {
+              if (tokoList[index].id != null) {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => TokoPage(
+                              id: tokoList[index].id,
+                            )));
+              }
+            },
             child: Container(
               padding: EdgeInsets.all(15),
               margin: EdgeInsets.only(top: 5),
@@ -306,7 +310,7 @@ class _HealthyMenuState extends State<HealthyMenu> {
                         ),
                         if (top > 125)
                           const Text(
-                            'Yang sehat-sehat buat kamu!',
+                            'Biasa aja tapi yang pasti enak!',
                             style: TextStyle(
                                 fontSize: 10, fontWeight: FontWeight.w300),
                           ),
@@ -342,17 +346,17 @@ class _HealthyMenuState extends State<HealthyMenu> {
                         GestureDetector(
                           onTapDown: (TapDownDetails details) {
                             setState(() {
-                              _isPressed = true;
+                              isPressed = true;
                             });
                           },
                           onTapUp: (TapUpDetails details) {
                             setState(() {
-                              _isPressed = false;
+                              isPressed = false;
                             });
                           },
                           onTapCancel: () {
                             setState(() {
-                              _isPressed = false;
+                              isPressed = false;
                             });
                           },
                           child: AnimatedContainer(
@@ -366,7 +370,95 @@ class _HealthyMenuState extends State<HealthyMenu> {
                                       : baseColor),
                               child: IconButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(context, "/lihattoko");
+                                  showModalBottomSheet(
+                                    context: context,
+                                    isDismissible: true,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    builder: (context) => StatefulBuilder(
+                                      builder: ((context, setState) {
+                                        return SizedBox(
+                                          height: 460,
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                alignment: Alignment.centerLeft,
+                                                padding: EdgeInsets.only(
+                                                    left: 14.4, top: 10),
+                                                child: Text(
+                                                  "Jenis Kuliner",
+                                                  style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              _buildItem(
+                                                  "Semua Kuliner", 1, setState),
+                                              _buildItem(
+                                                  "Makanan", 2, setState),
+                                              _buildItem(
+                                                  "Aneka nasi", 3, setState),
+                                              _buildItem("Ayam", 4, setState),
+                                              _buildItem("Sapi", 5, setState),
+                                              _buildItem(
+                                                  "Sayuran", 6, setState),
+                                              _buildItem("Bakso", 7, setState),
+                                              _buildItem(
+                                                  "Aneka Minuman", 8, setState),
+                                              Container(
+                                                margin:
+                                                    EdgeInsets.only(top: 15),
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    30,
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                                backgroundColor:
+                                                                    baseColor),
+                                                        onPressed: () {
+                                                          debugPrint(
+                                                              "Item yang dipilih $groupValues");
+                                                          fetchKategori();
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Text(
+                                                          "Hapus",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  blackColor),
+                                                        )),
+                                                    ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                                backgroundColor:
+                                                                    healthyColor),
+                                                        onPressed: () {
+                                                          debugPrint(
+                                                              "Item yang dipilih $groupValues");
+                                                          fetchKategori();
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Text("Simpan")),
+                                                  ],
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                      }),
+                                    ),
+                                  );
                                 },
                                 icon: Icon(Icons.tune),
                                 padding: EdgeInsets.zero,
@@ -455,55 +547,7 @@ class _HealthyMenuState extends State<HealthyMenu> {
               //             color: baseColor),
               //         child: IconButton(
               //           onPressed: () {
-              //             showModalBottomSheet(
-              //               context: context,
-              //               isDismissible: true,
-              //               shape: RoundedRectangleBorder(
-              //                   borderRadius: BorderRadius.circular(10)),
-              //               builder: (context) => StatefulBuilder(
-              //                 builder: ((context, setState) {
-              //                   return SizedBox(
-              //                     height: 460,
-              //                     child: Column(
-              //                       children: [
-              //                         Container(
-              //                           alignment: Alignment.centerLeft,
-              //                           padding: EdgeInsets.only(
-              //                               left: 14.4, top: 10),
-              //                           child: Text(
-              //                             "Jenis Kuliner",
-              //                             style: TextStyle(
-              //                               fontSize: 20,
-              //                               fontWeight: FontWeight.w500,
-              //                             ),
-              //                           ),
-              //                         ),
-              //                         Column(
-              //                           children: [
-              //                             _buildItem("Semua Kuliner", 1,
-              //                                 _focusNodes![0]),
-              //                             _buildItem(
-              //                                 "Makanan", 2, _focusNodes![1]),
-              //                             _buildItem(
-              //                                 "Aneka nasi", 3, _focusNodes![2]),
-              //                             _buildItem(
-              //                                 "Ayam", 4, _focusNodes![3]),
-              //                             _buildItem(
-              //                                 "Sapi", 5, _focusNodes![4]),
-              //                             _buildItem(
-              //                                 "Sayuran", 6, _focusNodes![5]),
-              //                             _buildItem(
-              //                                 "Bakso", 7, _focusNodes![6]),
-              //                             _buildItem("Aneka Minuman", 8,
-              //                                 _focusNodes![7]),
-              //                           ],
-              //                         ),
-              //                       ],
-              //                     ),
-              //                   );
-              //                 }),
-              //               ),
-              //             );
+              //
               //           },
               //           icon: Icon(Icons.tune),
               //           padding: EdgeInsets.zero,

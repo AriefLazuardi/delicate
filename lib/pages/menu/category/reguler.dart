@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
-
 import 'package:delicate/models/Toko.dart';
-import 'package:delicate/pages/filter/filterdialog.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:delicate/shared/constant.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +24,22 @@ class _RegulerMenuState extends State<RegulerMenu> {
     debugPrint("$kategori");
     if (kategori == "Bintang 4.5+") {
       params = params + "/rating";
+    } else if (groupValues == "1") {
+      params = params + "/" + "$groupValues";
+    } else if (groupValues == "2") {
+      params = params + "/" + "$groupValues";
+    } else if (groupValues == "3") {
+      params = params + "/" + "$groupValues";
+    } else if (groupValues == "4") {
+      params = params + "/" + "$groupValues";
+    } else if (groupValues == "5") {
+      params = params + "/" + "$groupValues";
+    } else if (groupValues == "6") {
+      params = params + "/" + "$groupValues";
+    } else if (groupValues == "7") {
+      params = params + "/" + "$groupValues";
+    } else if (groupValues == "8") {
+      params = params + "/" + "$groupValues";
     } else if (kategori != null) {
       params = params + "/" + "$kategori".toLowerCase();
     }
@@ -400,17 +414,44 @@ class _RegulerMenuState extends State<RegulerMenu> {
                                                         .size
                                                         .width -
                                                     30,
-                                                child: ElevatedButton(
-                                                    style: ElevatedButton
-                                                        .styleFrom(
-                                                            backgroundColor:
-                                                                primaryColor),
-                                                    onPressed: () {
-                                                      debugPrint(
-                                                          "Item yang dipilih $groupValues");
-                                                      Navigator.pop(context);
-                                                    },
-                                                    child: Text("Simpan")),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                                backgroundColor:
+                                                                    baseColor),
+                                                        onPressed: () {
+                                                          debugPrint(
+                                                              "Item yang dipilih $groupValues");
+                                                          fetchKategori();
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Text(
+                                                          "Hapus",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  blackColor),
+                                                        )),
+                                                    ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                                backgroundColor:
+                                                                    primaryColor),
+                                                        onPressed: () {
+                                                          debugPrint(
+                                                              "Item yang dipilih $groupValues");
+                                                          fetchKategori();
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Text("Simpan")),
+                                                  ],
+                                                ),
                                               )
                                             ],
                                           ),

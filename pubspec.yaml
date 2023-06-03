@@ -53,6 +53,7 @@ dependencies:
   bmnav: ^0.3.4
   intl: ^0.18.1
   badges: ^3.1.1
+  dcdg: ^4.1.0
   sqflite: ^2.2.8+2
   path_provider: ^2.0.15
 
