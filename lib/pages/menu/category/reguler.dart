@@ -172,7 +172,7 @@ class _RegulerMenuState extends State<RegulerMenu> {
     return SliverList(
         delegate: SliverChildBuilderDelegate(
       (context, index) {
-        return GestureDetector(
+        return InkWell(
             onTap: () {
               if (tokoList[index].id != null) {
                 Navigator.push(

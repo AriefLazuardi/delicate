@@ -4,6 +4,7 @@ import 'package:delicate/pages/helpdesk/helpdesk.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -13,7 +14,19 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  get name => 'Dimas Zaidan';
+  String _name = '';
+
+  void initState() {
+    super.initState();
+    _loadUsername();
+  }
+
+  Future<void> _loadUsername() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _name = prefs.getString('name') ?? '';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +71,13 @@ class _ProfileState extends State<Profile> {
                                 Padding(
                                   padding: EdgeInsets.only(left: 20),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Text(
-                                        '$name',
+                                        '$_name',
                                         style: TextStyle(
                                           fontSize: 20,
                                           color: primaryColor,
@@ -87,7 +101,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
+                    height: MediaQuery.of(context).size.height * 0.02,
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.symmetric(horizontal: 35),
@@ -123,7 +137,7 @@ class _ProfileState extends State<Profile> {
                       ),
                       title: Text("Kata Sandi"),
                       trailing: Icon(Icons.navigate_next),
-                       onTap: () {
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -162,8 +176,25 @@ class _ProfileState extends State<Profile> {
                     padding: EdgeInsetsDirectional.symmetric(horizontal: 35),
                     child: ListTile(
                       minLeadingWidth: 0,
+                      leading: Icon(Icons.shopping_bag),
+                      title: Text("Pesanan Saya"),
+                      trailing: Icon(Icons.navigate_next),
+                    ),
+                  ),
+                  Container(
+                    width: 300,
+                    child: Divider(
+                      height: 5,
+                      thickness: 2,
+                      color: Colors.grey.shade700,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.symmetric(horizontal: 35),
+                    child: ListTile(
+                      minLeadingWidth: 0,
                       leading: Icon(Icons.feed),
-                      title: Text("Riwayat Pembayaran"),
+                      title: Text("Riwayat Pemesanan"),
                       trailing: Icon(Icons.navigate_next),
                     ),
                   ),
@@ -193,16 +224,24 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.10,
+                    height: MediaQuery.of(context).size.height * 0.05,
                   ),
                   Container(
+                    width: 73,
+                    height: 36,
                     child: TextButton(
-                        onPressed: () =>
-                            Navigator.pushReplacementNamed(context, "/login"),
+                        onPressed: () => Navigator.of(context)
+                            .pushNamedAndRemoveUntil(
+                                '/login', (Route<dynamic> route) => false),
                         child: Text(
                           "Keluar",
                           style: TextStyle(color: primaryColor),
                         )),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: whiteColor,
+                          border: Border.all(color: primaryColor)
+                        ),
                   )
                 ],
               )
