@@ -42,7 +42,7 @@ class _KeranjangState extends State<Keranjang> {
     },
   ];
   Widget tampilanKeranjang() {
-    if (keranjang == true) {
+    if (keranjang == false) {
       // pengecekan apakah list kosong atau tidak
       return Column(
         children: [
@@ -64,65 +64,66 @@ class _KeranjangState extends State<Keranjang> {
       );
     } else {
       return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: data.map((e) {
-        return Container(
-          width: 100,
-          height: 136,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: whiteColor,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 2,
-                blurRadius: 4,
-                offset: Offset(0, 2),
-              ),
-            ],
-          ),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  CheckboxExample(),
-                  CircleAvatar(
-                    radius: 10,
-                    backgroundImage:
-                        AssetImage("assets/images/toko_avatar.png"),
+            return Container(
+              width: 100,
+              height: 136,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: whiteColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 4,
+                    offset: Offset(0, 2),
                   ),
-                  Container(child: Text("Papa Min"))
                 ],
               ),
-              Row(
+              child: Column(
                 children: [
-                  Container(child: CheckboxExample()),
-                  Container(
-                    width: 50,
-                    height: 45,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/sate_ayam.png"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Column(
+                  Row(
                     children: [
-                      Container(
-                        child: Text("Nama_produk"),
+                      CheckboxExample(),
+                      CircleAvatar(
+                        radius: 10,
+                        backgroundImage:
+                            AssetImage("assets/images/toko_avatar.png"),
                       ),
+                      Container(child: Text("Papa Min"))
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Container(child: CheckboxExample()),
                       Container(
-                        child: Text("Rp. 17.000"),
+                        width: 50,
+                        height: 45,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          image: DecorationImage(
+                            image: AssetImage("assets/images/sate_ayam.png"),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      Column(
+                        children: [
+                          Container(
+                            child: Text("Nama_produk"),
+                          ),
+                          Container(
+                            child: Text("Rp. 17.000"),
+                          )
+                        ],
                       )
                     ],
-                  )
+                  ),
                 ],
               ),
-            ],
-          ),
-        );
-      }).toList());
+            );
+          }).toList());
     }
   }
 

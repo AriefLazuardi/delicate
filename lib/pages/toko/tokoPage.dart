@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:intl/intl.dart';
 import '../../models/Produk.dart';
 import '../../shared/constant.dart';
 
@@ -230,6 +230,9 @@ class _TokoPageState extends State<TokoPage> {
                                                         Alignment.centerLeft,
                                                     child: Text(
                                                       e?.namaProduk ?? "",
+                                                      maxLines: 1,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
                                                       style: const TextStyle(
                                                         fontSize: 16,
                                                         fontWeight:

@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/rendering.dart';
-
+import 'package:skeletons/skeletons.dart';
 import '../../models/Toko.dart';
 import '../../shared/constant.dart';
 import 'package:http/http.dart' as http;
@@ -200,111 +200,111 @@ class _MenuState extends State<HomePage> {
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
                             color: blackColor))),
-                Container(
-                  margin: EdgeInsets.fromLTRB(32, 412, 10, 0),
-                  height: 180,
-                  child: ListView.builder(
-                      physics: BouncingScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      itemCount: tokoList.length,
-                      itemBuilder: (context, index) {
-                        if (tokoList.length == 0) {
-                          Container(
-                              // padding: EdgeInsets.only(top: 250),
-                              alignment: Alignment.center,
-                              height: MediaQuery.of(context).size.height * 0.2,
-                              child: CircularProgressIndicator());
-                        }
-                        return Container(
-                          clipBehavior: Clip.hardEdge,
-                          width: 120,
-                          height: 140,
-                          margin: EdgeInsets.symmetric(horizontal: 5),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                width: 1,
-                                color: baseColor,
-                              )),
-                          child: GestureDetector(
-                            onTap: () {
-                              if (tokoList[index].id != null) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => TokoPage(
-                                              id: tokoList[index].id,
-                                            )));
-                              }
-                            },
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Container(
-                                      width: 120,
-                                      height: 90,
-                                      child: Image.asset(
-                                        tokoList[index].gambar ?? "",
-                                        fit: BoxFit.cover,
-                                      )),
-                                  Container(
-                                      padding: EdgeInsets.only(top: 4, left: 4),
-                                      child: Text(
-                                        "${tokoList[index].nama}",
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w700),
-                                      )),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 4),
-                                      child: Text(
-                                        "${tokoList[index].deskripsi}",
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(fontSize: 10),
-                                      ),
-                                    ),
-                                  ),
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pushNamed(context, "/lihat"),
-                                    child: Container(
-                                      width: 100,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Container(
-                                              child: Text(
-                                            "Lihat",
-                                            style: TextStyle(
-                                                fontSize: 8,
-                                                color: primaryColor),
-                                          )),
-                                          Container(
-                                            margin: EdgeInsets.fromLTRB(
-                                                10, 0, 0, 0),
-                                            // padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                            child: Container(
-                                                //padding: EdgeInsets.all(5),
-                                                child: Image(
-                                                    image: AssetImage(
-                                                        "assets/images/vector_back.png"))),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ]),
-                          ),
-                        );
-                      }),
-                )
               ],
-            )
+            ),
+            if (tokoList.isEmpty)
+              Container(
+                  padding: EdgeInsets.only(top: 50),
+                  alignment: Alignment.bottomCenter,
+                  // height: MediaQuery.of(context).size.height * 0.2,
+                  child: CircularProgressIndicator(
+                    color: primaryColor,
+                  ))
+            else
+              Container(
+                margin: EdgeInsets.fromLTRB(32, 0, 10, 0),
+                height: 180,
+                child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: tokoList.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        clipBehavior: Clip.hardEdge,
+                        width: 120,
+                        height: 140,
+                        margin: EdgeInsets.symmetric(horizontal: 5),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(
+                              width: 1,
+                              color: baseColor,
+                            )),
+                        child: GestureDetector(
+                          onTap: () {
+                            if (tokoList[index].id != null) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => TokoPage(
+                                            id: tokoList[index].id,
+                                          )));
+                            }
+                          },
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Container(
+                                    width: 120,
+                                    height: 90,
+                                    child: Image.asset(
+                                      tokoList[index].gambar ?? "",
+                                      fit: BoxFit.cover,
+                                    )),
+                                Container(
+                                    padding: EdgeInsets.only(top: 4, left: 4),
+                                    child: Text(
+                                      "${tokoList[index].nama}",
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w700),
+                                    )),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 4),
+                                    child: Text(
+                                      "${tokoList[index].deskripsi}",
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(fontSize: 10),
+                                    ),
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pushNamed(context, "/lihat"),
+                                  child: Container(
+                                    width: 100,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Container(
+                                            child: Text(
+                                          "Lihat",
+                                          style: TextStyle(
+                                              fontSize: 8, color: primaryColor),
+                                        )),
+                                        Container(
+                                          margin:
+                                              EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                          // padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                          child: Container(
+                                              //padding: EdgeInsets.all(5),
+                                              child: Image(
+                                                  image: AssetImage(
+                                                      "assets/images/vector_back.png"))),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                        ),
+                      );
+                    }),
+              )
           ]),
     );
   }
