@@ -1,17 +1,41 @@
 import 'dart:convert';
 
+import 'package:delicate/helper/dbhelper.dart';
+import 'package:delicate/models/keranjang.dart';
+import 'package:delicate/pages/menu/keranjang/keranjangPage.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:sqflite/sqflite.dart';
+
 import '../../models/Produk.dart';
 import '../../shared/constant.dart';
 
 class TokoPage extends StatefulWidget {
   final int? id;
-  const TokoPage({super.key, this.id});
+  final int? produk_id;
+  final int? toko_id;
+  final String? nama_produk;
+  final int? harga;
+  final int? total;
+  final int? qty;
+  // final String? gambar;
+  final String? status;
+
+  TokoPage(
+      {super.key,
+      this.id,
+      this.produk_id,
+      this.toko_id,
+      this.nama_produk,
+      this.harga,
+      this.total,
+      this.qty,
+      // this.gambar,
+      this.status});
 
   @override
   State<TokoPage> createState() => _TokoPageState();
@@ -20,6 +44,11 @@ class TokoPage extends StatefulWidget {
 class _TokoPageState extends State<TokoPage> {
   ModelToko data = ModelToko();
   bool loading = true;
+  DbHelper dbHelper = DbHelper();
+  List<Keranjang> keranjangList = [];
+
+  var pelanggan_id;
+
   getData() async {
     if (widget.id != null) {
       await http
@@ -42,7 +71,38 @@ class _TokoPageState extends State<TokoPage> {
   @override
   void initState() {
     getData();
+    dbHelper.database;
     super.initState();
+  }
+
+  saveKeranjang(Keranjang _keranjang) async {
+    Database db = (await dbHelper.database) as Database;
+    var batch = db.batch();
+    db.execute(
+        'insert into keranjang(produk_id,toko_id,nama_produk,harga,qty,total,pelanggan_id) values(?,?,?,?,?,?,?)',
+        [
+          _keranjang.produk_id,
+          _keranjang.toko_id,
+          _keranjang.nama_produk,
+          _keranjang.harga,
+          _keranjang.qty,
+          _keranjang.total,
+          // _keranjang.gambar,
+          _keranjang.pelanggan_id,
+        ]);
+    await batch.commit();
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+    // onTap: () {
+    //           if (keranjangList[index].id != null) {
+    //             Navigator.push(
+    //                 context,
+    //                 MaterialPageRoute(
+    //                     builder: (_) => KeranjangPage(
+    //                           id: keranjangList[index].id,
+    //                         )));
+    //           }
+    //         };
   }
 
   @override
@@ -324,22 +384,27 @@ class _TokoPageState extends State<TokoPage> {
                                                               : healthyColor),
                                                     ),
                                                   ),
-                                                  Container(
-                                                    alignment: Alignment.center,
-                                                    width: 70,
-                                                    height: 25,
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(30),
-                                                        color: primaryColor),
-                                                    child: Text(
-                                                      'Tambah',
-                                                      style: TextStyle(
-                                                          fontSize: 10,
-                                                          color: whiteColor,
-                                                          fontWeight:
-                                                              FontWeight.w500),
+                                                  InkWell(
+                                                    onTap: () {},
+                                                    child: Container(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      width: 70,
+                                                      height: 25,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(30),
+                                                          color: primaryColor),
+                                                      child: Text(
+                                                        'Tambah',
+                                                        style: TextStyle(
+                                                            fontSize: 10,
+                                                            color: whiteColor,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
@@ -454,7 +519,39 @@ class _TokoPageState extends State<TokoPage> {
                                               ),
                                               SizedBox(height: 1),
                                               InkWell(
-                                                onTap: () {},
+                                                onTap: () {
+                                                  if ((e?.status) == "1") {
+                                                    print('masuk keranjang');
+                                                    Keranjang _keranjangku =
+                                                        Keranjang(
+                                                            produk_id: widget
+                                                                    .produk_id ??
+                                                                0,
+                                                            nama_produk: widget
+                                                                    .nama_produk ??
+                                                                '',
+                                                            harga:
+                                                                widget.harga ??
+                                                                    0,
+                                                            total:
+                                                                widget.total ??
+                                                                    0,
+                                                            qty: 1,
+                                                            // gambar:
+                                                            //     widget.gambar ?? '',
+                                                            pelanggan_id:
+                                                                pelanggan_id ??
+                                                                    0,
+                                                            id: 1,
+                                                            toko_id: data
+                                                                    .toko?[0]
+                                                                    ?.id ??
+                                                                0);
+                                                    debugPrint(
+                                                        "${_keranjangku.harga}");
+                                                    saveKeranjang(_keranjangku);
+                                                  }
+                                                },
                                                 child: Container(
                                                   alignment: Alignment.center,
                                                   margin: EdgeInsets.only(
@@ -766,24 +863,49 @@ class _TokoPageState extends State<TokoPage> {
                                                 ],
                                               ),
                                               SizedBox(height: 1),
-                                              Container(
-                                                alignment: Alignment.center,
-                                                margin: EdgeInsets.only(
-                                                    left: 180, top: 26),
-                                                width: 170,
-                                                height: 25,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            30),
-                                                    color: primaryColor),
-                                                child: Text(
-                                                  'Tambah',
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      color: whiteColor,
-                                                      fontWeight:
-                                                          FontWeight.w500),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  // print('masuk keranjang');
+                                                  // if ((e?.status ?? "") == 1) {
+                                                  //   Keranjang _keranjangku =
+                                                  //       Keranjang(
+                                                  //           produk_id: widget
+                                                  //               .produk_id,
+                                                  //           nama_produk: widget
+                                                  //               .nama_produk,
+                                                  //           harga: widget.harga,
+                                                  //           total: widget.total,
+                                                  //           qty: 1,
+                                                  //           pelanggan_id:
+                                                  //               pelanggan_id ??
+                                                  //                   toString(),
+                                                  //           id: 1,
+                                                  //           toko_id: data
+                                                  //                   .toko?[0]
+                                                  //                   ?.id ??
+                                                  //               0);
+                                                  //   saveKeranjang(_keranjangku);
+                                                  // }
+                                                },
+                                                child: Container(
+                                                  alignment: Alignment.center,
+                                                  margin: EdgeInsets.only(
+                                                      left: 180, top: 26),
+                                                  width: 170,
+                                                  height: 25,
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              30),
+                                                      color: primaryColor),
+                                                  child: Text(
+                                                    'Tambah',
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: whiteColor,
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ),
                                                 ),
                                               ),
                                             ],

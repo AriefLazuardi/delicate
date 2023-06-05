@@ -186,7 +186,7 @@ class _RegulerMenuState extends State<RegulerMenu> {
     return SliverList(
         delegate: SliverChildBuilderDelegate(
       (context, index) {
-        return GestureDetector(
+        return InkWell(
             onTap: () {
               if (tokoList[index].id != null) {
                 Navigator.push(
@@ -299,6 +299,7 @@ class _RegulerMenuState extends State<RegulerMenu> {
               return FlexibleSpaceBar(
                   centerTitle: true,
                   title: Container(
+                    // margin: EdgeInsetsDirectional.only(bottom: 15),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class Login extends StatefulWidget {
@@ -17,6 +18,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool _isHidePassword = true;
+  
+  // bool isLoading = false;
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -28,24 +31,21 @@ class _LoginState extends State<Login> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  // void configLoading() {
-  //   EasyLoading.instance
-  //     ..displayDuration = const Duration(milliseconds: 2000)
-  //     ..indicatorType = EasyLoadingIndicatorType.fadingCircle
-  //     ..loadingStyle = EasyLoadingStyle.dark
-  //     ..indicatorSize = 45.0
-  //     ..radius = 10.0
-  //     ..progressColor = Colors.yellow
-  //     ..backgroundColor = Colors.green
-  //     ..indicatorColor = Colors.yellow
-  //     ..textColor = Colors.yellow
-  //     ..maskColor = Colors.blue.withOpacity(0.5)
-  //     ..userInteractions = true
-  //     ..dismissOnTap = false;
-  //   // ..customAnimation = CustomAnimation();
+  // saveData()async{
+    
   // }
 
   Future _doLogin() async {
+    final localStorage = await SharedPreferences.getInstance();
+    localStorage.setString("emailUser", emailController.text.toString());
+    localStorage.setString("passwordUser", passwordController.text.toString());
+
+    String? emailUser = localStorage.getString("emailUser");
+    String? passwordUser = localStorage.getString("passwordUser");
+    // loading circle
+    showDialog(context: context, builder: (context){
+      return Center(child: CircularProgressIndicator( valueColor:AlwaysStoppedAnimation<Color>(Colors.red),),);
+    });
     final response = await http.post(
       Uri.parse("http://10.0.2.2:8000/api/login"),
       body: {
@@ -54,13 +54,16 @@ class _LoginState extends State<Login> {
       },
       // headers: {"Accept" : 'application/json'}
     );
-
-    // EasyLoading.show(status: 'loading...');
+    Navigator.of(context).pop();
+    // setState(() {
+    //   isLoading = true;
+    //   CircularProgressIndicator();
+    // });
     if (response.statusCode == 200) {
       Alert(context: context, title: "Login Berhasil", type: AlertType.success);
       Navigator.pushNamed(context, "/bottomnavbar");
+     
     } else {
-      // EasyLoading.dismiss();
       Alert(
               context: context,
               title: "Login Gagal",
@@ -79,6 +82,11 @@ class _LoginState extends State<Login> {
           .show();
       passwordController.text = "";
     }
+    //  setState(() {
+    //   isLoading = false;
+    // });
+    // close loading
+      
   }
 
   @override
