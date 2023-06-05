@@ -55,13 +55,19 @@ dependencies:
   badges: ^3.1.1
   sqflite: ^2.2.8+2
   path_provider: ^2.0.15
-
-
+  flutter_launcher_icons: ^0.13.1
+    
   # fluttertoast:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/delicate.png"
+  min_sdk_android: 21
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

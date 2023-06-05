@@ -44,7 +44,7 @@ class _HelpDeskState extends State<HelpDesk> {
                         offset: Offset(0, 1))
                   ]),
               child: TextField(
-                onTap: () => Navigator.pushNamed(context, "/pencarian"),
+                onTap: () => Navigator.pushNamed(context, "/"),
                 readOnly: true,
                 style: TextStyle(fontSize: 15),
                 decoration: InputDecoration(
