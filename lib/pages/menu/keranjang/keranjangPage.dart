@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:get/get.dart';
 import 'package:delicate/models/keranjang.dart';
 import 'package:delicate/pages/toko/tokoPage.dart';
 
@@ -13,18 +14,12 @@ class KeranjangPage extends StatefulWidget {
   const KeranjangPage({super.key});
 
   @override
-  State<KeranjangPage> createState() => _KeranjangPageState();
+  State<KeranjangPage> createState() => _KeranjangState();
 }
 
-class _KeranjangPageState extends State<KeranjangPage> {
+class _KeranjangState extends State<KeranjangPage> {
   DbHelper dbHelper = DbHelper();
   List<Keranjang> keranjangList = [];
-
-  @override
-  State<Keranjang> createState() => _KeranjangState();
-}
-
-class _KeranjangState extends State<Keranjang> {
   bool keranjang = false;
   List data = [
     {
@@ -54,7 +49,7 @@ class _KeranjangState extends State<Keranjang> {
     },
   ];
   Widget tampilanKeranjang() {
-    if (keranjang == true) {
+    if (keranjang == false) {
       // pengecekan apakah list kosong atau tidak
       return Column(
         children: [
@@ -76,65 +71,66 @@ class _KeranjangState extends State<Keranjang> {
       );
     } else {
       return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: data.map((e) {
-        return Container(
-          width: 100,
-          height: 136,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: whiteColor,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 2,
-                blurRadius: 4,
-                offset: Offset(0, 2),
-              ),
-            ],
-          ),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  CheckboxExample(),
-                  CircleAvatar(
-                    radius: 10,
-                    backgroundImage:
-                        AssetImage("assets/images/toko_avatar.png"),
+            return Container(
+              width: 100,
+              height: 136,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: whiteColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 4,
+                    offset: Offset(0, 2),
                   ),
-                  Container(child: Text("Papa Min"))
                 ],
               ),
-              Row(
+              child: Column(
                 children: [
-                  Container(child: CheckboxExample()),
-                  Container(
-                    width: 50,
-                    height: 45,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/sate_ayam.png"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Column(
+                  Row(
                     children: [
-                      Container(
-                        child: Text("Nama_produk"),
+                      CheckboxExample(),
+                      CircleAvatar(
+                        radius: 10,
+                        backgroundImage:
+                            AssetImage("assets/images/toko_avatar.png"),
                       ),
+                      Container(child: Text("Papa Min"))
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Container(child: CheckboxExample()),
                       Container(
-                        child: Text("Rp. 17.000"),
+                        width: 50,
+                        height: 45,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          image: DecorationImage(
+                            image: AssetImage("assets/images/sate_ayam.png"),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      Column(
+                        children: [
+                          Container(
+                            child: Text("Nama_produk"),
+                          ),
+                          Container(
+                            child: Text("Rp. 17.000"),
+                          )
+                        ],
                       )
                     ],
-                  )
+                  ),
                 ],
               ),
-            ],
-          ),
-        );
-      }).toList());
+            );
+          }).toList());
     }
   }
 
@@ -142,42 +138,23 @@ class _KeranjangState extends State<Keranjang> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: GFAppBar(
-            titleSpacing: 0,
-            automaticallyImplyLeading: false,
-            title: (Text(
-              "Keranjang",
-              style: TextStyle(
-                  fontSize: 14, color: blackColor, fontWeight: FontWeight.w600),
-            )),
-            backgroundColor: whiteColor,
-            elevation: 4,
-            toolbarHeight: 71,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              color: primaryColor,
-              onPressed: () {
-                // fungsi ketika tombol back ditekan
-                Navigator.pop(context);
-              },
-            ),
-            title: Text(
-              "Keranjang",
-              style: TextStyle(
-                  color: blackColor, fontWeight: FontWeight.w600, fontSize: 18),
-              leading: GFIconButton(
-                icon: const Icon(Icons.arrow_back),
-                color: primaryColor,
-                onPressed: () {
-                  Navigator.pushNamed(context, "/homepage");
-                },
-                type: GFButtonType.transparent,
-              ),
-            ),
-            body: ListView(
-              children: [
-                tampilanKeranjang(),
-              ],
-            )));
+      titleSpacing: 0,
+      backgroundColor: whiteColor,
+      elevation: 4,
+      leading: GFIconButton(
+        icon: const Icon(Icons.arrow_back),
+        color: primaryColor,
+        onPressed: () {
+          Navigator.pushNamed(context, "/homepage");
+        },
+        type: GFButtonType.transparent,
+      ),
+      title: Text(
+        "Keranjang",
+        style: TextStyle(
+            color: blackColor, fontWeight: FontWeight.w600, fontSize: 18),
+      ),
+    ));
   }
 }
 

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../../models/Produk.dart';
@@ -90,8 +91,8 @@ class _TokoPageState extends State<TokoPage> {
           _keranjang.pelanggan_id,
         ]);
     await batch.commit();
-     Navigator.of(context).pushNamedAndRemoveUntil(
-        '/login', (Route<dynamic> route) => false);
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
     // onTap: () {
     //           if (keranjangList[index].id != null) {
     //             Navigator.push(
@@ -289,6 +290,9 @@ class _TokoPageState extends State<TokoPage> {
                                                         Alignment.centerLeft,
                                                     child: Text(
                                                       e?.namaProduk ?? "",
+                                                      maxLines: 1,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
                                                       style: const TextStyle(
                                                         fontSize: 16,
                                                         fontWeight:
@@ -518,25 +522,30 @@ class _TokoPageState extends State<TokoPage> {
                                                 onTap: () {
                                                   if ((e?.status) == "1") {
                                                     print('masuk keranjang');
-                                                    Keranjang _keranjangku = Keranjang(
-                                                        produk_id:
-                                                            widget.produk_id ??
+                                                    Keranjang _keranjangku =
+                                                        Keranjang(
+                                                            produk_id: widget
+                                                                    .produk_id ??
                                                                 0,
-                                                        nama_produk: widget
-                                                                .nama_produk ??
-                                                            '',
-                                                        harga:
-                                                            widget.harga ?? 0,
-                                                        total:
-                                                            widget.total ?? 0,
-                                                        qty: 1,
-                                                        // gambar:
-                                                        //     widget.gambar ?? '',
-                                                        pelanggan_id:
-                                                            pelanggan_id ?? 0,
-                                                        id: 1,
-                                                        toko_id:
-                                                            data.toko?[0]?.id ??
+                                                            nama_produk: widget
+                                                                    .nama_produk ??
+                                                                '',
+                                                            harga:
+                                                                widget.harga ??
+                                                                    0,
+                                                            total:
+                                                                widget.total ??
+                                                                    0,
+                                                            qty: 1,
+                                                            // gambar:
+                                                            //     widget.gambar ?? '',
+                                                            pelanggan_id:
+                                                                pelanggan_id ??
+                                                                    0,
+                                                            id: 1,
+                                                            toko_id: data
+                                                                    .toko?[0]
+                                                                    ?.id ??
                                                                 0);
                                                     debugPrint(
                                                         "${_keranjangku.harga}");

@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:delicate/shared/shared.dart';
 import 'package:flutter/rendering.dart';
+import 'package:skeletons/skeletons.dart';
 import 'package:flutter/services.dart';
 
 import '../../models/Toko.dart';
@@ -233,7 +234,7 @@ class _MenuState extends State<HomePage> {
                     child: ListView.builder(
                         physics: BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
-                        itemCount: data.length,
+                        itemCount: tokoList.length,
                         itemBuilder: (context, index) {
                           return Container(
                             clipBehavior: Clip.hardEdge,
@@ -253,12 +254,12 @@ class _MenuState extends State<HomePage> {
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
                                   children: [
-                                    Image.asset("${data[index]?['gambar']}"),
+                                    Image.asset(tokoList[index].gambar ?? ""),
                                     Container(
                                         padding:
                                             EdgeInsets.only(top: 4, left: 4),
                                         child: Text(
-                                          "${data[index]?['toko']}",
+                                          tokoList[index].nama ?? "",
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
@@ -269,7 +270,7 @@ class _MenuState extends State<HomePage> {
                                       child: Padding(
                                         padding: const EdgeInsets.only(left: 4),
                                         child: Text(
-                                          "${data[index]?['nama_menu']}",
+                                          tokoList[index].deskripsi ?? "",
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(fontSize: 10),
